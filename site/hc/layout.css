@@ -1,0 +1,592 @@
+/* ============================================================
+   LAYOUT: the app shell (sidebar, top bar, page)
+   On phones (up to 900 px) the sidebar becomes a drawer: put .mnav on
+   .shell to open it and a .side-scrim to close it on a tap outside.
+   Up to 640 px the .bottomnav shows, if there is one.
+   ============================================================ */
+.shell {
+  display: grid;
+  grid-template-columns: var(--side-w) minmax(0, 1fr);
+  height: 100%;
+}
+.shell.collapsed {
+  grid-template-columns: 52px minmax(0, 1fr);
+}
+.side-scrim {
+  display: none;
+}
+/* The shell fills the screen and scrolls inside (.content). The framework root element needs the full height. */
+#root,
+#app,
+#__next,
+#__nuxt,
+app-root {
+  height: 100%;
+}
+html:has(.shell),
+html:has(.shell) body {
+  overflow: hidden;
+}
+/* Brand at the top of the sidebar: the product logo (img or svg) + the name. */
+.hc-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 6px;
+  border-radius: var(--r-sm);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+}
+a.hc-brand:hover {
+  background: var(--surface-3);
+}
+.hc-brand > img,
+.hc-brand > svg {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  border-radius: 6px;
+}
+/* Context switcher: the workspace, organisation or product the person is in. The first row of the menu,
+   in place of .hc-brand; it opens a .pop.hc-switch-menu with every choice, the current one checked. */
+.hc-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  padding: 5px 6px;
+  border-radius: var(--r-sm);
+  color: var(--text);
+  text-align: left;
+  transition: background var(--dur);
+}
+.hc-switch:hover,
+.hc-switch[aria-expanded='true'] {
+  background: var(--surface-3);
+}
+.hc-switch-name {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+.hc-switch-name > b {
+  font-weight: 600;
+  font-size: var(--fs);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hc-switch-name > small {
+  color: var(--text-3);
+  font-size: var(--fs-2xs);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hc-switch > .i:last-child {
+  flex: none;
+  color: var(--text-3);
+}
+/* The logo of a choice: its own image or svg, or its initial on its colour (--c). */
+.hc-switch-logo {
+  --sz: 22px;
+  width: var(--sz);
+  height: var(--sz);
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 6px;
+  font-size: calc(var(--sz) * 0.46);
+  font-weight: 600;
+  background: color-mix(in srgb, var(--c, var(--text-3)) 17%, var(--surface));
+  color: color-mix(in srgb, var(--c, var(--text-3)) 55%, var(--text));
+}
+.hc-switch-logo.sm {
+  --sz: 20px;
+}
+.hc-switch-logo > img,
+.hc-switch-logo > svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.hc-switch-logo:has(> img, > svg) {
+  background: none;
+}
+.hc-switch-menu {
+  width: 260px;
+}
+.collapsed .hc-switch {
+  justify-content: center;
+  padding: 5px 0;
+}
+.collapsed .hc-switch > :not(.hc-switch-logo) {
+  display: none;
+}
+a.sitem {
+  text-decoration: none;
+}
+/* An item that exists but does not work yet: shown disabled, not clickable. */
+.sitem[aria-disabled='true'] {
+  opacity: 0.45;
+  pointer-events: none;
+}
+.side {
+  background: var(--bg-side);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  user-select: none;
+}
+.side-top {
+  padding: 8px 8px 4px;
+}
+/* Scrolls without a visible bar: a scrollbar would eat width and push the nav off the logo's centre line when collapsed. */
+.side-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 4px 8px 12px;
+  scrollbar-width: none;
+}
+.side-scroll::-webkit-scrollbar {
+  display: none;
+}
+.sgroup {
+  margin-top: 14px;
+}
+.sgroup-h {
+  display: flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 8px;
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.sgroup-h .ibtn {
+  opacity: 0;
+  transition: opacity var(--dur);
+}
+.sgroup:hover .sgroup-h .ibtn,
+.sgroup-h .ibtn:focus-visible {
+  opacity: 1;
+}
+.sitem {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  height: var(--side-row);
+  padding: 0 8px;
+  border-radius: var(--r-sm);
+  color: var(--text-2);
+  font-size: var(--fs);
+  font-weight: 450;
+  text-align: left;
+  transition:
+    background var(--dur),
+    color var(--dur);
+  position: relative;
+  white-space: nowrap;
+}
+.sitem:hover {
+  background: var(--surface-3);
+  color: var(--text);
+}
+/* active nav item: accent fill with on-accent text (Hypercube: lime under black) */
+.sitem.on {
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 500;
+}
+.sitem.on .ct {
+  color: var(--on-accent);
+}
+.sitem.on .ct.dotc {
+  background: var(--on-accent);
+  color: var(--accent);
+}
+.sitem .i {
+  color: var(--text-4);
+}
+.sitem:hover .i {
+  color: var(--text-2);
+}
+.sitem.on .i {
+  color: var(--on-accent);
+}
+.sitem .ct {
+  margin-left: auto;
+  font-size: var(--fs-2xs);
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+.sitem .ct.dotc {
+  min-width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--on-accent);
+  display: grid;
+  place-items: center;
+  padding: 0 4px;
+  font-weight: 600;
+}
+.sub {
+  padding-left: 14px;
+  margin-left: 8px;
+  border-left: 1px solid var(--border);
+  display: none;
+}
+.sub.open {
+  display: block;
+}
+.sitem .chev {
+  transition: transform var(--dur);
+  color: var(--text-4);
+}
+.sitem .chev.open {
+  transform: rotate(90deg);
+}
+.side-bot {
+  padding: 6px 8px 8px;
+  border-top: 1px solid var(--border);
+}
+/* Adjust screen: <hc-zoom class="hc-zoom"> with − / value / + (src/elements.js does the scaling).
+   It sits in .side-bot so it is always one glance away; the value resets to 100% on click. */
+.hc-zoom {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: var(--side-row);
+  padding: 0 4px 0 8px;
+  color: var(--text-2);
+  font-size: var(--fs);
+  font-weight: 450;
+}
+.hc-zoom-l {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.hc-zoom-v {
+  min-width: 42px;
+  height: 22px;
+  padding: 0 4px;
+  border-radius: var(--r-xs);
+  color: var(--text-3);
+  font-size: var(--fs-sm);
+  font-variant-numeric: tabular-nums;
+  transition: background var(--dur), color var(--dur);
+}
+.hc-zoom-v:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+.hc-zoom-v[data-changed] {
+  color: var(--text);
+  font-weight: 600;
+}
+.collapsed .hc-zoom {
+  display: none;
+}
+.collapsed .sitem {
+  justify-content: center;
+  padding: 0;
+}
+.collapsed .sitem > span,
+.collapsed .sitem .ct,
+.collapsed .sgroup-h,
+.collapsed .sub,
+.collapsed .sitem .chev {
+  display: none !important;
+}
+.collapsed .sgroup {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  background: var(--surface);
+}
+.topbar {
+  height: var(--topbar-h);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px 0 var(--gutter);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  position: relative;
+  z-index: 5;
+}
+.crumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+/* No padding or hover fill: the first crumb starts exactly on the content gutter; hover is shown with colour only. */
+.crumbs button {
+  padding: 3px 0;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: color var(--dur);
+}
+.crumbs button:hover {
+  color: var(--text);
+}
+.crumbs .cur {
+  color: var(--text);
+  font-weight: 500;
+}
+.crumbs .sep {
+  color: var(--text-4);
+  font-size: var(--fs-xs);
+}
+.content {
+  flex: 1;
+  overflow: auto;
+  min-height: 0;
+  position: relative;
+}
+.content:focus {
+  outline: none;
+}
+/* One scrollbar per area. When the main piece of a screen scrolls on its own (calendar, board, long
+   table with a sticky header), the page must not scroll too: put .fill on .content, and .fill-b on
+   the piece. It takes the height that is left, and only it scrolls. */
+.content.fill {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.content.fill > .page {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: var(--s-6);
+}
+.content.fill > .page > :not(.fill-b) {
+  flex: none;
+}
+.fill-b {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+/* Content pages with a max width sit centred in the main area; full-bleed views use .page.flush. */
+.page {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 28px var(--gutter) 72px;
+}
+.page.flush > .ph {
+  padding: 24px var(--gutter) 12px;
+  margin: 0;
+}
+.page.wide {
+  max-width: none;
+}
+.page.flush {
+  padding: 0;
+  max-width: none;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.ph {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.ph h1 {
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+  letter-spacing: -0.022em;
+  margin: 0;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+.ph p {
+  margin: 4px 0 0;
+  color: var(--text-2);
+  font-size: var(--fs);
+}
+.ph .acts {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+h2.sec {
+  font-size: var(--fs-md);
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+h3.sub {
+  font-size: var(--fs);
+  font-weight: 600;
+  margin: 0;
+}
+.eyebrow {
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-3);
+}
+.bottomnav {
+  display: none;
+}
+
+/* ---------- smaller screens ---------- */
+@media (max-width: 1100px) {
+  .grid2 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 900px) {
+  .shell,
+  .shell.collapsed {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .side {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 280px;
+    z-index: 70;
+    transform: translateX(-100%);
+    visibility: hidden;
+    transition:
+      transform 0.22s var(--ease),
+      visibility 0s 0.22s;
+    box-shadow: var(--shadow-pop);
+  }
+  .shell.mnav .side {
+    transform: none;
+    visibility: visible;
+    transition: transform 0.22s var(--ease);
+  }
+  .shell.collapsed .side .sitem {
+    justify-content: flex-start;
+    padding: 0 8px;
+  }
+  .shell.mnav .side-scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: var(--overlay);
+    z-index: 69;
+    animation: fade 0.14s both;
+  }
+  :root {
+    --gutter: 16px;
+  }
+  .page {
+    padding: 20px var(--gutter) 96px;
+  }
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .stat:nth-child(3) {
+    border-left: 0;
+  }
+  .stat:nth-child(n + 3) {
+    border-top: 1px solid var(--border);
+  }
+  .only-d {
+    display: none !important;
+  }
+}
+@media (min-width: 901px) {
+  .only-n {
+    display: none !important;
+  }
+}
+@media (max-width: 640px) {
+  :root {
+    --topbar-h: 50px;
+  }
+  .bottomnav {
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 45;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 4px 6px calc(4px + env(safe-area-inset-bottom, 0px));
+  }
+  .bottomnav button,
+  .bottomnav a {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 5px 0;
+    min-height: 48px;
+    font-size: var(--fs-2xs);
+    color: var(--text-3);
+    border-radius: var(--r-sm);
+    position: relative;
+    text-decoration: none;
+  }
+  .bottomnav .on,
+  .bottomnav [aria-current] {
+    color: var(--text);
+  }
+  .hide-m {
+    display: none !important;
+  }
+  .ph h1 {
+    font-size: var(--fs-xl);
+  }
+  .ph .acts {
+    margin-left: 0;
+    width: 100%;
+  }
+  .panel-h {
+    flex-wrap: wrap;
+  }
+  .topbar .ibtn,
+  .topbar .btn {
+    min-width: 40px;
+    min-height: 40px;
+  }
+}

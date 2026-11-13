@@ -1,0 +1,38 @@
+# Hypercube UI
+
+> Screen components in CSS on tokens plus Web Components, for any stack (plain HTML, React, Vue, Svelte, Angular, Blazor, Astro, server-rendered). No framework, no build. Light and dark, built for phones (360 px).
+
+To apply it to an existing app, read AGENTS.md first: the steps, the "what to swap for what" table, the design rules, phones, accessibility and the checklist.
+
+## Read in this order
+
+- [AGENTS.md](AGENTS.md): the how-to (required)
+- [AUDIT.md](AUDIT.md): the adherence checklist; `scripts/audit.mjs` and `audit/audit.js` run its automatic part
+- [components.json](components.json): every piece with its classes, when to use it and the exact markup
+- [recipes/](recipes/): install and markup per stack
+- [catalog/pages/](catalog/pages/): piece examples and whole-screen templates (`template-*.html`; the ones that move have a script in `catalog/js/`)
+
+## Library files
+
+- [src/index.css](src/index.css): import only this one
+- [src/tokens.css](src/tokens.css): colour, space, type, radius, motion
+- [src/components.css](src/components.css): button, field, tabs, badge, avatar, panel, stats, loader
+- [src/states.css](src/states.css): empty, loading, error, alert
+- [src/overlays.css](src/overlays.css): modal, drawer, menu, toast
+- [src/layout.css](src/layout.css): sidebar, context switcher (workspace, organisation, product), top bar, page
+- [src/screens.css](src/screens.css): list + detail, chat, settings, sign in, table
+- [src/boards.css](src/boards.css): connected tree, node, canvas, flow editor, week calendar, usage timeline, diff
+- [src/hc.css](src/hc.css): pieces for screens where AI works (trail, question, needs you…)
+- [src/elements.js](src/elements.js): <hc-ask>, <hc-sheet>, long press
+
+## Recipes
+
+- [recipes/html.md](recipes/html.md)
+- [recipes/react.md](recipes/react.md)
+- [recipes/vue.md](recipes/vue.md)
+- [recipes/svelte.md](recipes/svelte.md)
+- [recipes/angular.md](recipes/angular.md)
+- [recipes/blazor.md](recipes/blazor.md)
+- [recipes/astro.md](recipes/astro.md)
+- [recipes/server-rendered.md](recipes/server-rendered.md): Django, Rails, Laravel, Razor, PHP
+- [recipes/tailwind-bootstrap.md](recipes/tailwind-bootstrap.md)

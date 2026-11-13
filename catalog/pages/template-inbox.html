@@ -1,0 +1,50 @@
+<!-- title: Inbox | kind: template | group: Templates | order: 31 | icon: inbox -->
+<div class="shell" data-shell>
+  {{menu:inbox}}
+  <div class="main">
+    <div class="hc-split" style="--hc-list-w:340px">
+      <section class="hc-list" aria-label="Inbox">
+        <div class="hc-list-h">
+          <div class="hc-list-t"><button class="ibtn only-n" data-menu-open aria-label="Open the menu">{{i:menu:18}}</button><h1>Inbox</h1></div>
+          <div class="seg" role="group" aria-label="Filter"><button class="on" aria-pressed="true">All</button><button aria-pressed="false">Mentions</button><button aria-pressed="false">Requests</button></div>
+        </div>
+        <div class="hc-list-b">
+          <div class="hc-list-g">Today</div>
+          <button class="hc-row2" data-opens="a" aria-current="true" data-unread>
+            <span class="hc-row2-av"><span class="av md" style="--c:var(--orange)">AR</span></span>
+            <span class="hc-row2-t"><span class="trunc">Architect asked for your approval</span></span><time class="hc-row2-time">19:32</time>
+            <span class="hc-row2-sub">MOB-109 · Orders: can I open the review?</span><span class="hc-row2-end"><span class="hc-needs-mark">{{i:message-circle-question:14}}</span></span>
+          </button>
+          <button class="hc-row2" data-opens="b" data-unread>
+            <span class="hc-row2-av"><span class="av md" style="--c:var(--blue)">SC</span></span>
+            <span class="hc-row2-t"><span class="trunc">Sara mentioned you</span></span><time class="hc-row2-time">16:12</time>
+            <span class="hc-row2-sub">"Can you take a look at the invoice screens?"</span><span class="hc-row2-end"></span>
+          </button>
+          <div class="hc-list-g">This week</div>
+          <button class="hc-row2" data-opens="c">
+            <span class="hc-row2-av"><span class="av md" style="--c:var(--green)">BR</span></span>
+            <span class="hc-row2-t"><span class="trunc">Bruno finished MOB-104</span></span><time class="hc-row2-time">Mon</time>
+            <span class="hc-row2-sub">Profile screen · ready to test</span><span class="hc-row2-end"></span>
+          </button>
+        </div>
+      </section>
+      <section class="hc-main" data-item="a" aria-label="Approval request">
+        <header class="hc-main-h"><button class="ibtn hc-back" aria-label="Back">{{i:arrow-left:18}}</button><span class="hc-main-t"><b class="trunc">Architect asked for your approval</b><small>MOB-109 · Orders · 3 min ago</small></span><button class="ibtn" aria-label="Archive" data-tip="Archive" data-toast="Archived (example)">{{i:archive}}</button></header>
+        <div class="hc-main-b">
+          <div class="col" style="gap:16px;max-width:640px">
+            <p style="margin:0">I finished the orders screen. The tests passed (214 of 214). Can I open the pull request for the team?</p>
+            <div class="hc-needs"><div class="hc-need"><span class="hc-ring round" data-state="needs"><span class="av sm" style="--c:var(--orange)">AR</span></span><div><div class="hc-need-q"><b>Architect:</b> open the review now?</div><div class="hc-need-meta"><span class="hc-id">MOB-109</span> Orders</div></div><div class="hc-need-acts"><button class="btn btn-sm btn-secondary" data-toast="Example: would say wait">Wait</button><button class="btn btn-sm btn-primary" data-toast="Example: would approve">Approve</button></div></div></div>
+          </div>
+        </div>
+      </section>
+      <section class="hc-main" data-item="b" aria-label="Mention" hidden>
+        <header class="hc-main-h"><button class="ibtn hc-back" aria-label="Back">{{i:arrow-left:18}}</button><span class="hc-main-t"><b class="trunc">Sara mentioned you</b><small>Conversation with Sara Cole · 16:12</small></span></header>
+        <div class="hc-main-b"><p style="margin:0 0 12px">"I uploaded the new invoice screens. Can you take a look when you can?"</p><a class="btn btn-secondary" href="template-chat.html">{{i:message-circle:14}}Open the conversation</a></div>
+      </section>
+      <section class="hc-main" data-item="c" aria-label="Task finished" hidden>
+        <header class="hc-main-h"><button class="ibtn hc-back" aria-label="Back">{{i:arrow-left:18}}</button><span class="hc-main-t"><b class="trunc">Bruno finished MOB-104</b><small>Profile screen · Monday</small></span></header>
+        <div class="hc-main-b"><div class="alert ok">{{i:circle-check:15}}<span>MOB-104 is ready to test.</span></div></div>
+      </section>
+    </div>
+  </div>
+</div>

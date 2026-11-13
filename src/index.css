@@ -1,0 +1,19 @@
+/* Hypercube UI: import this file and everything comes in the right order.
+   tokens      colour, space, type, radius, motion (light and dark)
+   base        reset, typography, focus, utilities (.trunc, .sp, .muted…)
+   components  button, field, select, tabs, segmented, badge, chip, avatar, panel, stats
+   states      empty, loading (skeleton), error, alert
+   overlays    modal, drawer, menu, toast
+   layout      sidebar, top bar, page; drawer on phones
+   screens     screen patterns: list + detail, messages, settings, sign in, table
+   boards      tree, node, canvas, flow editor, week calendar, usage timeline, diff
+   hc          AI pieces: ring, two-line row, question, trail, bottom sheet… */
+@import './tokens.css';
+@import './base.css';
+@import './components.css';
+@import './states.css';
+@import './overlays.css';
+@import './layout.css';
+@import './screens.css';
+@import './boards.css';
+@import './hc.css';

@@ -1,0 +1,67 @@
+<!-- title: Root cause | kind: template | group: Templates | order: 37 | icon: git-fork | script: root-cause.js -->
+<div class="shell" data-shell>
+  {{menu:cause}}
+  <div class="main">
+    <header class="topbar"><button class="ibtn only-n" data-menu-open aria-label="Open the menu">{{i:menu:18}}</button><nav class="crumbs" aria-label="You are here"><span class="hide-m">Investigations</span><span class="sep hide-m">/</span><span class="cur">Checkout tests failing</span></nav></header>
+    <main class="content">
+      <div class="page wide">
+        <div class="ph">
+          <div><h1 class="row" style="gap:10px">{{i:git-fork:20}}Root cause</h1><p data-rc-sub>5 hypotheses · 2 ruled out</p></div>
+          <div class="acts"><span class="badge" data-rc-badge style="color:var(--blue)"><span class="hc-loader" aria-hidden="true"></span>Investigating</span><span class="faint num" data-rc-clock>3:25</span></div>
+        </div>
+        <div class="hc-tree" data-rc-tree style="margin-bottom:20px">
+          <ul>
+            <li>
+              <div class="hc-node" data-id="h0" style="--node-w:210px">
+                  <div class="hc-node-h">{{i:square-terminal:15}}<button class="hc-node-t" data-pick>Checkout tests failing</button></div>
+                  <div class="hc-node-r"><span class="hc-file">{{i:file:12}}checkout.test.ts</span></div>
+                  <div class="hc-node-r"><span class="hc-node-s"><span class="badge red">{{i:triangle-alert:12}}Failed</span>4 of 12 · Investigating</span></div>
+                </div>
+              <ul data-join="OR">
+                <li data-on>
+                  <div class="hc-node" data-id="h1" style="--node-w:210px">
+                  <div class="hc-node-h">{{i:scroll-text:15}}<button class="hc-node-t" data-pick>Coupon ignored</button></div>
+                  <div class="hc-node-r"><span class="hc-file">{{i:file:12}}coupon.ts</span><span class="hc-more">+1</span></div>
+                  <div class="hc-node-r"><span class="hc-node-s"><span class="hc-loader" aria-hidden="true"></span>Checking</span></div>
+                </div>
+                  <ul data-join="AND">
+                    <li data-on><div class="hc-node" data-id="h11" data-state="found" aria-current="true" style="--node-w:210px">
+                  <div class="hc-node-h">{{i:scroll-text:15}}<button class="hc-node-t" data-pick>Sent as amount</button></div>
+                  <div class="hc-node-r"><span class="hc-file">{{i:file:12}}coupon.ts</span></div>
+                  <div class="hc-node-r"><span class="hc-node-s"><span class="badge red"><span class="dot"></span>Root cause</span></span></div>
+                </div></li>
+                    <li><div class="hc-node" data-id="h12" style="--node-w:210px">
+                  <div class="hc-node-h">{{i:plug:15}}<button class="hc-node-t" data-pick>Reaches Stripe as is</button></div>
+                  <div class="hc-node-r"><span class="hc-file">{{i:file:12}}stripe.ts</span><span class="hc-more">+1</span></div>
+                  <div class="hc-node-r"><span class="hc-node-s"><span class="hc-loader" aria-hidden="true"></span>Checking</span></div>
+                </div></li>
+                  </ul>
+                </li>
+                <li data-off><div class="hc-node" data-id="h2" data-state="out" style="--node-w:210px">
+                  <div class="hc-node-h">{{i:plug:15}}<button class="hc-node-t" data-pick>Stripe errors</button></div>
+                  <div class="hc-node-r"><span class="hc-file">{{i:file:12}}stripe.log</span></div>
+                  <div class="hc-node-r"><span class="hc-node-s">{{i:x:12}}Ruled out · 2:57</span></div>
+                </div></li>
+                <li data-off><div class="hc-node" data-id="h3" data-state="out" style="--node-w:210px">
+                  <div class="hc-node-h">{{i:database:15}}<button class="hc-node-t" data-pick>Stale fixtures</button></div>
+                  <div class="hc-node-r"><span class="hc-file">{{i:file:12}}prices.json</span></div>
+                  <div class="hc-node-r"><span class="hc-node-s">{{i:x:12}}Ruled out · 3:09</span></div>
+                </div></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <section class="panel" data-rc-detail aria-live="polite">
+          <div class="panel-h"><h2 class="row" style="gap:8px">{{i:scroll-text:15}}<span data-d-title>Sent as amount</span></h2><div class="acts"><span class="faint" data-d-meta>Root cause · 3:25</span></div></div>
+          <div class="panel-b col" style="gap:12px" data-d-body>
+            <p style="margin:0">The coupon goes out as 20 and Stripe reads that as $20 off, not 20%.</p>
+            <span><span class="hc-file">{{i:file:12}}app/checkout/coupon.ts</span></span>
+            <div class="eyebrow">Diff · app/checkout/coupon.ts</div>
+            <pre class="hc-diff"><span class="del">- discounts: [{ coupon: code, amount_off: value }]</span><span class="add">+ discounts: [{ coupon: code, percent_off: value }]</span></pre>
+            <div class="row" style="justify-content:flex-end;gap:8px"><button class="btn btn-secondary btn-sm" data-retry>{{i:rotate-ccw:13}}Retry from here</button><button class="btn btn-primary btn-sm" data-fix>{{i:wrench:13}}Fix it</button></div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>

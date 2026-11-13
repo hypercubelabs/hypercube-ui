@@ -1,0 +1,21 @@
+<!-- title: Sign in | kind: template | group: Templates | order: 39 | icon: log-in -->
+<main class="hc-auth" data-sections>
+  <form class="hc-auth-card" data-part="email" onsubmit="return false">
+    {{mark:32}}
+    <div><h1>Sign in</h1><p>We send a code to your email. No password.</p></div>
+    <div class="field"><label class="label" for="e-mail">Email</label><input class="input" id="e-mail" type="email" autocomplete="email" placeholder="you@company.com" required></div>
+    <button class="btn btn-primary btn-lg btn-block" data-section="code">Get the code</button>
+  </form>
+  <form class="hc-auth-card" data-part="code" onsubmit="return false" hidden>
+    {{mark:32}}
+    <div><h1>Enter the code</h1><p>We sent 6 digits to your email. It works for 10 minutes.</p></div>
+    <div class="field">
+      <span class="label" id="c-l">Code</span>
+      <div class="hc-code" role="group" aria-labelledby="c-l">
+        <input class="input" inputmode="numeric" maxlength="1" aria-label="Digit 1" autocomplete="one-time-code"><input class="input" inputmode="numeric" maxlength="1" aria-label="Digit 2"><input class="input" inputmode="numeric" maxlength="1" aria-label="Digit 3"><input class="input" inputmode="numeric" maxlength="1" aria-label="Digit 4"><input class="input" inputmode="numeric" maxlength="1" aria-label="Digit 5"><input class="input" inputmode="numeric" maxlength="1" aria-label="Digit 6">
+      </div>
+    </div>
+    <button class="btn btn-primary btn-lg btn-block" data-toast="Example: would sign you in">Sign in</button>
+    <button class="btn btn-ghost btn-block" type="button" data-section="email">{{i:arrow-left:14}}Use another email</button>
+  </form>
+</main>

@@ -1,0 +1,126 @@
+<!-- title: AI pieces | kind: piece | group: Pieces | order: 17 | icon: bot | script: trail.js -->
+<div class="page">
+  <div class="ph"><div><h1>AI pieces</h1><p>For screens where an AI works alongside people: what it is doing, what it needs from you and what it changed.</p></div></div>
+
+  <!-- ex: Status ring | .hc-ring[data-state] .round | Around the avatar. Working pulses; needs you turns blue; idle has no ring. -->
+  <span class="hc-ring round" data-state="working"><span class="av md" style="--c:var(--orange)">AR</span></span>
+  <span class="hc-ring round" data-state="needs"><span class="av md" style="--c:var(--teal)">FE</span></span>
+  <span class="hc-ring round"><span class="av md" style="--c:var(--violet)">RV</span></span>
+  <!-- /ex -->
+
+  <!-- ex: Two-line row | .hc-row2 [data-unread] [aria-current] | A list of conversations or items: title, time, summary and markers. | col -->
+  <div class="panel" style="max-width:420px;padding:4px">
+    <button class="hc-row2" data-unread aria-current="true">
+      <span class="hc-row2-av"><span class="hc-ring round" data-state="working"><span class="av md" style="--c:var(--orange)">AR</span></span></span>
+      <span class="hc-row2-t"><span class="trunc">Leads sync</span></span>
+      <time class="hc-row2-time">19:32</time>
+      <span class="hc-row2-sub">Architect: only your OK is missing</span>
+      <span class="hc-row2-end"><span class="hc-needs-mark">{{i:message-circle-question:14}}</span><span class="hc-count">2</span></span>
+    </button>
+    <button class="hc-row2">
+      <span class="hc-row2-av"><span class="av md" style="--c:var(--blue)">SC</span></span>
+      <span class="hc-row2-t"><span class="trunc">Sara Cole</span></span>
+      <time class="hc-row2-time">Yesterday</time>
+      <span class="hc-row2-sub">You: I'll look at it this afternoon</span>
+      <span class="hc-row2-end"></span>
+    </button>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Bot question | <hc-ask keys> .hc-ask-opt .hc-key | Docked above the composer. Keys 1 to 9 pick; on phones the keys hide and each option grows to 42 px. | col -->
+  <hc-ask class="hc-ask" keys aria-label="Question from Architect" style="max-width:520px">
+    <div class="hc-ask-h"><span class="av sm" style="--c:var(--orange)">AR</span><div class="hc-ask-q"><b>Architect asks:</b> in what order should I build the screens?</div></div>
+    <div class="hc-ask-opts">
+      <button class="hc-ask-opt"><span class="hc-key">1</span><span>Sign in, orders, invoice</span></button>
+      <button class="hc-ask-opt"><span class="hc-key">2</span><span>Invoice first</span></button>
+      <button class="hc-ask-opt"><span class="hc-key">3</span><span class="hc-ask-free">Answer in text</span></button>
+    </div>
+  </hc-ask>
+  <!-- /ex -->
+
+  <!-- ex: Needs you | .hc-needs > .hc-need .hc-need-q .hc-need-meta .hc-need-acts | Comes first on the dashboard. A short answer right on the card. | col -->
+  <div class="hc-needs" style="max-width:620px">
+    <div class="hc-need">
+      <span class="hc-ring round" data-state="needs"><span class="av sm" style="--c:var(--orange)">AR</span></span>
+      <div><div class="hc-need-q"><b>Architect:</b> short deck or full deck?</div><div class="hc-need-meta"><span class="hc-id">MKT-118</span> Launch webinar · 18 min ago</div></div>
+      <div class="hc-need-acts"><button class="btn btn-sm btn-secondary" data-toast="Example: would answer Short">Short</button><button class="btn btn-sm btn-secondary" data-toast="Example: would answer Full">Full</button></div>
+    </div>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Working now | .hc-running .hc-running-t .hc-running-m | One strip per active bot, above the conversation. The step comes from the real plan, never made up. | col -->
+  <button class="hc-running" style="max-width:520px">
+    <span class="hc-ring round" data-state="working"><span class="av sm" style="--c:var(--teal)">FE</span></span>
+    <span class="hc-running-t"><b>Frontend engineer</b> <span class="hc-id">MOB-106</span> Push notification</span>
+    <span class="hc-running-m">step 2 of 4</span>
+  </button>
+  <!-- /ex -->
+
+  <!-- ex: Typing | .hc-typing .hc-loader .hc-shimmer | While the answer has not arrived. -->
+  <div class="hc-typing" role="status"><span class="hc-loader"></span><span class="hc-shimmer">Architect is writing…</span></div>
+  <!-- /ex -->
+
+  <!-- ex: Changes with undo | .hc-changes .hc-changes-h [data-undone] | After each answer that changed something: what changed and a button to undo it. | col -->
+  <div class="hc-changes" style="max-width:420px">
+    <div class="hc-changes-h">{{i:history:14}}<b>Changed 3 things</b><span class="sp"></span><button class="btn btn-xs btn-ghost" data-toast="Example: would undo the 3 changes">{{i:rotate-ccw:13}}Undo</button></div>
+    <ul>
+      <li><span class="trunc">MOB-109 · created</span></li>
+      <li><span class="trunc">MOB-110 · created</span></li>
+      <li data-undone><span class="trunc">Memory: sign in before orders</span></li>
+    </ul>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Message actions | .hc-msg > .hc-msg-acts | Show on hover or focus. On touch, use data-hc-longpress and open a bottom sheet. | col -->
+  <div class="hc-msg" tabindex="0" style="max-width:520px;padding:8px 10px;border:1px solid var(--border);border-radius:var(--r)">
+    <p style="margin:0">Hover or Tab onto this message to see the actions.</p>
+    <div class="hc-msg-acts" role="toolbar" aria-label="Message actions"><button class="ibtn ibtn-xs" aria-label="Copy" data-toast="Copied (example)">{{i:copy:13}}</button><button class="ibtn ibtn-xs" aria-label="Move to…" data-toast="Example: would move it to a task">{{i:forward:13}}</button></div>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Trail | .hc-trail .hc-steps .hc-step[data-state] .hc-act | The bot's work step by step, with what it did in each step. | col -->
+  <section class="hc-trail" aria-label="Architect's work" style="max-width:620px">
+    <div class="hc-trail-h"><span class="hc-ring round" data-state="working"><span class="av sm" style="--c:var(--orange)">AR</span></span><b>Offline sync</b><span class="hc-id">MOB-109</span><span class="hc-trail-n">1/4</span></div>
+    <ol class="hc-steps">
+      <li class="hc-step" data-state="done"><span class="hc-mark"></span><span class="hc-step-l">Read the task</span><span class="hc-step-m"></span></li>
+      <li class="hc-step" data-state="current"><span class="hc-mark"></span><span class="hc-step-l">Queue changes while offline</span><span class="hc-step-m"><span class="hc-step-s">Working</span><span>6 min</span></span>
+        <ul class="hc-acts">
+          <li><details class="hc-act"><summary>{{i:terminal:13}}<span class="hc-act-t">Ran <code>npm test</code></span><time>1 min ago</time></summary><div class="hc-act-d">182 of 214 tests passed</div></details></li>
+          <li><div class="hc-act" data-now><div class="hc-act-row">{{i:file-pen:13}}<span class="hc-act-t">Edited <code>sync/queue.ts</code></span><time>now</time></div></div></li>
+        </ul>
+      </li>
+      <li class="hc-step" data-state="waiting"><span class="hc-mark"></span><span class="hc-step-l">Confirm the order</span><span class="hc-step-m"><span class="hc-step-s">Waiting on you</span></span></li>
+      <li class="hc-step" data-state="error"><span class="hc-mark"></span><span class="hc-step-l">Open the pull request</span><span class="hc-step-m"><span class="hc-step-s">Failed</span></span></li>
+      <li class="hc-step"><span class="hc-mark"></span><span class="hc-step-l">Write the notes</span><span class="hc-step-m"></span></li>
+    </ol>
+  </section>
+  <!-- /ex -->
+
+  <!-- ex: Trail with substeps and approval | .hc-step-ic .hc-step-tg[aria-expanded] .hc-sub .hc-step[data-state=approval] .hc-step-x | Each step shows the tool it uses. The current step opens its substeps; a step that needs a person waits with a dashed ring and an Approval tag, and the run stops there until someone answers. This one runs live: watch it reach the approval. | col -->
+  <section class="hc-trail" data-live-trail aria-label="Fix the checkout crash" style="max-width:560px">
+    <div class="hc-trail-h"><b>Fix the checkout crash</b><span class="badge">{{i:bot:12}}Tess</span><span class="hc-trail-n">2/5</span></div>
+    <ol class="hc-steps">
+      <li class="hc-step" data-state="done"><span class="hc-mark"></span><span class="hc-step-l"><span class="hc-step-ic">{{i:file-text:12}}</span>Read the bug report</span><span class="hc-step-m"><span>8s</span></span></li>
+      <li class="hc-step" data-state="done"><span class="hc-mark"></span><span class="hc-step-l"><span class="hc-step-ic">{{i:bug:12}}</span>Reproduce the crash</span><span class="hc-step-m"><span>34s</span></span></li>
+      <li class="hc-step" data-state="current"><span class="hc-mark"></span><span class="hc-step-l"><span class="hc-step-ic">{{i:wrench:12}}</span><button class="hc-step-tg" aria-expanded="true" aria-controls="sub-patch">Patch the checkout form{{i:chevron-down:13}}</button></span><span class="hc-step-m"><span class="hc-step-s">Testing</span><span data-time>31s</span></span>
+        <ol class="hc-sub" id="sub-patch">
+          <li data-state="done"><span>Found the empty-cart case</span><code>cart.ts:142</code></li>
+          <li data-state="done"><span>Added a guard and 2 tests</span><code>+18 −3</code></li>
+          <li data-state="current"><span>Running the test suite</span><code data-count>182/214</code></li>
+        </ol>
+      </li>
+      <li class="hc-step"><span class="hc-mark"></span><span class="hc-step-l"><span class="hc-step-ic">{{i:notebook-pen:12}}</span>Write the release note</span><span class="hc-step-m"></span></li>
+      <li class="hc-step" data-state="approval"><span class="hc-mark"></span><span class="hc-step-l"><span class="hc-step-ic">{{i:git-pull-request:12}}</span>Open a pull request</span><span class="hc-step-m"><span class="hc-step-s">Approval</span></span></li>
+    </ol>
+  </section>
+  <!-- /ex -->
+
+  <!-- ex: Sections with an index | .hc-sections .hc-sec [data-complete] [aria-current] | A long form split up: one section at a time, the index shows what is done. -->
+  <nav class="hc-sections" style="width:220px">
+    <button class="hc-sec" data-complete aria-current="true"><span class="hc-sec-mark"></span>Who it is</button>
+    <button class="hc-sec" data-complete><span class="hc-sec-mark"></span>Specialty</button>
+    <button class="hc-sec"><span class="hc-sec-mark"></span>Knowledge</button>
+    <button class="hc-sec"><span class="hc-sec-mark"></span>Routines</button>
+  </nav>
+  <!-- /ex -->
+</div>

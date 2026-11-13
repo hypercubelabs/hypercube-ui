@@ -1,0 +1,495 @@
+{
+  "name": "Hypercube UI",
+  "version": "0.2.0",
+  "how_to_use": "Import src/index.css (and src/elements.js for <hc-ask> and <hc-sheet>). Copy the markup of each piece; change only the text. Icons: Lucide, stroke 1.8. Full rules in AGENTS.md.",
+  "pieces": [
+    {
+      "page": "Foundations",
+      "name": "Surfaces and text",
+      "classes": "--bg --surface --text…",
+      "use": "Dark is redefined, not inverted. Switch the theme at the top to see both.",
+      "markup": "<div class=\"ex-grid\">\n  <div class=\"ex-tok\"><i style=\"--c:var(--bg)\"></i><span>Background<code>--bg</code></span></div>\n  <div class=\"ex-tok\"><i style=\"--c:var(--bg-side)\"></i><span>Sidebar<code>--bg-side</code></span></div>\n  <div class=\"ex-tok\"><i style=\"--c:var(--surface)\"></i><span>Surface<code>--surface</code></span></div>\n  <div class=\"ex-tok\"><i style=\"--c:var(--surface-2)\"></i><span>Surface 2<code>--surface-2</code></span></div>\n  <div class=\"ex-tok\"><i style=\"--c:var(--sunken)\"></i><span>Sunken<code>--sunken</code></span></div>\n  <div class=\"ex-tok\"><i style=\"--c:var(--border)\"></i><span>Border<code>--border</code></span></div>\n  <div class=\"ex-tok\"><i style=\"--c:var(--text)\"></i><span>Text<code>--text</code></span></div>\n  <div class=\"ex-tok\"><i style=\"--c:var(--text-2)\"></i><span>Text 2<code>--text-2</code></span></div>\n  <div class=\"ex-tok\"><i style=\"--c:var(--text-3)\"></i><span>Text 3<code>--text-3</code></span></div>\n</div>"
+    },
+    {
+      "page": "Foundations",
+      "name": "Accent and state",
+      "classes": "--accent --accent-ink --green…",
+      "use": "The lime (--accent) is always a fill under black text. Accent text and lines use --accent-ink.",
+      "markup": "<div class=\"ex-grid\">\n  <div class=\"ex-tok\"><i style=\"--c:var(--accent)\"></i><span>Accent<code>--accent</code></span></div>\n  <div class=\"ex-tok\"><i style=\"--c:var(--accent-ink)\"></i><span>Accent ink<code>--accent-ink</code></span></div>\n  <div class=\"ex-tok\"><i style=\"--c:var(--accent-soft)\"></i><span>Soft accent<code>--accent-soft</code></span></div>\n  <div class=\"ex-tok\"><i style=\"--c:var(--green)\"></i><span>Success<code>--green</code></span></div>\n  <div class=\"ex-tok\"><i style=\"--c:var(--amber)\"></i><span>Warning<code>--amber</code></span></div>\n  <div class=\"ex-tok\"><i style=\"--c:var(--red)\"></i><span>Error<code>--red</code></span></div>\n  <div class=\"ex-tok\"><i style=\"--c:var(--blue)\"></i><span>Needs you<code>--blue</code></span></div>\n  <div class=\"ex-tok\"><i style=\"--c:var(--st-progress)\"></i><span>Working<code>--st-progress</code></span></div>\n</div>"
+    },
+    {
+      "page": "Foundations",
+      "name": "Type",
+      "classes": "--fs-2xl … --fs-2xs",
+      "use": "Instrument Sans. Headings at weight 600; body 400.",
+      "markup": "<div style=\"font-size:var(--fs-2xl);font-weight:600;letter-spacing:-.022em\">Page title</div>\n<div style=\"font-size:var(--fs-xl);font-weight:600\">Section title</div>\n<div style=\"font-size:var(--fs-md);font-weight:600\">Subsection</div>\n<div style=\"font-size:var(--fs)\">Reading text, with short lines and direct sentences.</div>\n<div style=\"font-size:var(--fs-sm);color:var(--text-2)\">Secondary text, updated 3 minutes ago</div>\n<div class=\"eyebrow\">Small label</div>\n<div class=\"mono\" style=\"font-size:var(--fs-xs);color:var(--text-3)\">mono · identifiers and code</div>"
+    },
+    {
+      "page": "Foundations",
+      "name": "Space and radius",
+      "classes": "--s-1 … --s-12, --r-xs … --r-lg",
+      "use": "A 4 px scale. Panels use --r-lg, controls --r-sm.",
+      "markup": "<div class=\"ex-row\">\n  <span style=\"width:var(--s-1);height:24px;background:var(--accent-ink);opacity:.7;border-radius:2px\"></span>\n  <span style=\"width:var(--s-2);height:24px;background:var(--accent-ink);opacity:.7;border-radius:2px\"></span>\n  <span style=\"width:var(--s-4);height:24px;background:var(--accent-ink);opacity:.7;border-radius:2px\"></span>\n  <span style=\"width:var(--s-6);height:24px;background:var(--accent-ink);opacity:.7;border-radius:2px\"></span>\n  <span style=\"width:var(--s-8);height:24px;background:var(--accent-ink);opacity:.7;border-radius:2px\"></span>\n  <span style=\"width:var(--s-12);height:24px;background:var(--accent-ink);opacity:.7;border-radius:2px\"></span>\n</div>\n<div class=\"ex-row\">\n  <span style=\"width:44px;height:44px;border:1.5px solid var(--border-strong);border-radius:var(--r-xs);background:var(--surface-2)\"></span>\n  <span style=\"width:44px;height:44px;border:1.5px solid var(--border-strong);border-radius:var(--r-sm);background:var(--surface-2)\"></span>\n  <span style=\"width:44px;height:44px;border:1.5px solid var(--border-strong);border-radius:var(--r);background:var(--surface-2)\"></span>\n  <span style=\"width:44px;height:44px;border:1.5px solid var(--border-strong);border-radius:var(--r-lg);background:var(--surface-2)\"></span>\n  <span style=\"width:44px;height:44px;border-radius:var(--r-lg);background:var(--surface);box-shadow:var(--shadow-pop)\"></span>\n</div>"
+    },
+    {
+      "page": "Foundations",
+      "name": "Icons",
+      "classes": "Lucide, stroke 1.8",
+      "use": "16 px in general, 13 to 14 px inside small buttons. The library does not depend on them: use your own, with the same stroke.",
+      "markup": "<span style=\"color:var(--text-2);display:flex;gap:14px;flex-wrap:wrap\"><svg class=\"i\" width=\"18\" height=\"18\"><!-- Lucide house, stroke 1.8 --></svg><svg class=\"i\" width=\"18\" height=\"18\"><!-- Lucide inbox, stroke 1.8 --></svg><svg class=\"i\" width=\"18\" height=\"18\"><!-- Lucide message-circle, stroke 1.8 --></svg><svg class=\"i\" width=\"18\" height=\"18\"><!-- Lucide bot, stroke 1.8 --></svg><svg class=\"i\" width=\"18\" height=\"18\"><!-- Lucide search, stroke 1.8 --></svg><svg class=\"i\" width=\"18\" height=\"18\"><!-- Lucide bell, stroke 1.8 --></svg><svg class=\"i\" width=\"18\" height=\"18\"><!-- Lucide settings, stroke 1.8 --></svg><svg class=\"i\" width=\"18\" height=\"18\"><!-- Lucide plus, stroke 1.8 --></svg><svg class=\"i\" width=\"18\" height=\"18\"><!-- Lucide copy, stroke 1.8 --></svg><svg class=\"i\" width=\"18\" height=\"18\"><!-- Lucide trash-2, stroke 1.8 --></svg><svg class=\"i\" width=\"18\" height=\"18\"><!-- Lucide check, stroke 1.8 --></svg><svg class=\"i\" width=\"18\" height=\"18\"><!-- Lucide x, stroke 1.8 --></svg></span>"
+    },
+    {
+      "page": "Buttons",
+      "name": "Kinds",
+      "classes": ".btn .btn-primary .btn-secondary .btn-ghost .btn-danger",
+      "use": "Primary is a black pill (lime in dark). Danger only for what deletes.",
+      "markup": "<button class=\"btn btn-primary\">Save</button>\n<button class=\"btn btn-secondary\">Share</button>\n<button class=\"btn btn-ghost\">Filter</button>\n<button class=\"btn btn-danger\">Delete</button>\n<button class=\"btn btn-danger-ghost\">Remove</button>"
+    },
+    {
+      "page": "Buttons",
+      "name": "With an icon",
+      "classes": ".btn > svg.i",
+      "use": "The icon comes before the text, 14 px.",
+      "markup": "<button class=\"btn btn-primary\"><svg class=\"i\" width=\"14\" height=\"14\"><!-- Lucide plus, stroke 1.8 --></svg>New task</button>\n<button class=\"btn btn-secondary\"><svg class=\"i\" width=\"14\" height=\"14\"><!-- Lucide share-2, stroke 1.8 --></svg>Share</button>\n<button class=\"btn btn-ghost\"><svg class=\"i\" width=\"14\" height=\"14\"><!-- Lucide list-filter, stroke 1.8 --></svg>Filter</button>"
+    },
+    {
+      "page": "Buttons",
+      "name": "Sizes",
+      "classes": ".btn-xs .btn-sm .btn .btn-lg .btn-block",
+      "use": "22, 26, 30 and 36 px. On phones the touch area grows on its own inside bars.",
+      "markup": "<button class=\"btn btn-secondary btn-xs\">Tiny</button>\n<button class=\"btn btn-secondary btn-sm\">Small</button>\n<button class=\"btn btn-secondary\">Medium</button>\n<button class=\"btn btn-secondary btn-lg\">Large</button>\n<div style=\"width:100%;max-width:320px\"><button class=\"btn btn-primary btn-block btn-lg\">Sign in</button></div>"
+    },
+    {
+      "page": "Buttons",
+      "name": "States",
+      "classes": ":disabled .is-loading aria-disabled",
+      "use": "Loading keeps the width; disabled explains why in a tooltip.",
+      "markup": "<button class=\"btn btn-primary is-loading\">Saving</button>\n<button class=\"btn btn-secondary is-loading\">Loading</button>\n<button class=\"btn btn-primary\" disabled>Save</button>\n<span data-tip=\"Only the project owner can delete\"><button class=\"btn btn-danger\" aria-disabled=\"true\">Delete</button></span>"
+    },
+    {
+      "page": "Buttons",
+      "name": "Icon button",
+      "classes": ".ibtn .ibtn-sm .ibtn-xs .on",
+      "use": "Always with aria-label and a tooltip (data-tip).",
+      "markup": "<button class=\"ibtn\" aria-label=\"Add\" data-tip=\"Add\"><svg class=\"i\" width=\"16\" height=\"16\"><!-- Lucide plus, stroke 1.8 --></svg></button>\n<button class=\"ibtn on\" aria-label=\"Filter on\" data-tip=\"Filter on\"><svg class=\"i\" width=\"16\" height=\"16\"><!-- Lucide list-filter, stroke 1.8 --></svg></button>\n<button class=\"ibtn\" aria-label=\"More actions\" data-tip=\"More actions\"><svg class=\"i\" width=\"16\" height=\"16\"><!-- Lucide ellipsis, stroke 1.8 --></svg></button>\n<button class=\"ibtn ibtn-sm\" aria-label=\"Copy\" data-tip=\"Copy\"><svg class=\"i\" width=\"14\" height=\"14\"><!-- Lucide copy, stroke 1.8 --></svg></button>\n<button class=\"ibtn ibtn-xs\" aria-label=\"Close\" data-tip=\"Close\"><svg class=\"i\" width=\"13\" height=\"13\"><!-- Lucide x, stroke 1.8 --></svg></button>\n<button class=\"ibtn\" disabled aria-label=\"Delete\"><svg class=\"i\" width=\"16\" height=\"16\"><!-- Lucide trash-2, stroke 1.8 --></svg></button>"
+    },
+    {
+      "page": "Buttons",
+      "name": "Action group",
+      "classes": ".row .sp",
+      "use": "Actions on the right; the primary one last. On phones the bar wraps and takes the full width.",
+      "markup": "<div class=\"row\" style=\"width:100%;flex-wrap:wrap;gap:8px\">\n  <button class=\"btn btn-ghost\"><svg class=\"i\" width=\"14\" height=\"14\"><!-- Lucide archive, stroke 1.8 --></svg>Archive</button>\n  <span class=\"sp\"></span>\n  <button class=\"btn btn-secondary\">Cancel</button>\n  <button class=\"btn btn-primary\">Save</button>\n</div>"
+    },
+    {
+      "page": "Fields",
+      "name": "Text",
+      "classes": ".field .label .input .hint",
+      "use": ".field stacks label, field and hint with 6 px between them.",
+      "markup": "<div class=\"field\" style=\"width:100%;max-width:360px\">\n  <label class=\"label\" for=\"c-name\">Project name</label>\n  <input class=\"input\" id=\"c-name\" placeholder=\"e.g. New website\">\n  <span class=\"hint\">Shows in the sidebar and in notifications.</span>\n</div>"
+    },
+    {
+      "page": "Fields",
+      "name": "With an error",
+      "classes": ".input.is-error .err aria-invalid",
+      "use": "Tie the error to the field with aria-describedby.",
+      "markup": "<div class=\"field\" style=\"width:100%;max-width:360px\">\n  <label class=\"label\" for=\"c-mail\">Email</label>\n  <input class=\"input is-error\" id=\"c-mail\" value=\"ana@company\" aria-invalid=\"true\" aria-describedby=\"c-mail-e\">\n  <span class=\"err\" id=\"c-mail-e\"><svg class=\"i\" width=\"12\" height=\"12\"><!-- Lucide circle-alert, stroke 1.8 --></svg>Write the full email, like ana@company.com</span>\n</div>"
+    },
+    {
+      "page": "Fields",
+      "name": "Search",
+      "classes": ".inwrap > svg.i + .input + .kbd",
+      "use": "Show a shortcut on the right only if it really exists.",
+      "markup": "<div class=\"inwrap\" style=\"width:100%;max-width:360px\"><svg class=\"i\" width=\"13\" height=\"13\"><!-- Lucide search, stroke 1.8 --></svg><input class=\"input\" placeholder=\"Search\" aria-label=\"Search\"><span class=\"kbd\">/</span></div>"
+    },
+    {
+      "page": "Fields",
+      "name": "Select, long text, date",
+      "classes": ".select .textarea input[type=date]",
+      "use": "Use the browser select: on phones it opens the system picker.",
+      "markup": "<div class=\"ex-grid\">\n  <div class=\"field\"><label class=\"label\" for=\"c-st\">Status</label><select class=\"select\" id=\"c-st\"><option>In progress</option><option>Review</option><option>Done</option></select></div>\n  <div class=\"field\"><label class=\"label\" for=\"c-date\">Due</label><input class=\"input\" type=\"date\" id=\"c-date\" value=\"2026-11-20\"></div>\n  <div class=\"field\" style=\"grid-column:1/-1\"><label class=\"label\" for=\"c-desc\">Description</label><textarea class=\"textarea\" id=\"c-desc\" rows=\"3\">What needs to be ready, and for whom.</textarea></div>\n</div>"
+    },
+    {
+      "page": "Fields",
+      "name": "Check, choose, switch",
+      "classes": ".check .check.round .radio .toggle",
+      "use": "Always with a clickable label next to it.",
+      "markup": "<div class=\"col\" style=\"gap:10px\">\n  <label class=\"row\"><input type=\"checkbox\" class=\"check\" checked> Email me</label>\n  <label class=\"row\"><input type=\"checkbox\" class=\"check\"> Notify my phone</label>\n  <label class=\"row\"><input type=\"radio\" class=\"radio\" name=\"c-r\" checked> Only me</label>\n  <label class=\"row\"><input type=\"radio\" class=\"radio\" name=\"c-r\"> The whole team</label>\n  <label class=\"row\"><input type=\"checkbox\" class=\"toggle\" checked> Automatic dark theme</label>\n</div>"
+    },
+    {
+      "page": "Fields",
+      "name": "Disabled",
+      "classes": ":disabled",
+      "use": "Say why it is disabled, next to the field.",
+      "markup": "<div class=\"field\" style=\"width:100%;max-width:360px\">\n  <label class=\"label\" for=\"c-dom\">Address</label>\n  <input class=\"input\" id=\"c-dom\" value=\"acme.example.com\" disabled>\n  <span class=\"hint\">Only account admins can change the address.</span>\n</div>"
+    },
+    {
+      "page": "Fields",
+      "name": "Full form",
+      "classes": ".field in a grid, .row of actions",
+      "use": "On phones the grid becomes one column on its own.",
+      "markup": "<form class=\"panel\" style=\"width:100%;max-width:560px\" onsubmit=\"return false\">\n  <div class=\"panel-h\"><h2>Invite someone</h2></div>\n  <div class=\"panel-b\" style=\"display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px\">\n    <div class=\"field\"><label class=\"label\" for=\"f-n\">Name</label><input class=\"input\" id=\"f-n\" autocomplete=\"name\"></div>\n    <div class=\"field\"><label class=\"label\" for=\"f-e\">Email</label><input class=\"input\" id=\"f-e\" type=\"email\" autocomplete=\"email\"></div>\n    <div class=\"field\" style=\"grid-column:1/-1\"><label class=\"label\" for=\"f-p\">Role</label><select class=\"select\" id=\"f-p\"><option>Can edit</option><option>Can view</option></select></div>\n    <div class=\"row\" style=\"grid-column:1/-1;justify-content:flex-end\"><button class=\"btn btn-secondary\" type=\"reset\">Clear</button><button class=\"btn btn-primary\" data-toast=\"Invite sent (example)\">Invite</button></div>\n  </div>\n</form>"
+    },
+    {
+      "page": "Navigation",
+      "name": "Tabs",
+      "classes": ".tabs > .tab.on .cnt",
+      "use": "Switch the content of the same page. They scroll sideways on phones, never wrap.",
+      "markup": "<div data-tab-panels>\n  <div class=\"tabs\" role=\"tablist\">\n    <button class=\"tab on\" role=\"tab\" aria-selected=\"true\" data-show=\"a\">Overview</button>\n    <button class=\"tab\" role=\"tab\" data-show=\"b\">Tasks <span class=\"cnt\">12</span></button>\n    <button class=\"tab\" role=\"tab\" data-show=\"c\">Files</button>\n    <button class=\"tab\" role=\"tab\" data-show=\"d\">Activity</button>\n  </div>\n  <p data-tab=\"a\" style=\"margin:12px 0 0\">Overview content.</p>\n  <p data-tab=\"b\" hidden style=\"margin:12px 0 0\">Twelve open tasks.</p>\n  <p data-tab=\"c\" hidden style=\"margin:12px 0 0\">No files yet.</p>\n  <p data-tab=\"d\" hidden style=\"margin:12px 0 0\">What changed in the last few days.</p>\n</div>"
+    },
+    {
+      "page": "Navigation",
+      "name": "Segmented",
+      "classes": ".seg[role=group] > button.on[aria-pressed]",
+      "use": "One choice among up to four options that always show: the way to view (list, board) or a short filter (All, Unread). A filter people build and remove is a .chip.",
+      "markup": "<div class=\"seg\" role=\"group\" aria-label=\"View as\"><button class=\"on\" aria-pressed=\"true\"><svg class=\"i\" width=\"13\" height=\"13\"><!-- Lucide list, stroke 1.8 --></svg>List</button><button aria-pressed=\"false\"><svg class=\"i\" width=\"13\" height=\"13\"><!-- Lucide square-kanban, stroke 1.8 --></svg>Board</button><button aria-pressed=\"false\"><svg class=\"i\" width=\"13\" height=\"13\"><!-- Lucide table-2, stroke 1.8 --></svg>Table</button></div>\n<div class=\"seg\" role=\"group\" aria-label=\"Filter\"><button class=\"on\" aria-pressed=\"true\">All</button><button aria-pressed=\"false\">Unread</button><button aria-pressed=\"false\">Waiting on you</button></div>"
+    },
+    {
+      "page": "Navigation",
+      "name": "Breadcrumbs",
+      "classes": ".crumbs .sep .cur",
+      "use": "On phones only the current page shows.",
+      "markup": "<nav class=\"crumbs\" aria-label=\"You are here\"><button>Projects</button><span class=\"sep\">/</span><button>New website</button><span class=\"sep\">/</span><span class=\"cur\">Tasks</span></nav>"
+    },
+    {
+      "page": "Navigation",
+      "name": "Active filter",
+      "classes": ".chip b .ibtn",
+      "use": "Shows the filter in use and removes it with one tap.",
+      "markup": "<span class=\"chip\"><svg class=\"i\" width=\"12\" height=\"12\"><!-- Lucide circle-dot, stroke 1.8 --></svg><b>Status</b> is In progress<button class=\"ibtn ibtn-xs\" aria-label=\"Remove filter\"><svg class=\"i\" width=\"12\" height=\"12\"><!-- Lucide x, stroke 1.8 --></svg></button></span>\n<span class=\"chip\"><svg class=\"i\" width=\"12\" height=\"12\"><!-- Lucide user, stroke 1.8 --></svg><b>Owner</b> is you<button class=\"ibtn ibtn-xs\" aria-label=\"Remove filter\"><svg class=\"i\" width=\"12\" height=\"12\"><!-- Lucide x, stroke 1.8 --></svg></button></span>"
+    },
+    {
+      "page": "Navigation",
+      "name": "Context switcher",
+      "classes": ".hc-switch .hc-switch-logo .hc-switch-name .pop.hc-switch-menu .mi[role=menuitemradio]",
+      "use": "The workspace, organisation or product the person works in, the same way in every app. One per app, the first row of the menu (.side-top), in place of .hc-brand: the logo and name of the current one and the up-down chevrons. It opens a menu with every choice (logo, name, plan or role on the right), the current one checked, then what acts on them: settings, create, invite, only the ones that work. Choosing reloads the whole app in the new context. Never a select field, never in the top bar or inside a page.",
+      "markup": "<div class=\"side\" style=\"position:static;width:252px;height:auto;border:1px solid var(--border);border-radius:var(--r-lg)\">\n  <div class=\"side-top\"><button class=\"hc-switch\" data-menu=\"#ex-ws-menu\" aria-haspopup=\"menu\" aria-expanded=\"false\" aria-label=\"Switch workspace: Hypercube\"><span class=\"hc-switch-logo\"><img src=\"your-logo.svg\" width=\"22\" height=\"22\" alt=\"\"></span><span class=\"hc-switch-name\"><b>Hypercube</b><small>Pro · 12 members</small></span><svg class=\"i\" width=\"14\" height=\"14\"><!-- Lucide chevrons-up-down, stroke 1.8 --></svg></button></div>\n</div>\n<div class=\"pop hc-switch-menu\" id=\"ex-ws-menu\" role=\"menu\" aria-label=\"Workspaces\" hidden>\n  <div class=\"mh\">Workspaces</div>\n  <button class=\"mi\" role=\"menuitemradio\" aria-checked=\"true\" data-switch=\"Hypercube\"><span class=\"hc-switch-logo sm\"><img src=\"your-logo.svg\" width=\"20\" height=\"20\" alt=\"\"></span><span class=\"grow trunc\">Hypercube</span><span class=\"r\">Pro</span><span class=\"ck\"><svg class=\"i\" width=\"14\" height=\"14\"><!-- Lucide check, stroke 1.8 --></svg></span></button>\n  <button class=\"mi\" role=\"menuitemradio\" aria-checked=\"false\" data-switch=\"Northwind\"><span class=\"hc-switch-logo sm\" style=\"--c: var(--teal)\">N</span><span class=\"grow trunc\">Northwind</span><span class=\"r\">Free</span></button>\n  <button class=\"mi\" role=\"menuitemradio\" aria-checked=\"false\" data-switch=\"Acme Health\"><span class=\"hc-switch-logo sm\" style=\"--c: var(--rose)\">A</span><span class=\"grow trunc\">Acme Health</span><span class=\"r\">Business</span></button>\n  <div class=\"msep\"></div>\n  <button class=\"mi\" role=\"menuitem\" data-toast=\"Your app opens the workspace settings\"><svg class=\"i\" width=\"15\" height=\"15\"><!-- Lucide settings, stroke 1.8 --></svg>Workspace settings</button>\n  <button class=\"mi\" role=\"menuitem\" data-toast=\"Your app opens the invite form\"><svg class=\"i\" width=\"15\" height=\"15\"><!-- Lucide user-plus, stroke 1.8 --></svg>Invite members</button>\n  <button class=\"mi\" role=\"menuitem\" data-toast=\"Your app opens the form to create a workspace\"><svg class=\"i\" width=\"15\" height=\"15\"><!-- Lucide plus, stroke 1.8 --></svg>Create workspace</button>\n</div>"
+    },
+    {
+      "page": "Navigation",
+      "name": "Sidebar",
+      "classes": ".side .sgroup .sgroup-h .sitem.on .ct",
+      "use": "The active item is lime. A count only when there is something to see. On phones it becomes a drawer (see the templates).",
+      "markup": "<nav class=\"side\" style=\"width:260px;border:1px solid var(--border);border-radius:var(--r-lg);padding:8px\" aria-label=\"Sidebar example\">\n  <a class=\"sitem on\" href=\"#\" aria-current=\"page\"><svg class=\"i\" width=\"16\" height=\"16\"><!-- Lucide house, stroke 1.8 --></svg><span>Home</span></a>\n  <a class=\"sitem\" href=\"#\"><svg class=\"i\" width=\"16\" height=\"16\"><!-- Lucide inbox, stroke 1.8 --></svg><span>Inbox</span><span class=\"ct dotc\">3</span></a>\n  <a class=\"sitem\" href=\"#\"><svg class=\"i\" width=\"16\" height=\"16\"><!-- Lucide message-circle, stroke 1.8 --></svg><span>Conversations</span></a>\n  <div class=\"sgroup\"><div class=\"sgroup-h\">Work</div>\n    <a class=\"sitem\" href=\"#\"><svg class=\"i\" width=\"16\" height=\"16\"><!-- Lucide circle-check, stroke 1.8 --></svg><span>My tasks</span><span class=\"ct\">8</span></a>\n    <a class=\"sitem\" href=\"#\"><svg class=\"i\" width=\"16\" height=\"16\"><!-- Lucide folder-kanban, stroke 1.8 --></svg><span>Projects</span></a>\n  </div>\n</nav>"
+    },
+    {
+      "page": "Navigation",
+      "name": "Adjust screen",
+      "classes": "hc-zoom.hc-zoom .hc-zoom-l [data-zoom=out",
+      "use": "reset",
+      "markup": "<div class=\"side\" style=\"position:static;width:252px;height:auto;border:1px solid var(--border);border-radius:var(--r-lg)\">\n  <div class=\"side-bot\" style=\"border-top:0\"><a class=\"sitem\" href=\"#\"><svg class=\"i\" width=\"16\" height=\"16\"><!-- Lucide settings, stroke 1.8 --></svg><span>Settings</span></a><hc-zoom class=\"hc-zoom\" aria-label=\"Adjust screen\"><span class=\"hc-zoom-l\"><svg class=\"i\" width=\"16\" height=\"16\"><!-- Lucide scan, stroke 1.8 --></svg><span>Adjust screen</span></span><button class=\"ibtn ibtn-xs\" data-zoom=\"out\" aria-label=\"Make the screen smaller\"><svg class=\"i\" width=\"13\" height=\"13\"><!-- Lucide minus, stroke 1.8 --></svg></button><button class=\"hc-zoom-v\" data-zoom=\"reset\">100%</button><button class=\"ibtn ibtn-xs\" data-zoom=\"in\" aria-label=\"Make the screen bigger\"><svg class=\"i\" width=\"13\" height=\"13\"><!-- Lucide plus, stroke 1.8 --></svg></button></hc-zoom></div>\n</div>"
+    },
+    {
+      "page": "Display",
+      "name": "Badges",
+      "classes": ".badge .badge.green .amber .red .accent .gray .dot",
+      "use": "A short state in words. Colour is never the only cue.",
+      "markup": "<span class=\"badge\">Draft</span>\n<span class=\"badge green\"><span class=\"dot\"></span>Active</span>\n<span class=\"badge amber\"><span class=\"dot\"></span>Invited</span>\n<span class=\"badge red\">3 overdue</span>\n<span class=\"badge accent\">New</span>\n<span class=\"badge gray\">Archived</span>"
+    },
+    {
+      "page": "Display",
+      "name": "Labels",
+      "classes": ".lbl > i",
+      "use": "Categories people create. The dot carries the colour.",
+      "markup": "<span class=\"lbl\"><i style=\"--c:var(--violet)\"></i>design</span>\n<span class=\"lbl\"><i style=\"--c:var(--blue)\"></i>frontend</span>\n<span class=\"lbl\"><i style=\"--c:var(--green)\"></i>ready to test</span>"
+    },
+    {
+      "page": "Display",
+      "name": "Avatars",
+      "classes": ".av .sm .md .lg .xl .avs .more .presence",
+      "use": "Initials on the person's colour (--c). In a group, show up to four and \"+N\".",
+      "markup": "<span class=\"av sm\" style=\"--c:var(--blue)\">AL</span>\n<span class=\"av\" style=\"--c:var(--violet)\">BR</span>\n<span class=\"av md\" style=\"--c:var(--teal)\">CM</span>\n<span class=\"av lg presence\" style=\"--c:var(--orange)\">DS</span>\n<span class=\"av xl\" style=\"--c:var(--rose)\">EF</span>\n<span class=\"avs\"><span class=\"av md\" style=\"--c:var(--blue)\">AL</span><span class=\"av md\" style=\"--c:var(--violet)\">BR</span><span class=\"av md\" style=\"--c:var(--teal)\">CM</span><span class=\"av md more\">+5</span></span>"
+    },
+    {
+      "page": "Display",
+      "name": "Progress",
+      "classes": ".prog > i (width) .prog.green .prog.red",
+      "use": "Only with a real number behind it.",
+      "markup": "<div class=\"col\" style=\"gap:10px;width:100%;max-width:320px\">\n  <div class=\"row\"><span class=\"prog\"><i style=\"width:64%\"></i></span><span class=\"faint num\" style=\"font-size:12px\">64%</span></div>\n  <div class=\"row\"><span class=\"prog green\"><i style=\"width:100%\"></i></span><span class=\"faint num\" style=\"font-size:12px\">100%</span></div>\n  <div class=\"row\"><span class=\"prog red\"><i style=\"width:30%\"></i></span><span class=\"faint num\" style=\"font-size:12px\">30%</span></div>\n</div>"
+    },
+    {
+      "page": "Display",
+      "name": "Panel",
+      "classes": ".panel .panel-h h2 .acts .panel-b",
+      "use": "The standard content box: thin border, 10 px radius, no shadow.",
+      "markup": "<section class=\"panel\" style=\"width:100%;max-width:520px\">\n  <div class=\"panel-h\"><h2>Upcoming deliveries</h2><div class=\"acts\"><button class=\"btn btn-ghost btn-sm\">See all</button></div></div>\n  <div class=\"panel-b\"><p style=\"margin:0;color:var(--text-2)\">Three deliveries this week. The next one is due tomorrow.</p></div>\n</section>"
+    },
+    {
+      "page": "Display",
+      "name": "Stats",
+      "classes": ".stats > .stat .k .v .d .d.up .d.bad",
+      "use": "All the numbers of a page in one strip. Four per row; two on phones.",
+      "markup": "<div class=\"stats\" style=\"width:100%\">\n  <div class=\"stat\"><span class=\"k\"><svg class=\"i\" width=\"14\" height=\"14\"><!-- Lucide circle-check, stroke 1.8 --></svg>Done</span><span class=\"v\">48</span><span class=\"d up\">+6 this week</span></div>\n  <div class=\"stat\"><span class=\"k\"><svg class=\"i\" width=\"14\" height=\"14\"><!-- Lucide loader, stroke 1.8 --></svg>In progress</span><span class=\"v\">12</span><span class=\"d\">3 with bots</span></div>\n  <div class=\"stat\"><span class=\"k\"><svg class=\"i\" width=\"14\" height=\"14\"><!-- Lucide triangle-alert, stroke 1.8 --></svg>Overdue</span><span class=\"v\">3</span><span class=\"d bad\">2 from yesterday</span></div>\n  <div class=\"stat\"><span class=\"k\"><svg class=\"i\" width=\"14\" height=\"14\"><!-- Lucide clock, stroke 1.8 --></svg>Average time</span><span class=\"v\">2.4 d</span><span class=\"d\">from open to done</span></div>\n</div>"
+    },
+    {
+      "page": "Display",
+      "name": "Tooltip",
+      "classes": "[data-tip] [data-tip-pos]",
+      "use": "Short text shown on hover or keyboard focus.",
+      "markup": "<button class=\"btn btn-secondary\" data-tip=\"Shows below\">Below</button>\n<button class=\"btn btn-secondary\" data-tip=\"Shows above\" data-tip-pos=\"top\">Above</button>\n<button class=\"btn btn-secondary\" data-tip=\"Shows on the right\" data-tip-pos=\"right\">Right</button>"
+    },
+    {
+      "page": "States",
+      "name": "Empty",
+      "classes": ".empty-state .glyph .es-h p .sm",
+      "use": "Say what will show here and offer the first step, if there is one.",
+      "markup": "<div class=\"panel\" style=\"width:100%\">\n  <div class=\"empty-state sm\">\n    <div class=\"glyph\"><svg class=\"i\" width=\"16\" height=\"16\"><!-- Lucide folder-kanban, stroke 1.8 --></svg></div>\n    <h3 class=\"es-h\">No projects yet</h3>\n    <p>Create the first project to organise the team's tasks.</p>\n    <button class=\"btn btn-primary btn-sm\"><svg class=\"i\" width=\"14\" height=\"14\"><!-- Lucide plus, stroke 1.8 --></svg>Create project</button>\n  </div>\n</div>"
+    },
+    {
+      "page": "States",
+      "name": "No results",
+      "classes": ".empty-state",
+      "use": "Repeat what people searched for and offer to clear it.",
+      "markup": "<div class=\"panel\" style=\"width:100%\">\n  <div class=\"empty-state sm\">\n    <div class=\"glyph\"><svg class=\"i\" width=\"16\" height=\"16\"><!-- Lucide search-x, stroke 1.8 --></svg></div>\n    <h3 class=\"es-h\">Nothing found</h3>\n    <p>No task matches \"monthly reprot\". Check the spelling or search fewer words.</p>\n    <button class=\"btn btn-secondary btn-sm\">Clear search</button>\n  </div>\n</div>"
+    },
+    {
+      "page": "States",
+      "name": "Loading indicator",
+      "classes": ".hc-loader .hc-loader.lg .is-busy",
+      "use": "The one and only house loader, the same as Datacube's: a hexagon with a stroke running round the outline. Colour comes from the text. 14 px in lists and buttons, 24 px for a page. Always this one, never another.",
+      "markup": "<span class=\"hc-loader\" role=\"status\" aria-label=\"Loading\"></span>\n<span class=\"row\" style=\"color:var(--text-2)\"><span class=\"hc-loader\" aria-hidden=\"true\"></span>Loading tasks…</span>\n<span class=\"hc-loader lg\" role=\"status\" aria-label=\"Loading\"></span>\n<button class=\"btn btn-secondary\" disabled><span class=\"hc-loader\" aria-hidden=\"true\"></span>Generating</button>\n<button class=\"btn btn-primary is-loading\">Saving</button>"
+    },
+    {
+      "page": "States",
+      "name": "Loading",
+      "classes": ".sk",
+      "use": "A skeleton in the shape of the content that is coming, at the same size: nothing jumps when it loads.",
+      "markup": "<div class=\"panel\" style=\"padding:14px;display:flex;flex-direction:column;gap:12px;max-width:520px\" aria-busy=\"true\" aria-label=\"Loading\">\n  <div class=\"row\" style=\"gap:10px\"><span class=\"sk\" style=\"width:28px;height:28px;border-radius:50%\"></span><span class=\"col\" style=\"gap:6px;flex:1\"><span class=\"sk\" style=\"width:40%;height:11px\"></span><span class=\"sk\" style=\"width:75%;height:9px\"></span></span></div>\n  <div class=\"row\" style=\"gap:10px\"><span class=\"sk\" style=\"width:28px;height:28px;border-radius:50%\"></span><span class=\"col\" style=\"gap:6px;flex:1\"><span class=\"sk\" style=\"width:55%;height:11px\"></span><span class=\"sk\" style=\"width:60%;height:9px\"></span></span></div>\n  <div class=\"row\" style=\"gap:10px\"><span class=\"sk\" style=\"width:28px;height:28px;border-radius:50%\"></span><span class=\"col\" style=\"gap:6px;flex:1\"><span class=\"sk\" style=\"width:35%;height:11px\"></span><span class=\"sk\" style=\"width:80%;height:9px\"></span></span></div>\n</div>"
+    },
+    {
+      "page": "States",
+      "name": "Error",
+      "classes": ".empty-state.err",
+      "use": "Say what happened, that the data is safe, and what to do.",
+      "markup": "<div class=\"panel\" style=\"width:100%\">\n  <div class=\"empty-state err sm\">\n    <div class=\"glyph\"><svg class=\"i\" width=\"16\" height=\"16\"><!-- Lucide wifi-off, stroke 1.8 --></svg></div>\n    <h3 class=\"es-h\">No connection</h3>\n    <p>Check the internet. What you changed is kept and syncs when you are back.</p>\n    <button class=\"btn btn-secondary btn-sm\"><svg class=\"i\" width=\"13\" height=\"13\"><!-- Lucide refresh-cw, stroke 1.8 --></svg>Try again</button>\n  </div>\n</div>"
+    },
+    {
+      "page": "States",
+      "name": "Alerts",
+      "classes": ".alert .info .ok .warn .danger",
+      "use": "Inside the page, near what it affects. For something passing, use a toast (see Overlays).",
+      "markup": "<div class=\"alert info\"><svg class=\"i\" width=\"15\" height=\"15\"><!-- Lucide info, stroke 1.8 --></svg><span><b>Heads up.</b> Deliveries out of order show dashed.</span></div>\n<div class=\"alert ok\"><svg class=\"i\" width=\"15\" height=\"15\"><!-- Lucide circle-check, stroke 1.8 --></svg><span>Project archived.</span></div>\n<div class=\"alert warn\"><svg class=\"i\" width=\"15\" height=\"15\"><!-- Lucide triangle-alert, stroke 1.8 --></svg><span>3 tasks for this week have not started yet.</span></div>\n<div class=\"alert danger\"><svg class=\"i\" width=\"15\" height=\"15\"><!-- Lucide circle-alert, stroke 1.8 --></svg><span>Could not save. The server did not answer in time.</span></div>"
+    },
+    {
+      "page": "States",
+      "name": "Whole page",
+      "classes": ".fullstate .box .code",
+      "use": "For a page error (404, no access).",
+      "markup": "<div class=\"panel\" style=\"width:100%;height:280px\">\n  <div class=\"fullstate\" data-audit-skip><div class=\"box\"><span class=\"code\">404</span><h1>Page not found</h1><p>The address changed or the page was deleted.</p><a class=\"btn btn-secondary\" href=\"index.html\">Back to home</a></div></div>\n</div>"
+    },
+    {
+      "page": "Overlays",
+      "name": "Modal",
+      "classes": ".scrim .modal-wrap .modal .modal-h .modal-b .modal-f",
+      "use": "For a decision or a short form. On phones it rises from the bottom.",
+      "markup": "<button class=\"btn btn-secondary\" data-open=\"#d-modal\"><svg class=\"i\" width=\"14\" height=\"14\"><!-- Lucide square-dashed, stroke 1.8 --></svg>Open the modal</button>\n<div data-layer id=\"d-modal\" hidden>\n  <div class=\"scrim\"></div>\n  <div class=\"modal-wrap\">\n    <div class=\"modal sm\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"d-modal-t\">\n      <div class=\"modal-h\"><h2 id=\"d-modal-t\">Delete the project?</h2><button class=\"ibtn\" data-close aria-label=\"Close\"><svg class=\"i\" width=\"16\" height=\"16\"><!-- Lucide x, stroke 1.8 --></svg></button></div>\n      <div class=\"modal-b\"><p style=\"margin:0;color:var(--text-2)\">The 12 tasks and the project files go away for everyone. This cannot be undone.</p></div>\n      <div class=\"modal-f\"><span class=\"sp\"></span><button class=\"btn btn-secondary\" data-close>Cancel</button><button class=\"btn btn-danger\" data-close data-toast=\"Nothing was deleted: this is only an example\">Delete project</button></div>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "page": "Overlays",
+      "name": "Drawer",
+      "classes": ".drawer-scrim .drawer .drawer-h .drawer-b",
+      "use": "To see and edit an item without leaving the list. On phones it fills the screen.",
+      "markup": "<button class=\"btn btn-secondary\" data-open=\"#d-drawer\"><svg class=\"i\" width=\"14\" height=\"14\"><!-- Lucide panel-right, stroke 1.8 --></svg>Open the drawer</button>\n<div data-layer id=\"d-drawer\" hidden>\n  <div class=\"drawer-scrim\"></div>\n  <aside class=\"drawer\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"d-drawer-t\">\n    <div class=\"drawer-h\"><b id=\"d-drawer-t\">Update the pricing page</b><span class=\"sp\"></span><button class=\"ibtn\" data-close aria-label=\"Close\"><svg class=\"i\" width=\"16\" height=\"16\"><!-- Lucide x, stroke 1.8 --></svg></button></div>\n    <div class=\"drawer-b\">\n      <div class=\"col\" style=\"gap:14px\">\n        <div class=\"field\"><label class=\"label\" for=\"g-t\">Title</label><input class=\"input\" id=\"g-t\" value=\"Update the pricing page\"></div>\n        <div class=\"field\"><label class=\"label\" for=\"g-s\">Status</label><select class=\"select\" id=\"g-s\"><option>In progress</option><option>Review</option></select></div>\n        <div class=\"field\"><label class=\"label\" for=\"g-d\">Description</label><textarea class=\"textarea\" id=\"g-d\" rows=\"5\">Swap the three plans and the footer text.</textarea></div>\n      </div>\n    </div>\n  </aside>\n</div>"
+    },
+    {
+      "page": "Overlays",
+      "name": "Menu",
+      "classes": ".pop .mh .mi .msep .mi.danger",
+      "use": "Actions on an item. On phones, prefer the bottom sheet.",
+      "markup": "<button class=\"btn btn-secondary\" data-menu=\"#d-menu\" aria-haspopup=\"menu\"><svg class=\"i\" width=\"14\" height=\"14\"><!-- Lucide ellipsis, stroke 1.8 --></svg>More actions</button>\n<div class=\"pop\" id=\"d-menu\" role=\"menu\" hidden>\n  <div class=\"mh\">Task</div>\n  <button class=\"mi\" role=\"menuitem\" data-toast=\"Copied (example)\"><svg class=\"i\" width=\"16\" height=\"16\"><!-- Lucide copy, stroke 1.8 --></svg><span>Copy link</span></button>\n  <button class=\"mi\" role=\"menuitem\" data-toast=\"Duplicated (example)\"><svg class=\"i\" width=\"16\" height=\"16\"><!-- Lucide copy-plus, stroke 1.8 --></svg><span>Duplicate</span></button>\n  <div class=\"msep\"></div>\n  <button class=\"mi danger\" role=\"menuitem\" data-toast=\"Nothing was deleted: this is only an example\"><svg class=\"i\" width=\"16\" height=\"16\"><!-- Lucide trash-2, stroke 1.8 --></svg><span>Delete</span></button>\n</div>"
+    },
+    {
+      "page": "Overlays",
+      "name": "Toast",
+      "classes": ".toasts[role=status] > .toast .ta .i.ok .i.bad .out",
+      "use": "Confirms something that just happened. Lives in a fixed .toasts in the corner (on phones, at the bottom, full width); goes away on its own after 3 s with .out. If it can be undone, bring the .ta button.",
+      "markup": "<div class=\"row\"><button class=\"btn btn-secondary\" data-toast=\"Task archived\"><svg class=\"i\" width=\"14\" height=\"14\"><!-- Lucide bell, stroke 1.8 --></svg>Show a toast</button></div>\n<div class=\"toasts\" role=\"status\" style=\"position:static;align-items:flex-start\">\n  <div class=\"toast\"><svg class=\"i\" width=\"15\" height=\"15\"><!-- Lucide circle-check, stroke 1.8 --></svg><span>Task archived</span><button class=\"ta\" data-toast=\"Example: would undo\">Undo</button></div>\n</div>"
+    },
+    {
+      "page": "Overlays",
+      "name": "Bottom sheet",
+      "classes": "<hc-sheet open> .hc-sheet-b .hc-sheet-act",
+      "use": "On phones it rises from the bottom and closes with a drag; on wide screens it becomes a small box in the centre. Needs elements.js.",
+      "markup": "<button class=\"btn btn-secondary\" data-open=\"#d-sheet\"><svg class=\"i\" width=\"14\" height=\"14\"><!-- Lucide panel-bottom, stroke 1.8 --></svg>Open the sheet</button>\n<hc-sheet id=\"d-sheet\" aria-label=\"Message actions\" hidden>\n  <div class=\"hc-sheet-bg\"></div>\n  <div class=\"hc-sheet-b\">\n    <div class=\"hc-sheet-grab\"></div>\n    <div class=\"hc-sheet-in\">\n      <div class=\"hc-sheet-acts\">\n        <button class=\"hc-sheet-act\" data-toast=\"Copied (example)\"><svg class=\"i\" width=\"18\" height=\"18\"><!-- Lucide copy, stroke 1.8 --></svg>Copy</button>\n        <button class=\"hc-sheet-act\" data-toast=\"Example: would move it to a task\"><svg class=\"i\" width=\"18\" height=\"18\"><!-- Lucide forward, stroke 1.8 --></svg>Move to…</button>\n        <button class=\"hc-sheet-act\" data-toast=\"Example: would undo what changed\"><svg class=\"i\" width=\"18\" height=\"18\"><!-- Lucide rotate-ccw, stroke 1.8 --></svg>Undo what changed</button>\n      </div>\n    </div>\n  </div>\n</hc-sheet>"
+    },
+    {
+      "page": "AI pieces",
+      "name": "Status ring",
+      "classes": ".hc-ring[data-state] .round",
+      "use": "Around the avatar. Working pulses; needs you turns blue; idle has no ring.",
+      "markup": "<span class=\"hc-ring round\" data-state=\"working\"><span class=\"av md\" style=\"--c:var(--orange)\">AR</span></span>\n<span class=\"hc-ring round\" data-state=\"needs\"><span class=\"av md\" style=\"--c:var(--teal)\">FE</span></span>\n<span class=\"hc-ring round\"><span class=\"av md\" style=\"--c:var(--violet)\">RV</span></span>"
+    },
+    {
+      "page": "AI pieces",
+      "name": "Two-line row",
+      "classes": ".hc-row2 [data-unread] [aria-current]",
+      "use": "A list of conversations or items: title, time, summary and markers.",
+      "markup": "<div class=\"panel\" style=\"max-width:420px;padding:4px\">\n  <button class=\"hc-row2\" data-unread aria-current=\"true\">\n    <span class=\"hc-row2-av\"><span class=\"hc-ring round\" data-state=\"working\"><span class=\"av md\" style=\"--c:var(--orange)\">AR</span></span></span>\n    <span class=\"hc-row2-t\"><span class=\"trunc\">Leads sync</span></span>\n    <time class=\"hc-row2-time\">19:32</time>\n    <span class=\"hc-row2-sub\">Architect: only your OK is missing</span>\n    <span class=\"hc-row2-end\"><span class=\"hc-needs-mark\"><svg class=\"i\" width=\"14\" height=\"14\"><!-- Lucide message-circle-question, stroke 1.8 --></svg></span><span class=\"hc-count\">2</span></span>\n  </button>\n  <button class=\"hc-row2\">\n    <span class=\"hc-row2-av\"><span class=\"av md\" style=\"--c:var(--blue)\">SC</span></span>\n    <span class=\"hc-row2-t\"><span class=\"trunc\">Sara Cole</span></span>\n    <time class=\"hc-row2-time\">Yesterday</time>\n    <span class=\"hc-row2-sub\">You: I'll look at it this afternoon</span>\n    <span class=\"hc-row2-end\"></span>\n  </button>\n</div>"
+    },
+    {
+      "page": "AI pieces",
+      "name": "Bot question",
+      "classes": "<hc-ask keys> .hc-ask-opt .hc-key",
+      "use": "Docked above the composer. Keys 1 to 9 pick; on phones the keys hide and each option grows to 42 px.",
+      "markup": "<hc-ask class=\"hc-ask\" keys aria-label=\"Question from Architect\" style=\"max-width:520px\">\n  <div class=\"hc-ask-h\"><span class=\"av sm\" style=\"--c:var(--orange)\">AR</span><div class=\"hc-ask-q\"><b>Architect asks:</b> in what order should I build the screens?</div></div>\n  <div class=\"hc-ask-opts\">\n    <button class=\"hc-ask-opt\"><span class=\"hc-key\">1</span><span>Sign in, orders, invoice</span></button>\n    <button class=\"hc-ask-opt\"><span class=\"hc-key\">2</span><span>Invoice first</span></button>\n    <button class=\"hc-ask-opt\"><span class=\"hc-key\">3</span><span class=\"hc-ask-free\">Answer in text</span></button>\n  </div>\n</hc-ask>"
+    },
+    {
+      "page": "AI pieces",
+      "name": "Needs you",
+      "classes": ".hc-needs > .hc-need .hc-need-q .hc-need-meta .hc-need-acts",
+      "use": "Comes first on the dashboard. A short answer right on the card.",
+      "markup": "<div class=\"hc-needs\" style=\"max-width:620px\">\n  <div class=\"hc-need\">\n    <span class=\"hc-ring round\" data-state=\"needs\"><span class=\"av sm\" style=\"--c:var(--orange)\">AR</span></span>\n    <div><div class=\"hc-need-q\"><b>Architect:</b> short deck or full deck?</div><div class=\"hc-need-meta\"><span class=\"hc-id\">MKT-118</span> Launch webinar · 18 min ago</div></div>\n    <div class=\"hc-need-acts\"><button class=\"btn btn-sm btn-secondary\" data-toast=\"Example: would answer Short\">Short</button><button class=\"btn btn-sm btn-secondary\" data-toast=\"Example: would answer Full\">Full</button></div>\n  </div>\n</div>"
+    },
+    {
+      "page": "AI pieces",
+      "name": "Working now",
+      "classes": ".hc-running .hc-running-t .hc-running-m",
+      "use": "One strip per active bot, above the conversation. The step comes from the real plan, never made up.",
+      "markup": "<button class=\"hc-running\" style=\"max-width:520px\">\n  <span class=\"hc-ring round\" data-state=\"working\"><span class=\"av sm\" style=\"--c:var(--teal)\">FE</span></span>\n  <span class=\"hc-running-t\"><b>Frontend engineer</b> <span class=\"hc-id\">MOB-106</span> Push notification</span>\n  <span class=\"hc-running-m\">step 2 of 4</span>\n</button>"
+    },
+    {
+      "page": "AI pieces",
+      "name": "Typing",
+      "classes": ".hc-typing .hc-loader .hc-shimmer",
+      "use": "While the answer has not arrived.",
+      "markup": "<div class=\"hc-typing\" role=\"status\"><span class=\"hc-loader\"></span><span class=\"hc-shimmer\">Architect is writing…</span></div>"
+    },
+    {
+      "page": "AI pieces",
+      "name": "Changes with undo",
+      "classes": ".hc-changes .hc-changes-h [data-undone]",
+      "use": "After each answer that changed something: what changed and a button to undo it.",
+      "markup": "<div class=\"hc-changes\" style=\"max-width:420px\">\n  <div class=\"hc-changes-h\"><svg class=\"i\" width=\"14\" height=\"14\"><!-- Lucide history, stroke 1.8 --></svg><b>Changed 3 things</b><span class=\"sp\"></span><button class=\"btn btn-xs btn-ghost\" data-toast=\"Example: would undo the 3 changes\"><svg class=\"i\" width=\"13\" height=\"13\"><!-- Lucide rotate-ccw, stroke 1.8 --></svg>Undo</button></div>\n  <ul>\n    <li><span class=\"trunc\">MOB-109 · created</span></li>\n    <li><span class=\"trunc\">MOB-110 · created</span></li>\n    <li data-undone><span class=\"trunc\">Memory: sign in before orders</span></li>\n  </ul>\n</div>"
+    },
+    {
+      "page": "AI pieces",
+      "name": "Message actions",
+      "classes": ".hc-msg > .hc-msg-acts",
+      "use": "Show on hover or focus. On touch, use data-hc-longpress and open a bottom sheet.",
+      "markup": "<div class=\"hc-msg\" tabindex=\"0\" style=\"max-width:520px;padding:8px 10px;border:1px solid var(--border);border-radius:var(--r)\">\n  <p style=\"margin:0\">Hover or Tab onto this message to see the actions.</p>\n  <div class=\"hc-msg-acts\" role=\"toolbar\" aria-label=\"Message actions\"><button class=\"ibtn ibtn-xs\" aria-label=\"Copy\" data-toast=\"Copied (example)\"><svg class=\"i\" width=\"13\" height=\"13\"><!-- Lucide copy, stroke 1.8 --></svg></button><button class=\"ibtn ibtn-xs\" aria-label=\"Move to…\" data-toast=\"Example: would move it to a task\"><svg class=\"i\" width=\"13\" height=\"13\"><!-- Lucide forward, stroke 1.8 --></svg></button></div>\n</div>"
+    },
+    {
+      "page": "AI pieces",
+      "name": "Trail",
+      "classes": ".hc-trail .hc-steps .hc-step[data-state] .hc-act",
+      "use": "The bot's work step by step, with what it did in each step.",
+      "markup": "<section class=\"hc-trail\" aria-label=\"Architect's work\" style=\"max-width:620px\">\n  <div class=\"hc-trail-h\"><span class=\"hc-ring round\" data-state=\"working\"><span class=\"av sm\" style=\"--c:var(--orange)\">AR</span></span><b>Offline sync</b><span class=\"hc-id\">MOB-109</span><span class=\"hc-trail-n\">1/4</span></div>\n  <ol class=\"hc-steps\">\n    <li class=\"hc-step\" data-state=\"done\"><span class=\"hc-mark\"></span><span class=\"hc-step-l\">Read the task</span><span class=\"hc-step-m\"></span></li>\n    <li class=\"hc-step\" data-state=\"current\"><span class=\"hc-mark\"></span><span class=\"hc-step-l\">Queue changes while offline</span><span class=\"hc-step-m\"><span class=\"hc-step-s\">Working</span><span>6 min</span></span>\n      <ul class=\"hc-acts\">\n        <li><details class=\"hc-act\"><summary><svg class=\"i\" width=\"13\" height=\"13\"><!-- Lucide terminal, stroke 1.8 --></svg><span class=\"hc-act-t\">Ran <code>npm test</code></span><time>1 min ago</time></summary><div class=\"hc-act-d\">182 of 214 tests passed</div></details></li>\n        <li><div class=\"hc-act\" data-now><div class=\"hc-act-row\"><svg class=\"i\" width=\"13\" height=\"13\"><!-- Lucide file-pen, stroke 1.8 --></svg><span class=\"hc-act-t\">Edited <code>sync/queue.ts</code></span><time>now</time></div></div></li>\n      </ul>\n    </li>\n    <li class=\"hc-step\" data-state=\"waiting\"><span class=\"hc-mark\"></span><span class=\"hc-step-l\">Confirm the order</span><span class=\"hc-step-m\"><span class=\"hc-step-s\">Waiting on you</span></span></li>\n    <li class=\"hc-step\" data-state=\"error\"><span class=\"hc-mark\"></span><span class=\"hc-step-l\">Open the pull request</span><span class=\"hc-step-m\"><span class=\"hc-step-s\">Failed</span></span></li>\n    <li class=\"hc-step\"><span class=\"hc-mark\"></span><span class=\"hc-step-l\">Write the notes</span><span class=\"hc-step-m\"></span></li>\n  </ol>\n</section>"
+    },
+    {
+      "page": "AI pieces",
+      "name": "Trail with substeps and approval",
+      "classes": ".hc-step-ic .hc-step-tg[aria-expanded] .hc-sub .hc-step[data-state=approval] .hc-step-x",
+      "use": "Each step shows the tool it uses. The current step opens its substeps; a step that needs a person waits with a dashed ring and an Approval tag, and the run stops there until someone answers. This one runs live: watch it reach the approval.",
+      "markup": "<section class=\"hc-trail\" data-live-trail aria-label=\"Fix the checkout crash\" style=\"max-width:560px\">\n  <div class=\"hc-trail-h\"><b>Fix the checkout crash</b><span class=\"badge\"><svg class=\"i\" width=\"12\" height=\"12\"><!-- Lucide bot, stroke 1.8 --></svg>Tess</span><span class=\"hc-trail-n\">2/5</span></div>\n  <ol class=\"hc-steps\">\n    <li class=\"hc-step\" data-state=\"done\"><span class=\"hc-mark\"></span><span class=\"hc-step-l\"><span class=\"hc-step-ic\"><svg class=\"i\" width=\"12\" height=\"12\"><!-- Lucide file-text, stroke 1.8 --></svg></span>Read the bug report</span><span class=\"hc-step-m\"><span>8s</span></span></li>\n    <li class=\"hc-step\" data-state=\"done\"><span class=\"hc-mark\"></span><span class=\"hc-step-l\"><span class=\"hc-step-ic\"><svg class=\"i\" width=\"12\" height=\"12\"><!-- Lucide bug, stroke 1.8 --></svg></span>Reproduce the crash</span><span class=\"hc-step-m\"><span>34s</span></span></li>\n    <li class=\"hc-step\" data-state=\"current\"><span class=\"hc-mark\"></span><span class=\"hc-step-l\"><span class=\"hc-step-ic\"><svg class=\"i\" width=\"12\" height=\"12\"><!-- Lucide wrench, stroke 1.8 --></svg></span><button class=\"hc-step-tg\" aria-expanded=\"true\" aria-controls=\"sub-patch\">Patch the checkout form<svg class=\"i\" width=\"13\" height=\"13\"><!-- Lucide chevron-down, stroke 1.8 --></svg></button></span><span class=\"hc-step-m\"><span class=\"hc-step-s\">Testing</span><span data-time>31s</span></span>\n      <ol class=\"hc-sub\" id=\"sub-patch\">\n        <li data-state=\"done\"><span>Found the empty-cart case</span><code>cart.ts:142</code></li>\n        <li data-state=\"done\"><span>Added a guard and 2 tests</span><code>+18 −3</code></li>\n        <li data-state=\"current\"><span>Running the test suite</span><code data-count>182/214</code></li>\n      </ol>\n    </li>\n    <li class=\"hc-step\"><span class=\"hc-mark\"></span><span class=\"hc-step-l\"><span class=\"hc-step-ic\"><svg class=\"i\" width=\"12\" height=\"12\"><!-- Lucide notebook-pen, stroke 1.8 --></svg></span>Write the release note</span><span class=\"hc-step-m\"></span></li>\n    <li class=\"hc-step\" data-state=\"approval\"><span class=\"hc-mark\"></span><span class=\"hc-step-l\"><span class=\"hc-step-ic\"><svg class=\"i\" width=\"12\" height=\"12\"><!-- Lucide git-pull-request, stroke 1.8 --></svg></span>Open a pull request</span><span class=\"hc-step-m\"><span class=\"hc-step-s\">Approval</span></span></li>\n  </ol>\n</section>"
+    },
+    {
+      "page": "AI pieces",
+      "name": "Sections with an index",
+      "classes": ".hc-sections .hc-sec [data-complete] [aria-current]",
+      "use": "A long form split up: one section at a time, the index shows what is done.",
+      "markup": "<nav class=\"hc-sections\" style=\"width:220px\">\n  <button class=\"hc-sec\" data-complete aria-current=\"true\"><span class=\"hc-sec-mark\"></span>Who it is</button>\n  <button class=\"hc-sec\" data-complete><span class=\"hc-sec-mark\"></span>Specialty</button>\n  <button class=\"hc-sec\"><span class=\"hc-sec-mark\"></span>Knowledge</button>\n  <button class=\"hc-sec\"><span class=\"hc-sec-mark\"></span>Routines</button>\n</nav>"
+    },
+    {
+      "page": "Boards",
+      "name": "Node",
+      "classes": ".hc-node .hc-node-k .hc-node-h .hc-node-t .hc-node-b .hc-node-l .hc-node-f [aria-current]",
+      "use": "One step or hypothesis. The title is a button that opens the whole card. Kind on top, a sunken block for the content, numbers in the footer.",
+      "markup": "<div class=\"hc-node\" aria-current=\"true\">\n  <div class=\"hc-node-k\"><svg class=\"i\" width=\"12\" height=\"12\"><!-- Lucide sparkles, stroke 1.8 --></svg>Agent</div>\n  <div class=\"hc-node-h\"><svg class=\"i\" width=\"15\" height=\"15\"><!-- Lucide sparkles, stroke 1.8 --></svg><button class=\"hc-node-t\">Match &amp; reconcile</button></div>\n  <div class=\"hc-node-b\"><span class=\"hc-node-l\">Instructions</span>Extract line items and run a 3-way match against the PO.</div>\n  <div class=\"hc-node-b\"><span class=\"hc-node-l\">Tools</span><code>erp.lookup_po</code><code>ocr.extract</code></div>\n  <div class=\"hc-node-f\"><span>cost: <b>$0.04/run</b></span><span>p95: <b>6.2s</b></span></div>\n</div>\n<div class=\"hc-node\" data-run=\"running\">\n  <div class=\"hc-node-k\"><svg class=\"i\" width=\"12\" height=\"12\"><!-- Lucide zap, stroke 1.8 --></svg>Action</div>\n  <div class=\"hc-node-h\"><svg class=\"i\" width=\"15\" height=\"15\"><!-- Lucide file-text, stroke 1.8 --></svg><button class=\"hc-node-t\">Post to ledger</button><span class=\"hc-node-run\"><span class=\"hc-loader\" aria-hidden=\"true\"></span>Running</span></div>\n  <div class=\"hc-node-f\"><span>auto-posted: <b>91%</b></span><span>p95: <b>1.4s</b></span></div>\n</div>"
+    },
+    {
+      "page": "Boards",
+      "name": "Connected tree",
+      "classes": ".hc-tree ul li ul[data-join] .hc-edge li[data-on] li[data-off]",
+      "use": "Nested lists draw the lines. data-join=\"OR\" or \"AND\" labels the split, .hc-edge labels one branch, data-on colours the path being followed, data-off dashes a ruled-out branch. On phones it becomes an indented list.",
+      "markup": "<div class=\"hc-tree\">\n  <ul>\n    <li>\n      <div class=\"hc-node\" style=\"--node-w:200px\"><div class=\"hc-node-h\"><svg class=\"i\" width=\"15\" height=\"15\"><!-- Lucide square-terminal, stroke 1.8 --></svg><button class=\"hc-node-t\">Tests failing</button></div><div class=\"hc-node-r\"><span class=\"hc-node-s\"><span class=\"badge red\">Failed</span>4 of 12</span></div></div>\n      <ul data-join=\"OR\">\n        <li data-on><div class=\"hc-node\" style=\"--node-w:180px\"><div class=\"hc-node-h\"><svg class=\"i\" width=\"15\" height=\"15\"><!-- Lucide scroll-text, stroke 1.8 --></svg><button class=\"hc-node-t\">Coupon ignored</button></div><div class=\"hc-node-r\"><span class=\"hc-node-s\"><span class=\"hc-loader\" aria-hidden=\"true\"></span>Checking</span></div></div></li>\n        <li data-off><div class=\"hc-node\" data-state=\"out\" style=\"--node-w:180px\"><div class=\"hc-node-h\"><svg class=\"i\" width=\"15\" height=\"15\"><!-- Lucide plug, stroke 1.8 --></svg><button class=\"hc-node-t\">Stripe errors</button></div><div class=\"hc-node-r\"><span class=\"hc-node-s\"><svg class=\"i\" width=\"12\" height=\"12\"><!-- Lucide x, stroke 1.8 --></svg>Ruled out</span></div></div></li>\n      </ul>\n    </li>\n  </ul>\n</div>\n<div class=\"hc-tree\">\n  <ul>\n    <li>\n      <div class=\"hc-node\" style=\"--node-w:200px\"><div class=\"hc-node-h\"><svg class=\"i\" width=\"15\" height=\"15\"><!-- Lucide sparkles, stroke 1.8 --></svg><button class=\"hc-node-t\">Match</button></div></div>\n      <ul>\n        <li><span class=\"hc-edge\">variance ≤ 2%</span><div class=\"hc-node\" style=\"--node-w:180px\"><div class=\"hc-node-h\"><svg class=\"i\" width=\"15\" height=\"15\"><!-- Lucide file-text, stroke 1.8 --></svg><button class=\"hc-node-t\">Post to ledger</button></div></div><button class=\"hc-add\" aria-label=\"Add a step after Post to ledger\"><svg class=\"i\" width=\"13\" height=\"13\"><!-- Lucide plus, stroke 1.8 --></svg></button></li>\n        <li data-on><span class=\"hc-edge\">variance &gt; 2%</span><div class=\"hc-node\" style=\"--node-w:180px\"><div class=\"hc-node-h\"><svg class=\"i\" width=\"15\" height=\"15\"><!-- Lucide user-check, stroke 1.8 --></svg><button class=\"hc-node-t\">Approval gate</button></div></div><button class=\"hc-add\" aria-label=\"Add a step after Approval gate\"><svg class=\"i\" width=\"13\" height=\"13\"><!-- Lucide plus, stroke 1.8 --></svg></button></li>\n      </ul>\n    </li>\n  </ul>\n</div>"
+    },
+    {
+      "page": "Boards",
+      "name": "File and diff",
+      "classes": ".hc-file .hc-more .hc-diff > span.del span.add",
+      "use": "A file name in short, and the lines a fix removes and adds.",
+      "markup": "<div class=\"col\" style=\"gap:10px;width:100%;max-width:560px\">\n  <span><span class=\"hc-file\"><svg class=\"i\" width=\"12\" height=\"12\"><!-- Lucide file, stroke 1.8 --></svg>app/checkout/coupon.ts</span> <span class=\"hc-more\">+1</span></span>\n  <pre class=\"hc-diff\"><span class=\"del\">- discounts: [{ coupon: code, amount_off: value }]</span><span class=\"add\">+ discounts: [{ coupon: code, percent_off: value }]</span></pre>\n</div>"
+    },
+    {
+      "page": "Boards",
+      "name": "On/off filter",
+      "classes": ".hc-filters > button.hc-filter[aria-pressed] i",
+      "use": "Categories people switch on and off, with their colour on the dot. More than four options, or several at once: use this instead of .seg.",
+      "markup": "<div class=\"hc-filters\" role=\"group\" aria-label=\"Show subjects\" data-filters-demo>\n  <button class=\"hc-filter\" aria-pressed=\"true\"><svg class=\"i\" width=\"13\" height=\"13\"><!-- Lucide check, stroke 1.8 --></svg>All</button>\n  <button class=\"hc-filter\" aria-pressed=\"false\" style=\"--c:var(--violet)\"><i></i>Math</button>\n  <button class=\"hc-filter\" aria-pressed=\"false\" style=\"--c:var(--blue)\"><i></i>Art</button>\n  <button class=\"hc-filter\" aria-pressed=\"false\" style=\"--c:var(--teal)\"><i></i>Physics</button>\n  <button class=\"hc-filter\" aria-pressed=\"false\" style=\"--c:var(--orange)\"><i></i>Sport</button>\n</div>"
+    },
+    {
+      "page": "Boards",
+      "name": "Week calendar",
+      "classes": ".hc-cal .hc-cal-dh[aria-current=date] .hc-cal-hours .hc-cal-day .hc-ev .hc-cal-now",
+      "use": "Columns per day, events placed by hour with --at and --len (decimal hours) and coloured with --c. Overlaps share the column with --lane and --lanes. --start, --hours and --days set the grid.",
+      "markup": "<div class=\"hc-cal\" style=\"--start:8;--hours:4;--days:3;--hh:44px\">\n  <div class=\"hc-cal-dh\" aria-hidden=\"true\"></div><div class=\"hc-cal-dh\">Mon <b>9</b></div><div class=\"hc-cal-dh\" aria-current=\"date\">Tue <b>10</b></div><div class=\"hc-cal-dh\">Wed <b>11</b></div>\n  <div class=\"hc-cal-hours\" aria-hidden=\"true\"><span style=\"--h:8\">08:00</span><span style=\"--h:9\">09:00</span><span style=\"--h:10\">10:00</span><span style=\"--h:11\">11:00</span></div>\n  <div class=\"hc-cal-day\"><button class=\"hc-ev\" style=\"--at:9;--len:1;--c:var(--blue)\"><b>Art review</b><span>9:00 – 10:00</span></button></div>\n  <div class=\"hc-cal-day\" data-today><div class=\"hc-cal-now\" style=\"--at:8.67\"><span>8:40</span></div><button class=\"hc-ev\" style=\"--at:8;--len:.67;--c:var(--violet);--lanes:2\"><b>Math exam</b><span>8:00 – 8:40</span></button><button class=\"hc-ev\" style=\"--at:8.5;--len:1.5;--c:var(--teal);--lane:1;--lanes:2\"><b>Physics lab</b><span>8:30 – 10:00</span></button></div>\n  <div class=\"hc-cal-day\"><button class=\"hc-ev\" style=\"--at:10;--len:1.5;--c:var(--orange)\"><b>Sport day</b><span>10:00 – 11:30</span><span class=\"badge\"><svg class=\"i\" width=\"11\" height=\"11\"><!-- Lucide circle-check, stroke 1.8 --></svg>Confirmed</span></button></div>\n</div>"
+    },
+    {
+      "page": "Boards",
+      "name": "Usage timeline",
+      "classes": ".hc-usage .hc-run .hc-run-n .hc-run-track .hc-run-bar[data-over]",
+      "use": "One row per run on a 24-hour track (--from and --len are fractions of it; --now draws the now line). The app draws the chart above and moves the bars; data-over hatches the part that lands over the limit.",
+      "markup": "<section class=\"hc-usage\" style=\"--now:.1875\">\n  <div class=\"hc-usage-h\"><div><h2>Rate limit</h2><p>3 runs · 120k tokens / min</p></div><span class=\"badge red\">Over limit · 12:25–13:10</span></div>\n  <ul class=\"hc-usage-runs\">\n    <li class=\"hc-run\" data-fixed style=\"--c:var(--blue)\"><span class=\"hc-run-n\"><i></i><b>Inbox triage</b><time>Running</time></span><span class=\"hc-run-track\"><span class=\"hc-run-bar\" style=\"--from:.083;--len:.2\"><span>46k</span></span></span><span class=\"hc-run-x\"></span></li>\n    <li class=\"hc-run\" style=\"--c:var(--violet)\"><span class=\"hc-run-n\"><i></i><b>Lead research</b><time>11:30</time></span><span class=\"hc-run-track\"><button class=\"hc-run-bar\" data-over style=\"--from:.229;--len:.15;--over-from:.2;--over-len:.3\"><span>82k</span></button></span><span class=\"hc-run-x\"></span></li>\n    <li class=\"hc-run\" aria-current=\"true\" style=\"--c:var(--rose)\"><span class=\"hc-run-n\"><i></i><b>Code review</b><time>13:15</time></span><span class=\"hc-run-track\"><button class=\"hc-run-bar\" style=\"--from:.302;--len:.1\"><span>36k</span></button></span><span class=\"hc-run-x\"><button class=\"ibtn ibtn-xs\" aria-label=\"Remove Code review\"><svg class=\"i\" width=\"13\" height=\"13\"><!-- Lucide x, stroke 1.8 --></svg></button></span></li>\n  </ul>\n</section>"
+    }
+  ],
+  "templates": [
+    {
+      "name": "Chat with a bot",
+      "file": "catalog/pages/template-chat.html",
+      "site": "site/template-chat.html"
+    },
+    {
+      "name": "Inbox",
+      "file": "catalog/pages/template-inbox.html",
+      "site": "site/template-inbox.html"
+    },
+    {
+      "name": "Dashboard",
+      "file": "catalog/pages/template-dashboard.html",
+      "site": "site/template-dashboard.html"
+    },
+    {
+      "name": "List with filters",
+      "file": "catalog/pages/template-list.html",
+      "site": "site/template-list.html"
+    },
+    {
+      "name": "Week calendar",
+      "file": "catalog/pages/template-calendar.html",
+      "site": "site/template-calendar.html",
+      "script": "catalog/js/calendar.js"
+    },
+    {
+      "name": "Workflow editor",
+      "file": "catalog/pages/template-workflow.html",
+      "site": "site/template-workflow.html",
+      "script": "catalog/js/workflow.js"
+    },
+    {
+      "name": "Rate limit planner",
+      "file": "catalog/pages/template-usage.html",
+      "site": "site/template-usage.html",
+      "script": "catalog/js/usage.js"
+    },
+    {
+      "name": "Root cause",
+      "file": "catalog/pages/template-root-cause.html",
+      "site": "site/template-root-cause.html",
+      "script": "catalog/js/root-cause.js"
+    },
+    {
+      "name": "Sectioned form",
+      "file": "catalog/pages/template-bot.html",
+      "site": "site/template-bot.html"
+    },
+    {
+      "name": "Sign in",
+      "file": "catalog/pages/template-sign-in.html",
+      "site": "site/template-sign-in.html"
+    },
+    {
+      "name": "Settings",
+      "file": "catalog/pages/template-settings.html",
+      "site": "site/template-settings.html"
+    }
+  ]
+}

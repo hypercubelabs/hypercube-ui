@@ -1,0 +1,126 @@
+<!-- title: Workflow editor | kind: template | group: Templates | order: 35 | icon: workflow | script: workflow.js -->
+<div class="shell" data-shell>
+  {{menu:flow}}
+  <div class="main">
+    <header class="topbar">
+      <button class="ibtn only-n" data-menu-open aria-label="Open the menu">{{i:menu:18}}</button>
+      <nav class="crumbs" aria-label="You are here" style="min-width:0"><span class="hide-m">Workflows</span><span class="sep hide-m">/</span><span class="cur trunc">AP exception triage</span></nav>
+      <span class="hc-id hide-m">wf_7c21e9b0</span>
+      <span class="sp"></span>
+      <span class="badge amber hide-m" data-draft><span class="dot"></span>Draft · 3 changes</span>
+      <button class="ibtn hide-m" data-open="#wf-code" aria-label="View as code" data-tip="View as code">{{i:code}}</button>
+      <button class="btn btn-secondary btn-sm" data-test-run>{{i:play:13}}<span class="hide-m">Test run</span></button>
+      <button class="btn btn-primary btn-sm" data-deploy>{{i:rocket:13}}Deploy</button>
+    </header>
+    <div class="content" style="padding:0;overflow:hidden">
+      <h1 class="sr">AP exception triage</h1>
+      <div class="hc-flow" data-side>
+        <div class="hc-canvas" data-canvas>
+          <div class="hc-tree" data-tree>
+            <ul>
+              <li>
+                <div class="hc-node" data-id="n1">
+                  <div class="hc-node-k">{{i:play:12}}Trigger</div>
+                  <div class="hc-node-h">{{i:mail:15}}<button class="hc-node-t" data-pick>Invoice received</button></div>
+                  <div class="hc-node-b"><span class="hc-node-l">Event</span>An invoice lands in ap@example.com or comes in through the ERP webhook.</div>
+                  <div class="hc-node-f"><span>runs: <b>1,284/wk</b></span><span>p95: <b>0.3s</b></span></div>
+                </div>
+                <ul>
+                  <li data-on>
+                    <div class="hc-node" data-id="n2">
+                      <div class="hc-node-k">{{i:sparkles:12}}Agent</div>
+                      <div class="hc-node-h">{{i:sparkles:15}}<button class="hc-node-t" data-pick>Match &amp; reconcile</button></div>
+                      <div class="hc-node-b"><span class="hc-node-l">Instructions</span>Extract line items, run a 3-way match against the PO and goods receipt, and explain any variance.</div>
+                      <div class="hc-node-b"><span class="hc-node-l">Tools</span><code>erp.lookup_po</code><code>erp.get_receipt</code><code>ocr.extract</code></div>
+                      <div class="hc-node-f"><span>cost: <b>$0.04/run</b></span><span>p95: <b>6.2s</b></span></div>
+                    </div>
+                    <ul>
+                      <li>
+                        <span class="hc-edge">variance ≤ 2%</span>
+                        <div class="hc-node" data-id="n3">
+                          <div class="hc-node-k">{{i:zap:12}}Action</div>
+                          <div class="hc-node-h">{{i:file-text:15}}<button class="hc-node-t" data-pick>Post to ledger</button></div>
+                          <div class="hc-node-b"><span class="hc-node-l">Action</span>Create the bill in the ERP, attach the PDF, and post a note to #ap-ops.</div>
+                          <div class="hc-node-f"><span>auto-posted: <b>91%</b></span><span>p95: <b>1.4s</b></span></div>
+                        </div>
+                        <button class="hc-add" data-add="n3" aria-label="Add a step after Post to ledger">{{i:plus:13}}</button>
+                      </li>
+                      <li data-on>
+                        <span class="hc-edge">variance &gt; 2%</span>
+                        <div class="hc-node" data-id="n4" aria-current="true">
+                          <div class="hc-node-k">{{i:hand:12}}Human step</div>
+                          <div class="hc-node-h">{{i:user-check:15}}<button class="hc-node-t" data-pick>Approval gate</button></div>
+                          <div class="hc-node-b"><span class="hc-node-l">Request</span>Send the match diff and the agent's reasoning to Finance Controllers, then wait for a decision.</div>
+                          <div class="hc-node-f"><span>pending: <b>6</b></span><span>median wait: <b>52m</b></span></div>
+                        </div>
+                        <button class="hc-add" data-add="n4" aria-label="Add a step after Approval gate">{{i:plus:13}}</button>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="hc-canvas-bar">
+            <button class="btn btn-primary" data-add-node>{{i:plus:14}}Add node</button>
+            <button class="btn btn-secondary" data-menu="#wf-vars" aria-haspopup="menu">{{i:braces:14}}Variables</button>
+          </div>
+        </div>
+
+        <aside class="hc-flow-side" aria-labelledby="side-t" data-tab-panels>
+          <div class="hc-flow-side-h"><span class="hc-flow-ic" data-side-icon>{{i:user-check:16}}</span><h2 id="side-t">Approval gate</h2><button class="ibtn" data-side-close aria-label="Close the panel">{{i:x}}</button></div>
+          <div class="tabs" role="tablist">
+            <button class="tab on" role="tab" aria-selected="true" data-show="config">Configure</button>
+            <button class="tab" role="tab" data-show="guard">Guardrails <span class="cnt" data-guard-count>2</span></button>
+            <button class="tab" role="tab" data-show="activity">Activity</button>
+          </div>
+          <form class="hc-flow-side-b" data-tab="config" data-node-form onsubmit="return false">
+            <div class="field"><label class="label" for="f-kind">Node type</label>
+              <select class="select" id="f-kind" name="kind"><option value="trigger">Trigger</option><option value="agent">Agent</option><option value="action">Action</option><option value="approval" selected>Human approval</option></select></div>
+            <div class="field"><label class="label" for="f-title">Name</label><input class="input" id="f-title" name="title" value="Approval gate"></div>
+            <div class="field"><label class="label" for="f-text" data-text-label>Request message</label><textarea class="textarea" id="f-text" name="text" rows="3">Send the match diff and the agent's reasoning to Finance Controllers, then wait for a decision.</textarea></div>
+            <div class="col" style="gap:16px" data-only="approval">
+              <div class="field"><label class="label" for="f-brief">Reviewer brief</label><textarea class="textarea" id="f-brief" name="brief" rows="3">Summarize the variance, cite the mismatched lines, and recommend approve or reject with a confidence score.</textarea><span class="hint">What the agent prepares before it asks.</span></div>
+              <div class="field"><label class="label" for="f-who">Assign to</label><select class="select" id="f-who" name="who"><option>Finance Controllers · 4 people</option><option>AP managers · 2 people</option><option>Only me</option></select></div>
+              <fieldset class="field" style="border:0;margin:0;padding:0"><legend class="label" style="margin-bottom:6px">Attach for review</legend>
+                <div class="hc-checks"><label><input type="checkbox" class="check" name="att" value="Invoice PDF" checked>Invoice PDF</label><label><input type="checkbox" class="check" name="att" value="Match diff" checked>Match diff</label><label><input type="checkbox" class="check" name="att" value="Agent reasoning" checked>Agent reasoning</label></div>
+              </fieldset>
+              <div class="field"><label class="label" for="f-wait">If no response</label><select class="select" id="f-wait" name="wait"><option>Escalate to AP manager after 4h</option><option>Reject after 24h</option><option>Keep waiting</option></select><span class="hint">The run pauses. Agents never approve on their own.</span></div>
+            </div>
+          </form>
+          <div class="hc-flow-side-b" data-tab="guard" hidden>
+            <div class="hc-srow"><span><b>Block payments over $50,000</b><small>A person signs anything above this</small></span><input type="checkbox" class="toggle" data-guard checked aria-label="Block payments over $50,000"></div>
+            <div class="hc-srow"><span><b>Stop if the vendor is new</b><small>First invoice from a vendor always goes to a person</small></span><input type="checkbox" class="toggle" data-guard checked aria-label="Stop if the vendor is new"></div>
+            <div class="hc-srow"><span><b>Never change bank details</b><small>The agent can read them, not edit them</small></span><input type="checkbox" class="toggle" data-guard aria-label="Never change bank details"></div>
+          </div>
+          <div class="hc-flow-side-b" data-tab="activity" hidden>
+            <ul class="hc-acts" data-activity>
+              <li><div class="hc-act"><div class="hc-act-row">{{i:pencil:13}}<span class="hc-act-t">Dana changed <b>If no response</b></span><time>4m ago</time></div></div></li>
+              <li><div class="hc-act"><div class="hc-act-row">{{i:plus:13}}<span class="hc-act-t">Dana added <b>Approval gate</b></span><time>2d ago</time></div></div></li>
+            </ul>
+          </div>
+          <div class="hc-flow-side-f"><span data-edited>Edited 4m ago by Dana</span><button class="btn btn-secondary btn-sm" data-discard>Discard</button><button class="btn btn-primary btn-sm" data-save>Save node</button></div>
+        </aside>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pop" id="wf-vars" role="menu" hidden>
+  <div class="mh">Insert into the text you are editing</div>
+  <button class="mi" role="menuitem" data-var="invoice.number">{{i:braces}}<span class="mono">invoice.number</span></button>
+  <button class="mi" role="menuitem" data-var="vendor.name">{{i:braces}}<span class="mono">vendor.name</span></button>
+  <button class="mi" role="menuitem" data-var="variance.pct">{{i:braces}}<span class="mono">variance.pct</span></button>
+  <button class="mi" role="menuitem" data-var="po.number">{{i:braces}}<span class="mono">po.number</span></button>
+</div>
+
+<div data-layer id="wf-code" hidden>
+  <div class="scrim"></div>
+  <div class="modal-wrap">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="wf-code-t">
+      <div class="modal-h"><h2 id="wf-code-t">Workflow as code</h2><button class="ibtn" data-close aria-label="Close">{{i:x}}</button></div>
+      <div class="modal-b"><pre class="hc-diff" style="max-height:60vh;overflow:auto;padding:12px" data-code></pre></div>
+      <div class="modal-f"><span class="sp"></span><button class="btn btn-secondary" data-close>Close</button><button class="btn btn-primary" data-copy-code>{{i:copy:14}}Copy</button></div>
+    </div>
+  </div>
+</div>

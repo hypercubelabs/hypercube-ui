@@ -1,0 +1,58 @@
+<!-- title: Display | kind: piece | group: Pieces | order: 14 | icon: layout-grid -->
+<div class="page">
+  <div class="ph"><div><h1>Display</h1><p>Show what matters, once.</p></div></div>
+
+  <!-- ex: Badges | .badge .badge.green .amber .red .accent .gray .dot | A short state in words. Colour is never the only cue. -->
+  <span class="badge">Draft</span>
+  <span class="badge green"><span class="dot"></span>Active</span>
+  <span class="badge amber"><span class="dot"></span>Invited</span>
+  <span class="badge red">3 overdue</span>
+  <span class="badge accent">New</span>
+  <span class="badge gray">Archived</span>
+  <!-- /ex -->
+
+  <!-- ex: Labels | .lbl > i | Categories people create. The dot carries the colour. -->
+  <span class="lbl"><i style="--c:var(--violet)"></i>design</span>
+  <span class="lbl"><i style="--c:var(--blue)"></i>frontend</span>
+  <span class="lbl"><i style="--c:var(--green)"></i>ready to test</span>
+  <!-- /ex -->
+
+  <!-- ex: Avatars | .av .sm .md .lg .xl .avs .more .presence | Initials on the person's colour (--c). In a group, show up to four and "+N". -->
+  <span class="av sm" style="--c:var(--blue)">AL</span>
+  <span class="av" style="--c:var(--violet)">BR</span>
+  <span class="av md" style="--c:var(--teal)">CM</span>
+  <span class="av lg presence" style="--c:var(--orange)">DS</span>
+  <span class="av xl" style="--c:var(--rose)">EF</span>
+  <span class="avs"><span class="av md" style="--c:var(--blue)">AL</span><span class="av md" style="--c:var(--violet)">BR</span><span class="av md" style="--c:var(--teal)">CM</span><span class="av md more">+5</span></span>
+  <!-- /ex -->
+
+  <!-- ex: Progress | .prog > i (width) .prog.green .prog.red | Only with a real number behind it. -->
+  <div class="col" style="gap:10px;width:100%;max-width:320px">
+    <div class="row"><span class="prog"><i style="width:64%"></i></span><span class="faint num" style="font-size:12px">64%</span></div>
+    <div class="row"><span class="prog green"><i style="width:100%"></i></span><span class="faint num" style="font-size:12px">100%</span></div>
+    <div class="row"><span class="prog red"><i style="width:30%"></i></span><span class="faint num" style="font-size:12px">30%</span></div>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Panel | .panel .panel-h h2 .acts .panel-b | The standard content box: thin border, 10 px radius, no shadow. -->
+  <section class="panel" style="width:100%;max-width:520px">
+    <div class="panel-h"><h2>Upcoming deliveries</h2><div class="acts"><button class="btn btn-ghost btn-sm">See all</button></div></div>
+    <div class="panel-b"><p style="margin:0;color:var(--text-2)">Three deliveries this week. The next one is due tomorrow.</p></div>
+  </section>
+  <!-- /ex -->
+
+  <!-- ex: Stats | .stats > .stat .k .v .d .d.up .d.bad | All the numbers of a page in one strip. Four per row; two on phones. -->
+  <div class="stats" style="width:100%">
+    <div class="stat"><span class="k">{{i:circle-check:14}}Done</span><span class="v">48</span><span class="d up">+6 this week</span></div>
+    <div class="stat"><span class="k">{{i:loader:14}}In progress</span><span class="v">12</span><span class="d">3 with bots</span></div>
+    <div class="stat"><span class="k">{{i:triangle-alert:14}}Overdue</span><span class="v">3</span><span class="d bad">2 from yesterday</span></div>
+    <div class="stat"><span class="k">{{i:clock:14}}Average time</span><span class="v">2.4 d</span><span class="d">from open to done</span></div>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Tooltip | [data-tip] [data-tip-pos] | Short text shown on hover or keyboard focus. -->
+  <button class="btn btn-secondary" data-tip="Shows below">Below</button>
+  <button class="btn btn-secondary" data-tip="Shows above" data-tip-pos="top">Above</button>
+  <button class="btn btn-secondary" data-tip="Shows on the right" data-tip-pos="right">Right</button>
+  <!-- /ex -->
+</div>

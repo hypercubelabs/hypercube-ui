@@ -1,0 +1,36 @@
+{
+  "name": "hypercube-ui",
+  "version": "0.2.0",
+  "description": "Screen components from Hypercube Labs: CSS on tokens plus Web Components, for any stack.",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "src",
+    "fonts",
+    "components.json",
+    "llms.txt",
+    "AGENTS.md",
+    "AUDIT.md",
+    "audit",
+    "scripts/audit.mjs",
+    "recipes",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": "./src/index.css",
+    "./elements.js": "./src/elements.js",
+    "./*": "./src/*"
+  },
+  "scripts": {
+    "catalog": "node scripts/catalog.mjs",
+    "icons": "node scripts/icons.mjs && node scripts/catalog.mjs",
+    "audit": "node scripts/audit.mjs",
+    "audit:catalog": "node scripts/audit.mjs --serve site",
+    "screenshots": "node scripts/screenshots.mjs",
+    "cover": "node scripts/cover.mjs"
+  },
+  "devDependencies": {
+    "lucide": "0.460.0"
+  }
+}

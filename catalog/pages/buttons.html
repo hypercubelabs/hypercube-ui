@@ -1,0 +1,51 @@
+<!-- title: Buttons | kind: piece | group: Pieces | order: 11 | icon: mouse-pointer-click -->
+<div class="page">
+  <div class="ph"><div><h1>Buttons</h1><p>One primary button per area. A verb on the label: "Save", not "OK".</p></div></div>
+
+  <!-- ex: Kinds | .btn .btn-primary .btn-secondary .btn-ghost .btn-danger | Primary is a black pill (lime in dark). Danger only for what deletes. -->
+  <button class="btn btn-primary">Save</button>
+  <button class="btn btn-secondary">Share</button>
+  <button class="btn btn-ghost">Filter</button>
+  <button class="btn btn-danger">Delete</button>
+  <button class="btn btn-danger-ghost">Remove</button>
+  <!-- /ex -->
+
+  <!-- ex: With an icon | .btn > svg.i | The icon comes before the text, 14 px. -->
+  <button class="btn btn-primary">{{i:plus:14}}New task</button>
+  <button class="btn btn-secondary">{{i:share-2:14}}Share</button>
+  <button class="btn btn-ghost">{{i:list-filter:14}}Filter</button>
+  <!-- /ex -->
+
+  <!-- ex: Sizes | .btn-xs .btn-sm .btn .btn-lg .btn-block | 22, 26, 30 and 36 px. On phones the touch area grows on its own inside bars. -->
+  <button class="btn btn-secondary btn-xs">Tiny</button>
+  <button class="btn btn-secondary btn-sm">Small</button>
+  <button class="btn btn-secondary">Medium</button>
+  <button class="btn btn-secondary btn-lg">Large</button>
+  <div style="width:100%;max-width:320px"><button class="btn btn-primary btn-block btn-lg">Sign in</button></div>
+  <!-- /ex -->
+
+  <!-- ex: States | :disabled .is-loading aria-disabled | Loading keeps the width; disabled explains why in a tooltip. -->
+  <button class="btn btn-primary is-loading">Saving</button>
+  <button class="btn btn-secondary is-loading">Loading</button>
+  <button class="btn btn-primary" disabled>Save</button>
+  <span data-tip="Only the project owner can delete"><button class="btn btn-danger" aria-disabled="true">Delete</button></span>
+  <!-- /ex -->
+
+  <!-- ex: Icon button | .ibtn .ibtn-sm .ibtn-xs .on | Always with aria-label and a tooltip (data-tip). -->
+  <button class="ibtn" aria-label="Add" data-tip="Add">{{i:plus}}</button>
+  <button class="ibtn on" aria-label="Filter on" data-tip="Filter on">{{i:list-filter}}</button>
+  <button class="ibtn" aria-label="More actions" data-tip="More actions">{{i:ellipsis}}</button>
+  <button class="ibtn ibtn-sm" aria-label="Copy" data-tip="Copy">{{i:copy:14}}</button>
+  <button class="ibtn ibtn-xs" aria-label="Close" data-tip="Close">{{i:x:13}}</button>
+  <button class="ibtn" disabled aria-label="Delete">{{i:trash-2}}</button>
+  <!-- /ex -->
+
+  <!-- ex: Action group | .row .sp | Actions on the right; the primary one last. On phones the bar wraps and takes the full width. -->
+  <div class="row" style="width:100%;flex-wrap:wrap;gap:8px">
+    <button class="btn btn-ghost">{{i:archive:14}}Archive</button>
+    <span class="sp"></span>
+    <button class="btn btn-secondary">Cancel</button>
+    <button class="btn btn-primary">Save</button>
+  </div>
+  <!-- /ex -->
+</div>

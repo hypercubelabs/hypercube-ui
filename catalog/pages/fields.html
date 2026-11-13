@@ -1,0 +1,62 @@
+<!-- title: Fields | kind: piece | group: Pieces | order: 12 | icon: text-cursor-input -->
+<div class="page">
+  <div class="ph"><div><h1>Fields</h1><p>The label is always visible above the field. An error says what to do, not only what went wrong.</p></div></div>
+
+  <!-- ex: Text | .field .label .input .hint | .field stacks label, field and hint with 6 px between them. -->
+  <div class="field" style="width:100%;max-width:360px">
+    <label class="label" for="c-name">Project name</label>
+    <input class="input" id="c-name" placeholder="e.g. New website">
+    <span class="hint">Shows in the sidebar and in notifications.</span>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: With an error | .input.is-error .err aria-invalid | Tie the error to the field with aria-describedby. -->
+  <div class="field" style="width:100%;max-width:360px">
+    <label class="label" for="c-mail">Email</label>
+    <input class="input is-error" id="c-mail" value="ana@company" aria-invalid="true" aria-describedby="c-mail-e">
+    <span class="err" id="c-mail-e">{{i:circle-alert:12}}Write the full email, like ana@company.com</span>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Search | .inwrap > svg.i + .input + .kbd | Show a shortcut on the right only if it really exists. -->
+  <div class="inwrap" style="width:100%;max-width:360px">{{i:search:13}}<input class="input" placeholder="Search" aria-label="Search"><span class="kbd">/</span></div>
+  <!-- /ex -->
+
+  <!-- ex: Select, long text, date | .select .textarea input[type=date] | Use the browser select: on phones it opens the system picker. -->
+  <div class="ex-grid">
+    <div class="field"><label class="label" for="c-st">Status</label><select class="select" id="c-st"><option>In progress</option><option>Review</option><option>Done</option></select></div>
+    <div class="field"><label class="label" for="c-date">Due</label><input class="input" type="date" id="c-date" value="2026-11-20"></div>
+    <div class="field" style="grid-column:1/-1"><label class="label" for="c-desc">Description</label><textarea class="textarea" id="c-desc" rows="3">What needs to be ready, and for whom.</textarea></div>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Check, choose, switch | .check .check.round .radio .toggle | Always with a clickable label next to it. -->
+  <div class="col" style="gap:10px">
+    <label class="row"><input type="checkbox" class="check" checked> Email me</label>
+    <label class="row"><input type="checkbox" class="check"> Notify my phone</label>
+    <label class="row"><input type="radio" class="radio" name="c-r" checked> Only me</label>
+    <label class="row"><input type="radio" class="radio" name="c-r"> The whole team</label>
+    <label class="row"><input type="checkbox" class="toggle" checked> Automatic dark theme</label>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Disabled | :disabled | Say why it is disabled, next to the field. -->
+  <div class="field" style="width:100%;max-width:360px">
+    <label class="label" for="c-dom">Address</label>
+    <input class="input" id="c-dom" value="acme.example.com" disabled>
+    <span class="hint">Only account admins can change the address.</span>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Full form | .field in a grid, .row of actions | On phones the grid becomes one column on its own. -->
+  <form class="panel" style="width:100%;max-width:560px" onsubmit="return false">
+    <div class="panel-h"><h2>Invite someone</h2></div>
+    <div class="panel-b" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
+      <div class="field"><label class="label" for="f-n">Name</label><input class="input" id="f-n" autocomplete="name"></div>
+      <div class="field"><label class="label" for="f-e">Email</label><input class="input" id="f-e" type="email" autocomplete="email"></div>
+      <div class="field" style="grid-column:1/-1"><label class="label" for="f-p">Role</label><select class="select" id="f-p"><option>Can edit</option><option>Can view</option></select></div>
+      <div class="row" style="grid-column:1/-1;justify-content:flex-end"><button class="btn btn-secondary" type="reset">Clear</button><button class="btn btn-primary" data-toast="Invite sent (example)">Invite</button></div>
+    </div>
+  </form>
+  <!-- /ex -->
+</div>

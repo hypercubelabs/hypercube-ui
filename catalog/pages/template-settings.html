@@ -1,0 +1,35 @@
+<!-- title: Settings | kind: template | group: Templates | order: 40 | icon: settings -->
+<div class="shell" data-shell>
+  {{menu:settings}}
+  <div class="main">
+    <header class="topbar"><button class="ibtn only-n" data-menu-open aria-label="Open the menu">{{i:menu:18}}</button><nav class="crumbs" aria-label="You are here"><span class="cur">Settings</span></nav></header>
+    <div class="hc-set content" data-sections>
+      <nav class="hc-set-nav" aria-label="Settings groups">
+        <div class="sgroup-h">Account</div>
+        <button class="sitem on" data-section="profile" aria-current="true">{{i:user}}<span>Profile</span></button>
+        <button class="sitem" data-section="notify">{{i:bell}}<span>Notifications</span></button>
+        <button class="sitem" data-section="look">{{i:sun-moon}}<span>Appearance</span></button>
+      </nav>
+      <div class="hc-set-in">
+        <section data-part="profile">
+          <div class="ph"><div><h1>Profile</h1><p>How people and bots see you.</p></div></div>
+          <div class="col" style="gap:14px;max-width:420px">
+            <div class="field"><label class="label" for="p-n">Name</label><input class="input" id="p-n" value="Ana Lima" autocomplete="name"></div>
+            <div class="field"><label class="label" for="p-c">Role</label><input class="input" id="p-c" value="Product"></div>
+            <div class="row"><button class="btn btn-primary" data-toast="Example: would save the profile">Save</button></div>
+          </div>
+        </section>
+        <section data-part="notify" hidden>
+          <div class="ph"><div><h1>Notifications</h1><p>What reaches you, and where.</p></div></div>
+          <div class="hc-srow"><span><b>When a bot needs me</b><small>A question or an approval request</small></span><input type="checkbox" class="toggle" checked aria-label="When a bot needs me"></div>
+          <div class="hc-srow"><span><b>Mentions</b><small>Someone wrote @ you</small></span><input type="checkbox" class="toggle" checked aria-label="Mentions"></div>
+          <div class="hc-srow"><span><b>Daily summary</b><small>An email at 8 am with what changed</small></span><input type="checkbox" class="toggle" aria-label="Daily summary"></div>
+        </section>
+        <section data-part="look" hidden>
+          <div class="ph"><div><h1>Appearance</h1><p>Only for you, on this device.</p></div></div>
+          <div class="hc-srow"><span><b>Theme</b><small>Automatic follows the system</small></span><div class="seg" role="group" aria-label="Theme"><button aria-pressed="false" data-theme-v="auto">Automatic</button><button aria-pressed="false" data-theme-v="light">Light</button><button aria-pressed="false" data-theme-v="dark">Dark</button></div></div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>

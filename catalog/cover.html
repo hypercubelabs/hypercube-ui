@@ -1,0 +1,180 @@
+<!doctype html>
+<!-- The README cover, built only from the library's pieces and tokens.
+     scripts/cover.mjs fills {{i:name:px}} and {{mark:px}} and takes it at 1280 x 640, light and dark. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Hypercube UI cover</title>
+<link rel="stylesheet" href="/src/index.css">
+<style>
+  html, body { height: auto; overflow: hidden; }
+  body { margin: 0; background: var(--surface); }
+  .cv {
+    position: relative;
+    width: 1280px;
+    height: 640px;
+    overflow: hidden;
+    background-color: var(--surface);
+    background-image: radial-gradient(var(--border) 1px, transparent 1.2px);
+    background-size: 16px 16px;
+  }
+  /* a soft fade so the dots stay behind the words */
+  .cv::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, var(--surface) 0 34%, transparent 58%);
+    pointer-events: none;
+  }
+  .cv-l {
+    position: absolute;
+    left: 72px;
+    top: 0;
+    bottom: 0;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 22px;
+    z-index: 2;
+  }
+  .cv-brand { display: flex; align-items: center; gap: 18px; }
+  .cv-brand h1 {
+    margin: 0;
+    font-size: 68px;
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    color: var(--text);
+  }
+  .cv-tag {
+    margin: 0;
+    font-size: 25px;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--text-2);
+    max-width: 440px;
+  }
+  .cv-tag b { font-weight: 600; color: var(--text); }
+  .cv-sub { margin: 8px 0 0; font-size: 18px; line-height: 1.4; color: var(--text-3); }
+  .cv-badges { display: flex; flex-wrap: wrap; gap: 8px; max-width: 470px; }
+  .cv-badges .badge { font-size: var(--fs-sm); padding: 4px 10px; height: auto; }
+  .cv-stack {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-3);
+    font-size: var(--fs-md);
+  }
+  .cv-stack b { color: var(--text); font-weight: 600; }
+
+  /* the pieces, floating on the canvas */
+  .cv-p { position: absolute; z-index: 1; }
+  .cv-p > * { box-shadow: var(--shadow-pop); }
+  .cv-card {
+    background: var(--surface);
+    border-radius: var(--r-lg);
+    padding: 14px;
+  }
+  .cv-ask { left: 630px; top: 36px; width: 320px; }
+  .cv-trail { left: 970px; top: 36px; width: 296px; }
+  .cv-btns { left: 600px; top: 214px; }
+  .cv-node { left: 630px; top: 310px; width: 290px; }
+  .cv-ctl { left: 944px; top: 286px; width: 236px; }
+  .cv-avs { left: 1196px; top: 296px; }
+  .cv-need { left: 900px; top: 432px; width: 370px; }
+  .cv-toast { left: 650px; top: 528px; }
+  .cv-run { left: 900px; top: 548px; width: 370px; }
+</style>
+</head>
+<body>
+<div class="cv">
+  <div class="cv-l">
+    <div class="cv-brand">{{mark:64}}<h1>Hypercube UI</h1></div>
+    <div><p class="cv-tag">Clean, easy screens <b>for any stack</b>.</p><p class="cv-sub">CSS on tokens, a few custom elements, no build.</p></div>
+    <div class="cv-badges">
+      <span class="badge accent">Light and dark</span>
+      <span class="badge">Phones from 360 px</span>
+      <span class="badge">Screens where AI works</span>
+      <span class="badge">Audit included</span>
+    </div>
+    <div class="cv-stack"><span class="hc-loader" aria-hidden="true"></span>HTML · React · Vue · Svelte · Angular · Blazor · Astro</div>
+  </div>
+
+  <div class="cv-p cv-ask">
+    <hc-ask class="hc-ask" aria-label="Question from Architect">
+      <div class="hc-ask-h"><span class="av sm" style="--c:var(--orange)">AR</span><div class="hc-ask-q"><b>Architect asks:</b> in what order should I build the screens?</div></div>
+      <div class="hc-ask-opts">
+        <button class="hc-ask-opt"><span class="hc-key">1</span><span>Sign in, orders, invoice</span></button>
+        <button class="hc-ask-opt"><span class="hc-key">2</span><span>Invoice first</span></button>
+        <button class="hc-ask-opt"><span class="hc-key">3</span><span class="hc-ask-free">Answer in text</span></button>
+      </div>
+    </hc-ask>
+  </div>
+
+  <div class="cv-p cv-trail">
+    <section class="hc-trail" aria-label="Fix the checkout crash">
+      <div class="hc-trail-h"><b>Fix the checkout crash</b><span class="badge">{{i:bot:12}}Tess</span><span class="hc-trail-n">2/5</span></div>
+      <ol class="hc-steps">
+        <li class="hc-step" data-state="done"><span class="hc-mark"></span><span class="hc-step-l"><span class="hc-step-ic">{{i:file-text:12}}</span>Read the bug report</span><span class="hc-step-m"><span>8s</span></span></li>
+        <li class="hc-step" data-state="done"><span class="hc-mark"></span><span class="hc-step-l"><span class="hc-step-ic">{{i:bug:12}}</span>Reproduce the crash</span><span class="hc-step-m"><span>34s</span></span></li>
+        <li class="hc-step" data-state="current"><span class="hc-mark"></span><span class="hc-step-l"><span class="hc-step-ic">{{i:wrench:12}}</span>Patch the checkout form</span><span class="hc-step-m"></span></li>
+        <li class="hc-step"><span class="hc-mark"></span><span class="hc-step-l"><span class="hc-step-ic">{{i:notebook-pen:12}}</span>Write the release note</span><span class="hc-step-m"></span></li>
+        <li class="hc-step" data-state="approval"><span class="hc-mark"></span><span class="hc-step-l"><span class="hc-step-ic">{{i:git-pull-request:12}}</span>Open a pull request</span><span class="hc-step-m"><span class="hc-step-s">Approval</span></span></li>
+      </ol>
+    </section>
+  </div>
+
+  <div class="cv-p cv-btns">
+    <div class="cv-card row" style="gap:8px">
+      <button class="btn btn-primary">{{i:check:14}}Save</button>
+      <button class="btn btn-secondary">{{i:share-2:14}}Share</button>
+      <div class="seg" role="group" aria-label="View as"><button class="on" aria-pressed="true">{{i:list:13}}List</button><button aria-pressed="false">{{i:square-kanban:13}}Board</button></div>
+    </div>
+  </div>
+
+  <div class="cv-p cv-node">
+    <div class="hc-node" data-run="running">
+      <div class="hc-node-k">{{i:sparkles:12}}Agent</div>
+      <div class="hc-node-h">{{i:sparkles:15}}<button class="hc-node-t">Match &amp; reconcile</button><span class="hc-node-run"><span class="hc-loader" aria-hidden="true"></span>Running</span></div>
+      <div class="hc-node-b"><span class="hc-node-l">Tools</span><code>erp.lookup_po</code><code>ocr.extract</code></div>
+      <div class="hc-node-f"><span>cost: <b>$0.04/run</b></span><span>p95: <b>6.2s</b></span></div>
+    </div>
+  </div>
+
+  <div class="cv-p cv-need">
+    <div class="hc-needs">
+      <div class="hc-need">
+        <span class="hc-ring round" data-state="needs"><span class="av sm" style="--c:var(--violet)">PM</span></span>
+        <div><div class="hc-need-q"><b>Planner:</b> short or full deck?</div><div class="hc-need-meta"><span class="hc-id">MKT-118</span> Launch webinar</div></div>
+        <div class="hc-need-acts"><button class="btn btn-sm btn-secondary">Short</button><button class="btn btn-sm btn-secondary">Full</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cv-p cv-ctl">
+    <div class="cv-card col" style="gap:10px">
+      <label class="row"><input type="checkbox" class="toggle" checked> Automatic dark theme</label>
+      <label class="row"><input type="checkbox" class="check" checked> Email me</label>
+      <div class="row" style="gap:6px"><span class="badge green"><span class="dot"></span>Active</span><span class="badge amber"><span class="dot"></span>Invited</span><span class="badge red">3 overdue</span></div>
+    </div>
+  </div>
+
+  <div class="cv-p cv-avs">
+    <div class="cv-card"><span class="avs"><span class="av md" style="--c:var(--blue)">AL</span><span class="av md" style="--c:var(--teal)">CM</span><span class="av md more">+5</span></span></div>
+  </div>
+
+  <div class="cv-p cv-toast">
+    <div class="toast">{{i:circle-check:15}}<span>Changed 3 things</span><button class="ta">Undo</button></div>
+  </div>
+
+  <div class="cv-p cv-run">
+    <button class="hc-running">
+      <span class="hc-ring round" data-state="working"><span class="av sm" style="--c:var(--teal)">FE</span></span>
+      <span class="hc-running-t"><b>Frontend engineer</b> <span class="hc-id">MOB-106</span> Push notification</span>
+      <span class="hc-running-m">step 2 of 4</span>
+    </button>
+  </div>
+</div>
+</body>
+</html>

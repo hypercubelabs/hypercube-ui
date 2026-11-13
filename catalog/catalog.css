@@ -1,0 +1,230 @@
+/* Catalog only: the frame around the examples. Nothing here is part of the library. */
+.cat-ver {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  color: var(--text-3);
+}
+
+/* ---------- one example: title, the live piece and its code ---------- */
+.ex {
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  margin: 0 0 16px;
+  overflow: hidden;
+}
+.ex-h {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 12px 14px 0;
+}
+.ex-h h3 {
+  margin: 0;
+  font-size: var(--fs);
+  font-weight: 600;
+}
+.ex-h code {
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  color: var(--text-3);
+  overflow-wrap: anywhere;
+}
+.ex-h p {
+  margin: 0;
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  flex-basis: 100%;
+}
+.ex-demo {
+  padding: 18px 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.ex-demo.col {
+  flex-direction: column;
+  align-items: stretch;
+}
+.ex-demo.sunken {
+  background: var(--sunken);
+  border-top: 1px solid var(--divider);
+  border-bottom: 1px solid var(--divider);
+  margin-top: 12px;
+}
+.ex-code {
+  border-top: 1px solid var(--divider);
+}
+.ex-code summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  cursor: pointer;
+  list-style: none;
+}
+.ex-code summary::-webkit-details-marker {
+  display: none;
+}
+.ex-code summary:hover {
+  color: var(--text);
+}
+.ex-code[open] summary .i {
+  transform: rotate(90deg);
+}
+.ex-code pre {
+  margin: 0;
+  padding: 12px 14px;
+  background: var(--sunken);
+  overflow-x: auto;
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  line-height: 1.55;
+  white-space: pre;
+  max-height: 360px;
+}
+.ex-code .btn {
+  margin-left: auto;
+}
+.ex-lab {
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+  min-width: 72px;
+}
+.ex-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+}
+.ex-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+  width: 100%;
+}
+.ex-tok {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--fs-sm);
+}
+.ex-tok i {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+  background: var(--c);
+  flex-shrink: 0;
+}
+.ex-tok code {
+  display: block;
+  font-size: var(--fs-2xs);
+  color: var(--text-3);
+}
+.ex-phone {
+  width: 100%;
+  max-width: 380px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--surface);
+}
+.cat-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+.cat-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color var(--dur);
+}
+.cat-card:hover {
+  border-color: var(--border-strong);
+}
+.cat-card .i {
+  color: var(--text-3);
+  margin-bottom: 4px;
+}
+.cat-card span {
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+}
+.cat-pre {
+  margin: 8px 0 0;
+  padding: 12px 14px;
+  background: var(--sunken);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow-x: auto;
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+}
+.cat-prose {
+  max-width: 720px;
+  color: var(--text-2);
+}
+.cat-prose h2 {
+  color: var(--text);
+  font-size: var(--fs-xl);
+  margin: 32px 0 8px;
+}
+.cat-prose li {
+  margin: 4px 0;
+}
+
+/* ---------- templates: a whole screen with a thin bar to go back ---------- */
+body.template {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.cat-bar {
+  height: 34px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px 0 12px;
+  background: var(--text);
+  color: var(--text-inv);
+  font-size: var(--fs-xs);
+}
+.cat-bar a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: inherit;
+  text-decoration: none;
+  font-weight: 500;
+}
+.cat-bar .faint {
+  color: color-mix(in srgb, var(--text-inv) 70%, transparent);
+}
+.cat-bar .ibtn {
+  color: var(--text-inv);
+}
+body.template > .shell {
+  flex: 1;
+  min-height: 0;
+  height: auto;
+}
+body.template > .hc-auth {
+  flex: 1;
+  min-height: 0;
+}

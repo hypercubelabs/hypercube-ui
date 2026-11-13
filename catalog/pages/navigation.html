@@ -1,0 +1,67 @@
+<!-- title: Navigation | kind: piece | group: Pieces | order: 13 | icon: panels-top-left -->
+<div class="page">
+  <div class="ph"><div><h1>Navigation</h1><p>People always know where they are and how to go back.</p></div></div>
+
+  <!-- ex: Tabs | .tabs > .tab.on .cnt | Switch the content of the same page. They scroll sideways on phones, never wrap. | col -->
+  <div data-tab-panels>
+    <div class="tabs" role="tablist">
+      <button class="tab on" role="tab" aria-selected="true" data-show="a">Overview</button>
+      <button class="tab" role="tab" data-show="b">Tasks <span class="cnt">12</span></button>
+      <button class="tab" role="tab" data-show="c">Files</button>
+      <button class="tab" role="tab" data-show="d">Activity</button>
+    </div>
+    <p data-tab="a" style="margin:12px 0 0">Overview content.</p>
+    <p data-tab="b" hidden style="margin:12px 0 0">Twelve open tasks.</p>
+    <p data-tab="c" hidden style="margin:12px 0 0">No files yet.</p>
+    <p data-tab="d" hidden style="margin:12px 0 0">What changed in the last few days.</p>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Segmented | .seg[role=group] > button.on[aria-pressed] | One choice among up to four options that always show: the way to view (list, board) or a short filter (All, Unread). A filter people build and remove is a .chip. -->
+  <div class="seg" role="group" aria-label="View as"><button class="on" aria-pressed="true">{{i:list:13}}List</button><button aria-pressed="false">{{i:square-kanban:13}}Board</button><button aria-pressed="false">{{i:table-2:13}}Table</button></div>
+  <div class="seg" role="group" aria-label="Filter"><button class="on" aria-pressed="true">All</button><button aria-pressed="false">Unread</button><button aria-pressed="false">Waiting on you</button></div>
+  <!-- /ex -->
+
+  <!-- ex: Breadcrumbs | .crumbs .sep .cur | On phones only the current page shows. -->
+  <nav class="crumbs" aria-label="You are here"><button>Projects</button><span class="sep">/</span><button>New website</button><span class="sep">/</span><span class="cur">Tasks</span></nav>
+  <!-- /ex -->
+
+  <!-- ex: Active filter | .chip b .ibtn | Shows the filter in use and removes it with one tap. -->
+  <span class="chip">{{i:circle-dot:12}}<b>Status</b> is In progress<button class="ibtn ibtn-xs" aria-label="Remove filter">{{i:x:12}}</button></span>
+  <span class="chip">{{i:user:12}}<b>Owner</b> is you<button class="ibtn ibtn-xs" aria-label="Remove filter">{{i:x:12}}</button></span>
+  <!-- /ex -->
+
+  <!-- ex: Context switcher | .hc-switch .hc-switch-logo .hc-switch-name .pop.hc-switch-menu .mi[role=menuitemradio] | The workspace, organisation or product the person works in, the same way in every app. One per app, the first row of the menu (.side-top), in place of .hc-brand: the logo and name of the current one and the up-down chevrons. It opens a menu with every choice (logo, name, plan or role on the right), the current one checked, then what acts on them: settings, create, invite, only the ones that work. Choosing reloads the whole app in the new context. Never a select field, never in the top bar or inside a page. | col -->
+  <div class="side" style="position:static;width:252px;height:auto;border:1px solid var(--border);border-radius:var(--r-lg)">
+    <div class="side-top"><button class="hc-switch" data-menu="#ex-ws-menu" aria-haspopup="menu" aria-expanded="false" aria-label="Switch workspace: Hypercube"><span class="hc-switch-logo">{{mark}}</span><span class="hc-switch-name"><b>Hypercube</b><small>Pro · 12 members</small></span>{{i:chevrons-up-down:14}}</button></div>
+  </div>
+  <div class="pop hc-switch-menu" id="ex-ws-menu" role="menu" aria-label="Workspaces" hidden>
+    <div class="mh">Workspaces</div>
+    <button class="mi" role="menuitemradio" aria-checked="true" data-switch="Hypercube"><span class="hc-switch-logo sm">{{mark:20}}</span><span class="grow trunc">Hypercube</span><span class="r">Pro</span><span class="ck">{{i:check:14}}</span></button>
+    <button class="mi" role="menuitemradio" aria-checked="false" data-switch="Northwind"><span class="hc-switch-logo sm" style="--c: var(--teal)">N</span><span class="grow trunc">Northwind</span><span class="r">Free</span></button>
+    <button class="mi" role="menuitemradio" aria-checked="false" data-switch="Acme Health"><span class="hc-switch-logo sm" style="--c: var(--rose)">A</span><span class="grow trunc">Acme Health</span><span class="r">Business</span></button>
+    <div class="msep"></div>
+    <button class="mi" role="menuitem" data-toast="Your app opens the workspace settings">{{i:settings:15}}Workspace settings</button>
+    <button class="mi" role="menuitem" data-toast="Your app opens the invite form">{{i:user-plus:15}}Invite members</button>
+    <button class="mi" role="menuitem" data-toast="Your app opens the form to create a workspace">{{i:plus:15}}Create workspace</button>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Sidebar | .side .sgroup .sgroup-h .sitem.on .ct | The active item is lime. A count only when there is something to see. On phones it becomes a drawer (see the templates). -->
+  <nav class="side" style="width:260px;border:1px solid var(--border);border-radius:var(--r-lg);padding:8px" aria-label="Sidebar example">
+    <a class="sitem on" href="#" aria-current="page">{{i:house}}<span>Home</span></a>
+    <a class="sitem" href="#">{{i:inbox}}<span>Inbox</span><span class="ct dotc">3</span></a>
+    <a class="sitem" href="#">{{i:message-circle}}<span>Conversations</span></a>
+    <div class="sgroup"><div class="sgroup-h">Work</div>
+      <a class="sitem" href="#">{{i:circle-check}}<span>My tasks</span><span class="ct">8</span></a>
+      <a class="sitem" href="#">{{i:folder-kanban}}<span>Projects</span></a>
+    </div>
+  </nav>
+  <!-- /ex -->
+
+  <!-- ex: Adjust screen | hc-zoom.hc-zoom .hc-zoom-l [data-zoom=out|reset|in] .hc-zoom-v | Lets each person make the whole app bigger or smaller, 5% at a time from 80% to 140%. Keep it in the sidebar's .side-bot so it is always visible. The value is the reset button. Needs src/elements.js; apply the saved size in <head> (AGENTS.md). -->
+  <div class="side" style="position:static;width:252px;height:auto;border:1px solid var(--border);border-radius:var(--r-lg)">
+    <div class="side-bot" style="border-top:0"><a class="sitem" href="#">{{i:settings}}<span>Settings</span></a><hc-zoom class="hc-zoom" aria-label="Adjust screen"><span class="hc-zoom-l">{{i:scan}}<span>Adjust screen</span></span><button class="ibtn ibtn-xs" data-zoom="out" aria-label="Make the screen smaller">{{i:minus:13}}</button><button class="hc-zoom-v" data-zoom="reset">100%</button><button class="ibtn ibtn-xs" data-zoom="in" aria-label="Make the screen bigger">{{i:plus:13}}</button></hc-zoom></div>
+  </div>
+  <!-- /ex -->
+</div>

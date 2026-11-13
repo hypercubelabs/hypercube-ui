@@ -1,0 +1,33 @@
+<!-- title: Sectioned form | kind: template | group: Templates | order: 38 | icon: file-pen-line -->
+<div class="shell" data-shell>
+  {{menu:bot}}
+  <div class="main">
+    <header class="topbar"><button class="ibtn only-n" data-menu-open aria-label="Open the menu">{{i:menu:18}}</button><nav class="crumbs" aria-label="You are here"><span class="hide-m">Bots</span><span class="sep hide-m">/</span><span class="cur">Architect</span></nav><span class="sp"></span><a class="btn btn-secondary btn-sm" href="template-chat.html">{{i:message-circle:14}}Try it</a></header>
+    <main class="content">
+      <div class="page" data-sections>
+        <div class="ph"><span class="hc-ring round" data-state="working"><span class="av lg" style="--c:var(--orange)">AR</span></span><div><h1>Architect</h1><p>Plans screens and tasks. 2 of 4 sections done.</p></div></div>
+        <div class="hc-sectioned">
+          <nav class="hc-sections" aria-label="Profile sections">
+            <button class="hc-sec" data-section="who" data-complete aria-current="true"><span class="hc-sec-mark"></span>Who it is</button>
+            <button class="hc-sec" data-section="skill" data-complete><span class="hc-sec-mark"></span>Specialty</button>
+            <button class="hc-sec" data-section="know"><span class="hc-sec-mark"></span>Knowledge</button>
+            <button class="hc-sec" data-section="rout"><span class="hc-sec-mark"></span>Routines</button>
+          </nav>
+          <form class="panel" onsubmit="return false">
+            <div data-part="who" class="panel-b col" style="gap:14px;padding-top:14px">
+              <div class="field"><label class="label" for="q-n">Name</label><input class="input" id="q-n" value="Architect"></div>
+              <div class="field"><label class="label" for="q-p">Tone</label><select class="select" id="q-p"><option>Direct and short</option><option>Explains calmly</option></select></div>
+              <div class="row" style="justify-content:flex-end"><button class="btn btn-primary" data-toast="Example: would save the section">Save</button></div>
+            </div>
+            <div data-part="skill" class="panel-b col" style="gap:14px;padding-top:14px" hidden>
+              <div class="field"><label class="label" for="q-e">What it is good at</label><textarea class="textarea" id="q-e" rows="4">Breaking a big request into small screens and tasks, in the right order.</textarea></div>
+              <div class="row" style="justify-content:flex-end"><button class="btn btn-primary" data-toast="Example: would save the section">Save</button></div>
+            </div>
+            <div data-part="know" hidden><div class="empty-state sm"><div class="glyph">{{i:file-text}}</div><h3 class="es-h">No documents yet</h3><p>Documents the bot should read before it answers.</p><button class="btn btn-secondary btn-sm" data-toast="Example: would open your files">{{i:upload:13}}Upload a document</button></div></div>
+            <div data-part="rout" hidden><div class="empty-state sm"><div class="glyph">{{i:repeat}}</div><h3 class="es-h">No routines</h3><p>Things the bot does on its own, on a schedule.</p><button class="btn btn-secondary btn-sm" data-toast="Example: would create a routine">{{i:plus:13}}Create routine</button></div></div>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

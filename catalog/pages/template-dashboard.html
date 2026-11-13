@@ -1,0 +1,43 @@
+<!-- title: Dashboard | kind: template | group: Templates | order: 32 | icon: layout-dashboard -->
+<div class="shell" data-shell>
+  {{menu:home}}
+  <div class="main">
+    <header class="topbar"><button class="ibtn only-n" data-menu-open aria-label="Open the menu">{{i:menu:18}}</button><nav class="crumbs" aria-label="You are here"><span class="cur">Dashboard</span></nav><span class="sp"></span><button class="ibtn" aria-label="Notifications" data-tip="Notifications" data-toast="Example: would open notifications">{{i:bell}}</button></header>
+    <main class="content">
+      <div class="page">
+        <div class="ph"><div><h1>Good afternoon</h1><p>Two things are waiting on you. The rest is moving on its own.</p></div><div class="acts"><a class="btn btn-primary" href="template-chat.html">{{i:message-circle:14}}Talk to a bot</a></div></div>
+
+        <h2 class="sec" style="margin:0 0 10px">Needs you</h2>
+        <div class="hc-needs" style="margin-bottom:24px">
+          <div class="hc-need"><span class="hc-ring round" data-state="needs"><span class="av sm" style="--c:var(--orange)">AR</span></span><div><div class="hc-need-q"><b>Architect:</b> in what order should I build the screens?</div><div class="hc-need-meta"><span class="hc-id">MOB-110</span> Customer app · 4 min ago</div></div><div class="hc-need-acts"><a class="btn btn-sm btn-secondary" href="template-chat.html">Answer</a></div></div>
+          <div class="hc-need"><span class="hc-ring round" data-state="needs"><span class="av sm" style="--c:var(--rose)">MK</span></span><div><div class="hc-need-q"><b>Marketing:</b> short deck or full deck?</div><div class="hc-need-meta"><span class="hc-id">MKT-118</span> Webinar · 18 min ago</div></div><div class="hc-need-acts"><button class="btn btn-sm btn-secondary" data-toast="Example: would answer Short">Short</button><button class="btn btn-sm btn-secondary" data-toast="Example: would answer Full">Full</button></div></div>
+        </div>
+
+        <div class="stats" style="margin-bottom:24px">
+          <div class="stat"><span class="k">{{i:circle-check:14}}Done</span><span class="v">48</span><span class="d up">+6 this week</span></div>
+          <div class="stat"><span class="k">{{i:loader:14}}In progress</span><span class="v">12</span><span class="d">3 with bots</span></div>
+          <div class="stat"><span class="k">{{i:triangle-alert:14}}Overdue</span><span class="v">3</span><span class="d bad">2 from yesterday</span></div>
+          <div class="stat"><span class="k">{{i:clock:14}}Average time</span><span class="v">2.4 d</span><span class="d">from open to done</span></div>
+        </div>
+
+        <div class="grid2">
+          <section class="panel">
+            <div class="panel-h"><h2>Working now</h2></div>
+            <div class="panel-b col" style="gap:6px">
+              <button class="hc-running"><span class="hc-ring round" data-state="working"><span class="av sm" style="--c:var(--teal)">FE</span></span><span class="hc-running-t"><b>Frontend engineer</b> <span class="hc-id">MOB-108</span> Sign in</span><span class="hc-running-m">step 2 of 4</span></button>
+              <button class="hc-running"><span class="hc-ring round" data-state="working"><span class="av sm" style="--c:var(--violet)">QA</span></span><span class="hc-running-t"><b>Tester</b> <span class="hc-id">MOB-104</span> Profile</span><span class="hc-running-m">step 1 of 3</span></button>
+            </div>
+          </section>
+          <section class="panel">
+            <div class="panel-h"><h2>Upcoming deliveries</h2><div class="acts"><a class="btn btn-ghost btn-sm" href="template-list.html">See all</a></div></div>
+            <div class="panel-b col" style="gap:10px">
+              <div class="row"><span class="badge amber"><span class="dot"></span>Tomorrow</span><span class="trunc">MOB-109 · Orders</span></div>
+              <div class="row"><span class="badge">Friday</span><span class="trunc">MOB-110 · Invoice</span></div>
+              <div class="row"><span class="badge">The 28th</span><span class="trunc">MKT-118 · Launch webinar</span></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

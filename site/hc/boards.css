@@ -1,0 +1,1099 @@
+/* ============================================================
+   HYPERCUBE UI — BOARDS
+   Pieces for screens that lay work out in space or in time:
+     .hc-tree     connected tree (workflow, root cause) with OR/AND joins and branch labels
+     .hc-node     the card for each step or hypothesis
+     .hc-canvas   dotted background that scrolls inside, with a floating bar at the bottom
+     .hc-flow     editor: canvas + settings panel for the chosen node
+     .hc-cal      week calendar with coloured events and the now line
+     .hc-filter   on/off filter with the category colour
+     .hc-usage    usage over time: chart on top, draggable runs below
+     .hc-diff     removed and added lines of a file
+     .hc-file     short file name
+   Tokens only. The tree and the calendar work without JavaScript; dragging, adding
+   up and drawing the chart belong to the app (see the catalog templates).
+   On phones (up to 640 px) the tree becomes an indented list, the calendar shows one
+   day at a time and the editor panel rises from the bottom.
+   ============================================================ */
+
+/* ---------- file and diff ---------- */
+.hc-file {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  max-width: 100%;
+  height: 22px;
+  padding: 0 7px 0 5px;
+  border-radius: var(--r-xs);
+  background: var(--surface-2);
+  color: var(--text-2);
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+.hc-file > svg {
+  flex: none;
+  color: var(--text-3);
+}
+.hc-more {
+  color: var(--text-3);
+  font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
+}
+.hc-diff {
+  margin: 0;
+  padding: 8px 0;
+  border-radius: var(--r);
+  background: var(--sunken);
+  border: 1px solid var(--divider);
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  line-height: 1.7;
+  color: var(--text-2);
+  overflow-x: auto;
+}
+.hc-diff > span {
+  display: block;
+  padding: 0 12px;
+  white-space: pre;
+  min-width: max-content;
+}
+.hc-diff > .del {
+  background: var(--red-soft);
+  color: var(--red);
+}
+.hc-diff > .add {
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+/* ---------- node: .hc-node ---------- */
+.hc-node {
+  position: relative;
+  width: var(--node-w, 270px);
+  max-width: 100%;
+  text-align: left;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  font-size: var(--fs-sm);
+  transition: border-color var(--dur), box-shadow var(--dur), opacity var(--dur);
+}
+.hc-node-k {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px 0;
+  font-size: var(--fs-2xs);
+  color: var(--text-3);
+}
+.hc-node-h {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 8px 12px;
+}
+.hc-node-h > svg {
+  flex: none;
+  color: var(--text-2);
+}
+.hc-node-t {
+  min-width: 0;
+  font-size: var(--fs);
+  font-weight: 600;
+  color: var(--text);
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* The title is the button for the whole node: a click anywhere on the card opens it. */
+button.hc-node-t::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+button.hc-node-t:focus-visible {
+  outline: none;
+}
+.hc-node:has(> .hc-node-h > button.hc-node-t:focus-visible) {
+  box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent-ink);
+}
+.hc-node:has(> .hc-node-h > button.hc-node-t):hover {
+  border-color: var(--border-strong);
+}
+.hc-node-b {
+  margin: 0 8px 8px;
+  padding: 8px 10px;
+  border-radius: var(--r);
+  background: var(--sunken);
+  color: var(--text-2);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.hc-node-l {
+  display: block;
+  margin-bottom: 3px;
+  font-family: var(--mono);
+  font-size: var(--fs-3xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.hc-node-b code {
+  display: inline-block;
+  margin: 2px 2px 0 0;
+  padding: 1px 6px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xs);
+  background: var(--surface);
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+}
+.hc-node-r {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px 10px;
+  min-width: 0;
+}
+.hc-node-f {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 12px;
+  border-top: 1px solid var(--divider);
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+.hc-node-f b {
+  color: var(--text);
+  font-weight: 500;
+}
+.hc-node-f > :last-child:not(:first-child) {
+  margin-left: auto;
+}
+/* run state at the end of the title row: <span class="hc-node-run"> with .hc-loader, an icon or a .badge */
+.hc-node-run {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex: none;
+  margin-left: auto;
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.hc-node[data-run='done'] .hc-node-run {
+  color: var(--green);
+}
+.hc-node[data-run='running'] .hc-node-run {
+  color: var(--st-progress);
+}
+/* node status: Checking, Ruled out, Root cause… */
+.hc-node-s {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+  white-space: nowrap;
+}
+.hc-node[aria-current='true'] {
+  border-color: var(--text);
+  box-shadow: 0 0 0 1px var(--text), var(--shadow-card);
+}
+.hc-node[data-state='out'] {
+  opacity: 0.55;
+  box-shadow: none;
+}
+.hc-node[data-state='found'] {
+  border-color: var(--red);
+  box-shadow: 0 0 0 1px var(--red);
+}
+.hc-node[data-state='fixed'] {
+  border-color: var(--green);
+  box-shadow: 0 0 0 1px var(--green);
+}
+.hc-node[data-run='running'] {
+  border-color: var(--st-progress);
+}
+.hc-node[data-run='done'] .hc-node-k,
+.hc-node[data-run='running'] .hc-node-k,
+.hc-node[data-run='waiting'] .hc-node-k {
+  color: var(--text);
+}
+/* actions of the chosen node (delete, duplicate), next to the card */
+.hc-node-acts {
+  position: absolute;
+  top: 6px;
+  left: calc(100% + 8px);
+  display: grid;
+  gap: 6px;
+  z-index: 2;
+}
+.hc-node-acts .ibtn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+.hc-node:not([aria-current='true']) > .hc-node-acts {
+  display: none;
+}
+
+/* ---------- connected tree: .hc-tree > ul > li > .hc-node + ul ---------- */
+.hc-tree {
+  --line: var(--border-strong);
+  --line-on: var(--blue);
+  --drop: 22px;
+  overflow: auto;
+  padding: 4px 4px 12px;
+}
+.hc-tree ul {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: var(--drop) 0 0;
+  list-style: none;
+}
+.hc-tree > ul {
+  width: max-content;
+  min-width: 100%;
+  padding-top: 0;
+}
+.hc-tree li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--drop) 10px 0;
+}
+.hc-tree > ul > li {
+  padding-top: 0;
+}
+/* the line from the parent down to the children bar */
+.hc-tree ul ul::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: var(--drop);
+  border-left: 1px solid var(--line);
+}
+/* the bar and the drop to each child; --lc is the colour of this child's lines */
+.hc-tree li {
+  --lc: var(--line);
+}
+.hc-tree li::before,
+.hc-tree li::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 50%;
+  width: 50%;
+  height: var(--li-drop, var(--drop));
+  border: 0 solid var(--lc);
+  border-top-width: 1px;
+}
+.hc-tree li::after {
+  right: auto;
+  left: 50%;
+  border-left-width: 1px;
+}
+.hc-tree li:only-child::before {
+  display: none;
+}
+.hc-tree li:only-child::after {
+  border-top-width: 0;
+}
+.hc-tree li:first-child:not(:only-child)::before,
+.hc-tree li:last-child:not(:only-child)::after {
+  border-top-width: 0;
+}
+.hc-tree li:first-child:not(:only-child)::after {
+  border-top-left-radius: 8px;
+}
+.hc-tree li:last-child:not(:only-child)::before {
+  border-right-width: 1px;
+  border-top-right-radius: 8px;
+}
+.hc-tree li:last-child:not(:only-child)::after {
+  border-left-width: 0;
+}
+.hc-tree > ul > li::before,
+.hc-tree > ul > li::after {
+  display: none;
+}
+/* active path (the one being followed) and a ruled-out branch */
+.hc-tree li[data-on] {
+  --lc: var(--line-on);
+}
+.hc-tree ul:has(> li[data-on])::before {
+  border-color: var(--line-on);
+}
+.hc-tree li[data-off]::before,
+.hc-tree li[data-off]::after {
+  border-style: dashed;
+}
+/* OR / AND join: <ul data-join="OR"> */
+.hc-tree ul[data-join]::after {
+  content: attr(data-join);
+  position: absolute;
+  top: var(--drop);
+  left: 50%;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  padding: 1px 6px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-xs);
+  background: var(--surface);
+  font-size: var(--fs-3xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-2);
+}
+.hc-tree ul[data-join]:has(> li[data-on])::after {
+  border-color: var(--line-on);
+  color: var(--line-on);
+}
+/* branch label: <li><span class="hc-edge">variance ≤ 2%</span><div class="hc-node">… */
+.hc-tree li:has(> .hc-edge) {
+  --li-drop: calc(var(--drop) + 30px);
+  padding-top: var(--li-drop);
+}
+.hc-edge {
+  position: absolute;
+  top: calc(var(--drop) + 4px);
+  left: 50%;
+  z-index: 1;
+  transform: translateX(-50%);
+  padding: 1px 7px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xs);
+  background: var(--surface);
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  color: var(--text-2);
+  white-space: nowrap;
+}
+.hc-tree li[data-on] > .hc-edge {
+  border-color: var(--line-on);
+  color: var(--line-on);
+}
+/* + under a leaf */
+.hc-tree .hc-add {
+  position: relative;
+  margin-top: 16px;
+}
+.hc-tree .hc-add::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  height: 16px;
+  border-left: 1px solid var(--line);
+}
+.hc-add {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-xs);
+  background: var(--surface);
+  color: var(--text-2);
+}
+.hc-add:hover {
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+/* ---------- canvas background: .hc-canvas ---------- */
+.hc-canvas {
+  position: relative;
+  min-height: 0;
+  overflow: auto;
+  background-color: var(--sunken);
+  background-image: radial-gradient(var(--border) 1px, transparent 1.2px);
+  background-size: 16px 16px;
+}
+.hc-canvas > .hc-tree {
+  overflow: visible;
+  padding: 24px 24px 96px;
+}
+.hc-canvas-bar {
+  position: sticky;
+  bottom: 16px;
+  left: 0;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  margin-top: -64px;
+  padding: 0 16px;
+  pointer-events: none;
+}
+.hc-canvas-bar > * {
+  pointer-events: auto;
+  box-shadow: var(--shadow-pop);
+}
+.hc-canvas-bar > .btn-secondary {
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------- editor: .hc-flow > .hc-canvas + .hc-flow-side ---------- */
+.hc-flow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  height: 100%;
+  min-height: 0;
+}
+.hc-flow:not([data-side]) {
+  grid-template-columns: minmax(0, 1fr);
+}
+.hc-flow:not([data-side]) > .hc-flow-side {
+  display: none;
+}
+.hc-flow-side {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-left: 1px solid var(--border);
+  background: var(--surface);
+}
+.hc-flow-side-h {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 12px 0 16px;
+}
+.hc-flow-side-h h2 {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-size: var(--fs-md);
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hc-flow-ic {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r);
+  background: var(--surface-2);
+  color: var(--text-2);
+}
+.hc-flow-side > .tabs {
+  padding: 0 16px;
+}
+.hc-flow-side-b {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 16px;
+}
+.hc-flow-side-f {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--divider);
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.hc-flow-side-f > :first-child {
+  flex: 1;
+  min-width: 0;
+}
+.hc-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+.hc-checks label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-sm);
+}
+
+/* ---------- on/off filter: button.hc-filter[aria-pressed] ---------- */
+.hc-filters {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  min-width: 0;
+}
+.hc-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  height: var(--h-sm);
+  padding: 0 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-full);
+  background: var(--surface);
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  white-space: nowrap;
+}
+.hc-filter i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--c, var(--text-3));
+}
+.hc-filter:hover {
+  border-color: var(--border-strong);
+}
+.hc-filter[aria-pressed='true'] {
+  border-color: var(--text);
+  background: var(--text);
+  color: var(--text-inv);
+}
+
+/* ---------- week calendar: .hc-cal ---------- */
+.hc-cal {
+  --hh: 52px;
+  --start: 6;
+  --hours: 12;
+  --days: 7;
+  display: grid;
+  grid-template-columns: 52px repeat(var(--days), minmax(0, 1fr));
+  min-width: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  overflow: clip;
+}
+.hc-cal-dh {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 36px;
+  border-bottom: 1px solid var(--border);
+  border-left: 1px solid var(--divider);
+  background: var(--surface);
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.hc-cal-dh:first-child {
+  border-left: 0;
+}
+.hc-cal-dh b {
+  font-weight: 600;
+  color: var(--text);
+}
+.hc-cal-dh[aria-current='date'] {
+  background: var(--text);
+  color: var(--text-inv);
+}
+.hc-cal-dh[aria-current='date'] b {
+  color: var(--text-inv);
+}
+button.hc-cal-dh:hover:not([aria-current='date']) {
+  background: var(--surface-2);
+}
+.hc-cal-hours {
+  position: relative;
+  height: calc(var(--hours) * var(--hh));
+}
+.hc-cal-hours span {
+  position: absolute;
+  right: 8px;
+  top: calc((var(--h) - var(--start)) * var(--hh) - 7px);
+  font-size: var(--fs-2xs);
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+.hc-cal-hours span:first-child {
+  top: 4px;
+}
+.hc-cal-day {
+  position: relative;
+  height: calc(var(--hours) * var(--hh));
+  border-left: 1px solid var(--divider);
+  background-image: linear-gradient(var(--divider) 1px, transparent 1px);
+  background-size: 100% var(--hh);
+}
+.hc-cal-day[data-today] {
+  background-color: color-mix(in srgb, var(--surface-2) 45%, transparent);
+}
+/* event: <button class="hc-ev" style="--at: 7.5; --len: 1.5; --c: var(--blue)"> (hours, decimal) */
+.hc-ev {
+  --lane: 0;
+  --lanes: 1;
+  position: absolute;
+  top: calc((var(--at) - var(--start)) * var(--hh) + 1px);
+  left: calc(3px + (100% - 6px) * var(--lane) / var(--lanes));
+  width: calc((100% - 6px) / var(--lanes) - 2px);
+  height: calc(var(--len) * var(--hh) - 3px);
+  min-height: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 5px 7px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--c) 30%, transparent);
+  border-left: 3px solid var(--c);
+  border-radius: var(--r-sm);
+  background: color-mix(in srgb, var(--c) 13%, var(--surface));
+  color: var(--text);
+  text-align: left;
+  font-size: var(--fs-xs);
+  line-height: 1.3;
+  transition: box-shadow var(--dur);
+}
+.hc-ev > * {
+  flex: none;
+}
+.hc-ev b {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hc-ev > span {
+  color: var(--text-2);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.hc-ev .badge {
+  align-self: flex-start;
+  margin-top: auto;
+  background: var(--surface);
+}
+.hc-ev:hover {
+  box-shadow: var(--shadow-card);
+}
+.hc-ev[aria-current='true'] {
+  box-shadow: 0 0 0 2px var(--c);
+}
+.hc-cal[data-filter] .hc-ev:not([data-match]) {
+  display: none;
+}
+/* now line: <div class="hc-cal-now" style="--at: 8.67"><span>8:40</span></div> inside today's column */
+.hc-cal-now {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc((var(--at) - var(--start)) * var(--hh));
+  z-index: 2;
+  border-top: 2px solid var(--text);
+  pointer-events: none;
+}
+.hc-cal-now span {
+  position: absolute;
+  left: 2px;
+  top: -10px;
+  padding: 1px 6px;
+  border-radius: var(--r-full);
+  background: var(--text);
+  color: var(--text-inv);
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+/* day picker shown on phones, where the calendar shows one day: .hc-cal-pick > button.hc-filter */
+.hc-cal-pick {
+  display: none;
+  margin-bottom: 8px;
+}
+.hc-cal-wrap {
+  min-height: 0;
+  overflow: auto;
+  border-radius: var(--r-lg);
+}
+
+/* ---------- usage over time: .hc-usage ---------- */
+.hc-usage {
+  --name-w: 260px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  min-width: 0;
+}
+.hc-usage-h {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 8px 12px;
+  padding: 16px 16px 4px;
+}
+.hc-usage-h > div:first-child {
+  flex: 1;
+  min-width: 180px;
+}
+.hc-usage-h h2 {
+  margin: 0;
+  font-size: var(--fs-md);
+  font-weight: 600;
+}
+.hc-usage-h p {
+  margin: 2px 0 0;
+  font-size: var(--fs-sm);
+  color: var(--text-3);
+}
+/* the chart lines up with the tracks below: same left edge (16 px + name column), same right edge */
+.hc-usage-chart {
+  position: relative;
+  padding: 8px 64px 0 calc(16px + var(--name-w));
+}
+.hc-usage-chart svg {
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+.hc-usage-chart text {
+  font-family: var(--font);
+  font-size: var(--fs-2xs);
+  fill: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+.hc-usage-runs {
+  margin: 0;
+  padding: 4px 0;
+  list-style: none;
+}
+.hc-run {
+  display: grid;
+  grid-template-columns: var(--name-w) minmax(0, 1fr) 64px;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 0 0 16px;
+}
+.hc-run[aria-current='true'] {
+  background: color-mix(in srgb, var(--c) 9%, transparent);
+}
+.hc-run-n {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  font-size: var(--fs);
+}
+.hc-run-n > i {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--c);
+}
+.hc-run-n > b {
+  min-width: 0;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hc-run-n > time {
+  margin-left: auto;
+  padding-right: 16px;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+.hc-run[aria-current='true'] .hc-run-n > time {
+  color: var(--c);
+  font-weight: 500;
+}
+.hc-run[data-fixed] .hc-run-n {
+  color: var(--text-3);
+}
+/* track: a faint line every 3 hours (1/8 of a 24 h timeline) and the now line (--now on .hc-usage, 0 to 1) */
+.hc-run-track {
+  position: relative;
+  height: 28px;
+  touch-action: pan-y;
+  background: repeating-linear-gradient(90deg, var(--divider) 0 1px, transparent 1px 12.5%);
+}
+.hc-usage[style*='--now'] .hc-run-track::after {
+  content: '';
+  position: absolute;
+  top: -6px;
+  bottom: -6px;
+  left: calc(var(--now) * 100%);
+  border-left: 1px solid var(--text-3);
+  pointer-events: none;
+}
+/* the bar: <button class="hc-run-bar" style="--from: .25; --len: .1"> (fractions of the timeline) */
+.hc-run-bar {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: calc(var(--from) * 100%);
+  width: max(28px, calc(var(--len) * 100%));
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 7px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--c) 40%, transparent);
+  border-radius: var(--r-sm);
+  background: color-mix(in srgb, var(--c) 14%, var(--surface));
+  color: var(--c);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  cursor: grab;
+  touch-action: none;
+}
+.hc-run-bar:active {
+  cursor: grabbing;
+}
+.hc-run[data-fixed] .hc-run-bar {
+  cursor: default;
+  --c: var(--text-3);
+}
+.hc-run-bar > span {
+  position: relative;
+  z-index: 1;
+}
+/* the part of the bar that lands over the limit: --over-from and --over-len, fractions of the bar */
+.hc-run-bar[data-over]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--over-from) * 100%);
+  width: calc(var(--over-len) * 100%);
+  background: repeating-linear-gradient(135deg, color-mix(in srgb, var(--red) 45%, transparent) 0 1.5px, transparent 1.5px 6px);
+  background-color: color-mix(in srgb, var(--red) 10%, transparent);
+}
+.hc-run-x {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+  padding-right: 12px;
+}
+.hc-run:not([aria-current='true']) .hc-run-x {
+  visibility: hidden;
+}
+.hc-usage-f {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 12px 16px 16px;
+  border-top: 1px solid var(--divider);
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+.hc-usage-f > p {
+  flex: 1;
+  min-width: 200px;
+  margin: 0;
+}
+
+/* ---------- smaller screens ---------- */
+@media (max-width: 900px) {
+  .hc-flow[data-side] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .hc-flow-side {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 55;
+    max-height: 82dvh;
+    border-left: 0;
+    border-top: 1px solid var(--border);
+    border-radius: 14px 14px 0 0;
+    box-shadow: var(--shadow-pop);
+    animation: hcSideUp 220ms var(--ease-drawer);
+  }
+  .hc-usage {
+    --name-w: 190px;
+  }
+}
+@keyframes hcSideUp {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+}
+@media (max-width: 640px) {
+  /* tree: an indented list, each child hanging off the parent line */
+  .hc-tree {
+    overflow: visible;
+    padding: 0;
+  }
+  .hc-tree > ul {
+    width: auto;
+    min-width: 0;
+  }
+  .hc-tree ul {
+    display: block;
+    padding: 0 0 0 20px;
+  }
+  .hc-tree > ul {
+    padding: 0;
+  }
+  .hc-tree li,
+  .hc-tree li:has(> .hc-edge) {
+    display: block;
+    padding: 10px 0 0;
+  }
+  .hc-tree > ul > li {
+    padding: 0;
+  }
+  .hc-tree ul ul:not([data-join])::before {
+    display: none;
+  }
+  .hc-tree li::before,
+  .hc-tree li:only-child::before,
+  .hc-tree li:first-child:not(:only-child)::before,
+  .hc-tree li:last-child:not(:only-child)::before {
+    display: block;
+    left: -12px;
+    right: auto;
+    top: 0;
+    width: 12px;
+    height: 34px;
+    border-width: 0 0 1px 1px;
+    border-radius: 0 0 0 8px;
+  }
+  .hc-tree li::after,
+  .hc-tree li:first-child:not(:only-child)::after,
+  .hc-tree li:last-child:not(:only-child)::after {
+    left: -12px;
+    top: 0;
+    bottom: 0;
+    width: 0;
+    height: auto;
+    border-width: 0 0 0 1px;
+    border-radius: 0;
+  }
+  .hc-tree li:last-child::after {
+    display: none;
+  }
+  .hc-tree > ul > li:is(:only-child, :first-child:not(:only-child), :last-child:not(:only-child), *)::before,
+  .hc-tree > ul > li:is(:only-child, :first-child:not(:only-child), :last-child:not(:only-child), *)::after {
+    display: none;
+  }
+  /* the join label comes first, above the children */
+  .hc-tree ul[data-join]::after {
+    display: none;
+  }
+  .hc-tree ul[data-join]::before {
+    content: attr(data-join);
+    position: static;
+    display: inline-block;
+    height: auto;
+    margin: 8px 0 0 -8px;
+    padding: 1px 6px;
+    border: 1px solid var(--line);
+    border-radius: var(--r-xs);
+    background: var(--surface);
+    font-size: var(--fs-3xs);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--text-2);
+  }
+  .hc-tree ul[data-join]:has(> li[data-on])::before {
+    border-color: var(--line-on);
+    color: var(--line-on);
+  }
+  .hc-edge {
+    position: static;
+    display: inline-block;
+    transform: none;
+    margin-bottom: 6px;
+  }
+  .hc-node {
+    width: 100%;
+  }
+  .hc-node-acts {
+    top: 6px;
+    left: auto;
+    right: 6px;
+    display: flex;
+  }
+  .hc-node[aria-current='true'] > .hc-node-h {
+    padding-right: 84px;
+  }
+  .hc-tree .hc-add {
+    margin: 8px 0 0;
+  }
+  .hc-tree .hc-add::before {
+    display: none;
+  }
+  .hc-canvas > .hc-tree {
+    padding: 16px 16px 88px 16px;
+  }
+
+  /* calendar: one day at a time (the app marks the shown day with [data-show]) */
+  .hc-cal {
+    grid-template-columns: 44px repeat(var(--days), minmax(0, 1fr));
+  }
+  /* day picker shown on phones, where the calendar shows one day: .hc-cal-pick > button.hc-filter */
+.hc-cal-pick {
+  display: none;
+  margin-bottom: 8px;
+}
+.hc-cal-wrap {
+    overflow-x: hidden;
+  }
+  .hc-cal:has(.hc-cal-day[data-show]) {
+    grid-template-columns: 44px minmax(0, 1fr);
+  }
+  .hc-cal:has(.hc-cal-day[data-show]) .hc-cal-day:not([data-show]),
+  .hc-cal:has(.hc-cal-day[data-show]) .hc-cal-dh:not(:first-child):not([data-show]) {
+    display: none;
+  }
+  .hc-cal-pick {
+    display: flex;
+  }
+
+  /* usage: name and time on top, bar below */
+  .hc-usage-chart {
+    padding: 8px 12px 0;
+  }
+  .hc-run {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: 'n x' 't t';
+    padding: 6px 12px;
+    row-gap: 2px;
+  }
+  .hc-run-n {
+    grid-area: n;
+  }
+  .hc-run-n > time {
+    padding-right: 4px;
+  }
+  .hc-run-track {
+    grid-area: t;
+  }
+  .hc-run-x {
+    grid-area: x;
+    padding: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hc-flow-side {
+    animation: none;
+  }
+}

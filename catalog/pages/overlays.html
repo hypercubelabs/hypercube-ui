@@ -1,0 +1,70 @@
+<!-- title: Overlays | kind: piece | group: Pieces | order: 16 | icon: layers -->
+<div class="page">
+  <div class="ph"><div><h1>Overlays</h1><p>What opens on top of the page. They all close with Esc and with a tap outside, and give focus back to where it was.</p></div></div>
+
+  <!-- ex: Modal | .scrim .modal-wrap .modal .modal-h .modal-b .modal-f | For a decision or a short form. On phones it rises from the bottom. -->
+  <button class="btn btn-secondary" data-open="#d-modal">{{i:square-dashed:14}}Open the modal</button>
+  <div data-layer id="d-modal" hidden>
+    <div class="scrim"></div>
+    <div class="modal-wrap">
+      <div class="modal sm" role="dialog" aria-modal="true" aria-labelledby="d-modal-t">
+        <div class="modal-h"><h2 id="d-modal-t">Delete the project?</h2><button class="ibtn" data-close aria-label="Close">{{i:x}}</button></div>
+        <div class="modal-b"><p style="margin:0;color:var(--text-2)">The 12 tasks and the project files go away for everyone. This cannot be undone.</p></div>
+        <div class="modal-f"><span class="sp"></span><button class="btn btn-secondary" data-close>Cancel</button><button class="btn btn-danger" data-close data-toast="Nothing was deleted: this is only an example">Delete project</button></div>
+      </div>
+    </div>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Drawer | .drawer-scrim .drawer .drawer-h .drawer-b | To see and edit an item without leaving the list. On phones it fills the screen. -->
+  <button class="btn btn-secondary" data-open="#d-drawer">{{i:panel-right:14}}Open the drawer</button>
+  <div data-layer id="d-drawer" hidden>
+    <div class="drawer-scrim"></div>
+    <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="d-drawer-t">
+      <div class="drawer-h"><b id="d-drawer-t">Update the pricing page</b><span class="sp"></span><button class="ibtn" data-close aria-label="Close">{{i:x}}</button></div>
+      <div class="drawer-b">
+        <div class="col" style="gap:14px">
+          <div class="field"><label class="label" for="g-t">Title</label><input class="input" id="g-t" value="Update the pricing page"></div>
+          <div class="field"><label class="label" for="g-s">Status</label><select class="select" id="g-s"><option>In progress</option><option>Review</option></select></div>
+          <div class="field"><label class="label" for="g-d">Description</label><textarea class="textarea" id="g-d" rows="5">Swap the three plans and the footer text.</textarea></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Menu | .pop .mh .mi .msep .mi.danger | Actions on an item. On phones, prefer the bottom sheet. -->
+  <button class="btn btn-secondary" data-menu="#d-menu" aria-haspopup="menu">{{i:ellipsis:14}}More actions</button>
+  <div class="pop" id="d-menu" role="menu" hidden>
+    <div class="mh">Task</div>
+    <button class="mi" role="menuitem" data-toast="Copied (example)">{{i:copy}}<span>Copy link</span></button>
+    <button class="mi" role="menuitem" data-toast="Duplicated (example)">{{i:copy-plus}}<span>Duplicate</span></button>
+    <div class="msep"></div>
+    <button class="mi danger" role="menuitem" data-toast="Nothing was deleted: this is only an example">{{i:trash-2}}<span>Delete</span></button>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Toast | .toasts[role=status] > .toast .ta .i.ok .i.bad .out | Confirms something that just happened. Lives in a fixed .toasts in the corner (on phones, at the bottom, full width); goes away on its own after 3 s with .out. If it can be undone, bring the .ta button. | col -->
+  <div class="row"><button class="btn btn-secondary" data-toast="Task archived">{{i:bell:14}}Show a toast</button></div>
+  <div class="toasts" role="status" style="position:static;align-items:flex-start">
+    <div class="toast">{{i:circle-check:15}}<span>Task archived</span><button class="ta" data-toast="Example: would undo">Undo</button></div>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Bottom sheet | <hc-sheet open> .hc-sheet-b .hc-sheet-act | On phones it rises from the bottom and closes with a drag; on wide screens it becomes a small box in the centre. Needs elements.js. -->
+  <button class="btn btn-secondary" data-open="#d-sheet">{{i:panel-bottom:14}}Open the sheet</button>
+  <hc-sheet id="d-sheet" aria-label="Message actions" hidden>
+    <div class="hc-sheet-bg"></div>
+    <div class="hc-sheet-b">
+      <div class="hc-sheet-grab"></div>
+      <div class="hc-sheet-in">
+        <div class="hc-sheet-acts">
+          <button class="hc-sheet-act" data-toast="Copied (example)">{{i:copy:18}}Copy</button>
+          <button class="hc-sheet-act" data-toast="Example: would move it to a task">{{i:forward:18}}Move to…</button>
+          <button class="hc-sheet-act" data-toast="Example: would undo what changed">{{i:rotate-ccw:18}}Undo what changed</button>
+        </div>
+      </div>
+    </div>
+  </hc-sheet>
+  <!-- /ex -->
+</div>

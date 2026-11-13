@@ -1,0 +1,63 @@
+<!-- title: Foundations | kind: piece | group: Pieces | order: 10 | icon: palette -->
+<div class="page">
+  <div class="ph"><div><h1>Foundations</h1><p>Everything comes from the tokens in <code>tokens.css</code>. No colour, size or radius written by hand on screens.</p></div></div>
+
+  <!-- ex: Surfaces and text | --bg --surface --text… | Dark is redefined, not inverted. Switch the theme at the top to see both. -->
+  <div class="ex-grid">
+    <div class="ex-tok"><i style="--c:var(--bg)"></i><span>Background<code>--bg</code></span></div>
+    <div class="ex-tok"><i style="--c:var(--bg-side)"></i><span>Sidebar<code>--bg-side</code></span></div>
+    <div class="ex-tok"><i style="--c:var(--surface)"></i><span>Surface<code>--surface</code></span></div>
+    <div class="ex-tok"><i style="--c:var(--surface-2)"></i><span>Surface 2<code>--surface-2</code></span></div>
+    <div class="ex-tok"><i style="--c:var(--sunken)"></i><span>Sunken<code>--sunken</code></span></div>
+    <div class="ex-tok"><i style="--c:var(--border)"></i><span>Border<code>--border</code></span></div>
+    <div class="ex-tok"><i style="--c:var(--text)"></i><span>Text<code>--text</code></span></div>
+    <div class="ex-tok"><i style="--c:var(--text-2)"></i><span>Text 2<code>--text-2</code></span></div>
+    <div class="ex-tok"><i style="--c:var(--text-3)"></i><span>Text 3<code>--text-3</code></span></div>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Accent and state | --accent --accent-ink --green… | The lime (--accent) is always a fill under black text. Accent text and lines use --accent-ink. -->
+  <div class="ex-grid">
+    <div class="ex-tok"><i style="--c:var(--accent)"></i><span>Accent<code>--accent</code></span></div>
+    <div class="ex-tok"><i style="--c:var(--accent-ink)"></i><span>Accent ink<code>--accent-ink</code></span></div>
+    <div class="ex-tok"><i style="--c:var(--accent-soft)"></i><span>Soft accent<code>--accent-soft</code></span></div>
+    <div class="ex-tok"><i style="--c:var(--green)"></i><span>Success<code>--green</code></span></div>
+    <div class="ex-tok"><i style="--c:var(--amber)"></i><span>Warning<code>--amber</code></span></div>
+    <div class="ex-tok"><i style="--c:var(--red)"></i><span>Error<code>--red</code></span></div>
+    <div class="ex-tok"><i style="--c:var(--blue)"></i><span>Needs you<code>--blue</code></span></div>
+    <div class="ex-tok"><i style="--c:var(--st-progress)"></i><span>Working<code>--st-progress</code></span></div>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Type | --fs-2xl … --fs-2xs | Instrument Sans. Headings at weight 600; body 400. | col -->
+  <div style="font-size:var(--fs-2xl);font-weight:600;letter-spacing:-.022em">Page title</div>
+  <div style="font-size:var(--fs-xl);font-weight:600">Section title</div>
+  <div style="font-size:var(--fs-md);font-weight:600">Subsection</div>
+  <div style="font-size:var(--fs)">Reading text, with short lines and direct sentences.</div>
+  <div style="font-size:var(--fs-sm);color:var(--text-2)">Secondary text, updated 3 minutes ago</div>
+  <div class="eyebrow">Small label</div>
+  <div class="mono" style="font-size:var(--fs-xs);color:var(--text-3)">mono · identifiers and code</div>
+  <!-- /ex -->
+
+  <!-- ex: Space and radius | --s-1 … --s-12, --r-xs … --r-lg | A 4 px scale. Panels use --r-lg, controls --r-sm. -->
+  <div class="ex-row">
+    <span style="width:var(--s-1);height:24px;background:var(--accent-ink);opacity:.7;border-radius:2px"></span>
+    <span style="width:var(--s-2);height:24px;background:var(--accent-ink);opacity:.7;border-radius:2px"></span>
+    <span style="width:var(--s-4);height:24px;background:var(--accent-ink);opacity:.7;border-radius:2px"></span>
+    <span style="width:var(--s-6);height:24px;background:var(--accent-ink);opacity:.7;border-radius:2px"></span>
+    <span style="width:var(--s-8);height:24px;background:var(--accent-ink);opacity:.7;border-radius:2px"></span>
+    <span style="width:var(--s-12);height:24px;background:var(--accent-ink);opacity:.7;border-radius:2px"></span>
+  </div>
+  <div class="ex-row">
+    <span style="width:44px;height:44px;border:1.5px solid var(--border-strong);border-radius:var(--r-xs);background:var(--surface-2)"></span>
+    <span style="width:44px;height:44px;border:1.5px solid var(--border-strong);border-radius:var(--r-sm);background:var(--surface-2)"></span>
+    <span style="width:44px;height:44px;border:1.5px solid var(--border-strong);border-radius:var(--r);background:var(--surface-2)"></span>
+    <span style="width:44px;height:44px;border:1.5px solid var(--border-strong);border-radius:var(--r-lg);background:var(--surface-2)"></span>
+    <span style="width:44px;height:44px;border-radius:var(--r-lg);background:var(--surface);box-shadow:var(--shadow-pop)"></span>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Icons | Lucide, stroke 1.8 | 16 px in general, 13 to 14 px inside small buttons. The library does not depend on them: use your own, with the same stroke. -->
+  <span style="color:var(--text-2);display:flex;gap:14px;flex-wrap:wrap">{{i:house:18}}{{i:inbox:18}}{{i:message-circle:18}}{{i:bot:18}}{{i:search:18}}{{i:bell:18}}{{i:settings:18}}{{i:plus:18}}{{i:copy:18}}{{i:trash-2:18}}{{i:check:18}}{{i:x:18}}</span>
+  <!-- /ex -->
+</div>

@@ -1,0 +1,562 @@
+/* ============================================================
+   HYPERCUBE UI — SCREEN PATTERNS
+   Structures that repeat across screens: list + detail + side (conversations,
+   inbox), messages and composer, settings, sign in, and a table that turns
+   into cards on phones. Tokens only.
+
+   Phones (up to 900 px): .hc-split shows one pane at a time. By default it
+   shows the list; with data-view="main" it shows the detail and .hc-back
+   appears to go back. The side (.hc-aside) hides under 1180 px; open it in an <hc-sheet>.
+   ============================================================ */
+
+/* ---------- list + detail + side ---------- */
+.hc-split {
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  display: grid;
+  grid-template-columns: var(--hc-list-w, 280px) minmax(0, 1fr);
+}
+.hc-split:has(> .hc-aside:not([hidden])) {
+  grid-template-columns: var(--hc-list-w, 280px) minmax(0, 1fr) var(--hc-aside-w, 300px);
+}
+.hc-list {
+  border-right: 1px solid var(--border);
+  background: var(--bg-side);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+}
+.hc-list-h {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 12px 8px;
+}
+.hc-list-t {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--h-md);
+}
+.hc-list-t h1,
+.hc-list-t h2 {
+  margin: 0;
+  font-size: var(--fs-md);
+  font-weight: 600;
+}
+.hc-list-h .seg {
+  display: flex;
+}
+.hc-list-h .seg button {
+  flex: 1;
+  justify-content: center;
+  white-space: nowrap;
+  padding: 0 6px;
+}
+.hc-list-b {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 8px 12px;
+}
+.hc-list-b .hc-row2 + .hc-row2 {
+  margin-top: 1px;
+}
+.hc-list-g {
+  font-size: var(--fs-2xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-3);
+  font-weight: 600;
+  padding: 14px 8px 4px;
+}
+.hc-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  background: var(--surface);
+}
+.hc-main-h {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 8px 16px 8px var(--gutter);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.hc-main-h .hc-main-t {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.hc-main-h b {
+  font-weight: 600;
+  font-size: var(--fs-md);
+}
+.hc-main-h small {
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.hc-main-b {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 20px var(--gutter) 40px;
+}
+.hc-back {
+  display: none;
+}
+.hc-aside {
+  border-left: 1px solid var(--border);
+  overflow-y: auto;
+  min-height: 0;
+  background: var(--surface);
+}
+.hc-aside-sec {
+  padding: 16px;
+  border-bottom: 1px solid var(--divider);
+}
+.hc-aside-sec h3 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 8px;
+  font-size: var(--fs-2xs);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-3);
+  font-weight: 600;
+}
+.hc-person {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  font-size: var(--fs);
+  min-width: 0;
+}
+.hc-person > span:last-child {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.hc-person small {
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+
+/* ---------- messages: newest at the bottom, the list grows upwards ---------- */
+.hc-msgs {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column-reverse;
+}
+.hc-msgs-in {
+  padding: 8px var(--gutter) 16px;
+  max-width: 860px;
+  width: 100%;
+}
+.hc-day {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0 8px;
+  font-size: var(--fs-2xs);
+  color: var(--text-3);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.hc-day::before,
+.hc-day::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--divider);
+}
+.hc-m {
+  position: relative;
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  gap: 10px;
+  padding: 6px 8px;
+  margin: 0 -8px;
+  border-radius: var(--r);
+}
+.hc-m:hover {
+  background: var(--sunken);
+}
+.hc-m.cont {
+  padding-top: 0;
+}
+.hc-m.cont > .av {
+  visibility: hidden;
+}
+.hc-m-h {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 20px;
+}
+.hc-m-h b {
+  font-weight: 600;
+}
+.hc-m-h time {
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.hc-m-t {
+  line-height: 1.55;
+  color: var(--text-2);
+  overflow-wrap: anywhere;
+}
+.hc-m-t > * {
+  margin: 0 0 6px;
+}
+.hc-m-t > :last-child {
+  margin-bottom: 0;
+}
+.hc-m-t b {
+  color: var(--text);
+}
+.hc-m-t + .hc-changes {
+  margin-top: 8px;
+}
+/* mine: on the right, in a soft bubble, with no avatar or name */
+.hc-m.mine {
+  display: flex;
+  justify-content: flex-end;
+}
+.hc-m.mine:hover {
+  background: none;
+}
+.hc-m.mine .hc-m-t {
+  max-width: min(78%, 640px);
+  padding: 8px 12px;
+  border-radius: var(--r-lg) var(--r-lg) 4px var(--r-lg);
+  background: var(--accent-soft);
+  color: var(--text);
+}
+.hc-m.mine .hc-msg-acts {
+  right: auto;
+  left: 8px;
+}
+.hc-sys {
+  text-align: center;
+  padding: 6px 0;
+  font-size: var(--fs-sm);
+  color: var(--text-3);
+}
+
+/* ---------- composer, with what is happening right above it ---------- */
+.hc-foot {
+  margin: 4px var(--gutter) 16px;
+  max-width: 860px;
+}
+.hc-dock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+  max-height: 45vh;
+  overflow: auto;
+}
+.hc-composer {
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r);
+  padding: 8px 8px 8px 12px;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  background: var(--surface);
+  transition:
+    border-color var(--dur),
+    box-shadow var(--dur);
+}
+.hc-composer:focus-within {
+  border-color: var(--accent-ink);
+  box-shadow: 0 0 0 3px var(--accent);
+}
+.hc-composer textarea {
+  flex: 1;
+  border: 0;
+  outline: 0;
+  resize: none;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: var(--fs);
+  line-height: 1.5;
+  min-height: 24px;
+  max-height: 40vh;
+  padding: 3px 0;
+  field-sizing: content;
+}
+.hc-composer textarea:focus-visible {
+  outline: 0;
+}
+
+/* ---------- settings: groups on the left, content on the right ---------- */
+.hc-set {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  height: 100%;
+  min-height: 0;
+}
+.hc-set-nav {
+  border-right: 1px solid var(--border);
+  padding: 16px 8px;
+  overflow-y: auto;
+}
+.hc-set-in {
+  overflow-y: auto;
+  padding: 28px var(--gutter) 72px;
+}
+.hc-set-in > * {
+  max-width: 720px;
+}
+.hc-srow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--divider);
+}
+.hc-srow b {
+  display: block;
+  font-weight: 500;
+}
+.hc-srow small {
+  display: block;
+  color: var(--text-3);
+  font-size: var(--fs-sm);
+  margin-top: 2px;
+}
+
+/* ---------- sectioned form: index on the left, one section at a time ---------- */
+.hc-sectioned {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+/* ---------- sign in ---------- */
+.hc-auth {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 40px 16px calc(40px + env(safe-area-inset-bottom, 0px));
+  background: var(--bg);
+}
+.hc-auth-card {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 28px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+}
+.hc-auth-card h1 {
+  margin: 0;
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+.hc-auth-card p {
+  margin: 0;
+  color: var(--text-2);
+}
+.hc-code {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
+}
+.hc-code .input {
+  height: 44px;
+  text-align: center;
+  font-size: var(--fs-lg, 18px);
+  font-variant-numeric: tabular-nums;
+  padding: 0;
+}
+
+/* ---------- table that turns into cards on phones (td[data-label]) ---------- */
+.hc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs);
+}
+.hc-table th {
+  text-align: left;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--text-3);
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.hc-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--divider);
+  vertical-align: middle;
+}
+.hc-table tbody tr:hover {
+  background: var(--sunken);
+}
+/* A row that opens something: pointer cursor; the open row is marked with aria-current. Put a <button> or <a> in the
+   first cell so the keyboard can open it (.hc-t-open removes the button look). */
+.hc-table tr[data-opens],
+.hc-table tr[data-href] {
+  cursor: pointer;
+}
+.hc-table tbody tr[aria-current] {
+  background: var(--surface-2);
+}
+.hc-t-open {
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  padding: 0;
+}
+.hc-t-open:focus-visible {
+  outline-offset: 2px;
+}
+.hc-table .hc-t-main {
+  font-weight: 500;
+  color: var(--text);
+}
+.hc-table .num {
+  text-align: right;
+}
+
+/* ---------- smaller screens ---------- */
+@media (max-width: 1180px) {
+  .hc-split:has(> .hc-aside:not([hidden])) {
+    grid-template-columns: var(--hc-list-w, 260px) minmax(0, 1fr);
+  }
+  .hc-split > .hc-aside {
+    display: none;
+  }
+}
+@media (max-width: 900px) {
+  .hc-split,
+  .hc-split:has(> .hc-aside:not([hidden])) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .hc-split[data-view='main'] > .hc-list,
+  .hc-split:not([data-view='main']) > .hc-main {
+    display: none;
+  }
+  .hc-back {
+    display: inline-flex;
+  }
+  .hc-main-h {
+    padding: 8px 12px;
+  }
+  .hc-main-b {
+    padding: 16px 16px 40px;
+  }
+  .hc-msgs-in {
+    padding: 8px 16px 12px;
+  }
+  .hc-foot {
+    margin: 4px 12px calc(12px + env(safe-area-inset-bottom, 0px));
+  }
+  .hc-dock {
+    max-height: 38vh;
+  }
+  .hc-sectioned {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .hc-sectioned > .hc-sections {
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .hc-sectioned > .hc-sections .hc-sec {
+    flex-shrink: 0;
+    width: auto;
+  }
+  .hc-set {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+  .hc-set-nav {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    padding: 8px 12px;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+    scrollbar-width: none;
+  }
+  .hc-set-nav .sgroup-h {
+    display: none;
+  }
+  .hc-set-nav .sitem {
+    width: auto;
+    flex-shrink: 0;
+  }
+  .hc-set-in {
+    padding: 20px 16px 96px;
+  }
+}
+@media (max-width: 640px) {
+  .hc-srow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+  .hc-table thead {
+    display: none;
+  }
+  .hc-table,
+  .hc-table tbody,
+  .hc-table tr,
+  .hc-table td {
+    display: block;
+  }
+  .panel:has(> .hc-table) {
+    border: 0;
+    background: none;
+    overflow: visible;
+  }
+  .hc-table tr {
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    background: var(--surface);
+  }
+  .hc-table td {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 4px 0;
+    border: 0;
+  }
+  .hc-table td[data-label]::before {
+    content: attr(data-label);
+    color: var(--text-3);
+    font-size: var(--fs-sm);
+  }
+  .hc-table td.hc-t-main {
+    justify-content: flex-start;
+    gap: 6px;
+    font-size: var(--fs-md);
+    padding-bottom: 6px;
+  }
+  .hc-table .num {
+    text-align: left;
+  }
+}

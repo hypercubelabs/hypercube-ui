@@ -1,0 +1,82 @@
+<!-- title: Boards | kind: piece | group: Pieces | order: 18 | icon: git-fork -->
+<div class="page">
+  <div class="ph"><div><h1>Boards</h1><p>Pieces for screens that lay work out in space or in time: a workflow, an investigation, a calendar, a day of runs. Full screens that use them are in the templates.</p></div></div>
+
+  <!-- ex: Node | .hc-node .hc-node-k .hc-node-h .hc-node-t .hc-node-b .hc-node-l .hc-node-f [aria-current] | One step or hypothesis. The title is a button that opens the whole card. Kind on top, a sunken block for the content, numbers in the footer. -->
+  <div class="hc-node" aria-current="true">
+    <div class="hc-node-k">{{i:sparkles:12}}Agent</div>
+    <div class="hc-node-h">{{i:sparkles:15}}<button class="hc-node-t">Match &amp; reconcile</button></div>
+    <div class="hc-node-b"><span class="hc-node-l">Instructions</span>Extract line items and run a 3-way match against the PO.</div>
+    <div class="hc-node-b"><span class="hc-node-l">Tools</span><code>erp.lookup_po</code><code>ocr.extract</code></div>
+    <div class="hc-node-f"><span>cost: <b>$0.04/run</b></span><span>p95: <b>6.2s</b></span></div>
+  </div>
+  <div class="hc-node" data-run="running">
+    <div class="hc-node-k">{{i:zap:12}}Action</div>
+    <div class="hc-node-h">{{i:file-text:15}}<button class="hc-node-t">Post to ledger</button><span class="hc-node-run"><span class="hc-loader" aria-hidden="true"></span>Running</span></div>
+    <div class="hc-node-f"><span>auto-posted: <b>91%</b></span><span>p95: <b>1.4s</b></span></div>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Connected tree | .hc-tree ul li ul[data-join] .hc-edge li[data-on] li[data-off] | Nested lists draw the lines. data-join="OR" or "AND" labels the split, .hc-edge labels one branch, data-on colours the path being followed, data-off dashes a ruled-out branch. On phones it becomes an indented list. | col -->
+  <div class="hc-tree">
+    <ul>
+      <li>
+        <div class="hc-node" style="--node-w:200px"><div class="hc-node-h">{{i:square-terminal:15}}<button class="hc-node-t">Tests failing</button></div><div class="hc-node-r"><span class="hc-node-s"><span class="badge red">Failed</span>4 of 12</span></div></div>
+        <ul data-join="OR">
+          <li data-on><div class="hc-node" style="--node-w:180px"><div class="hc-node-h">{{i:scroll-text:15}}<button class="hc-node-t">Coupon ignored</button></div><div class="hc-node-r"><span class="hc-node-s"><span class="hc-loader" aria-hidden="true"></span>Checking</span></div></div></li>
+          <li data-off><div class="hc-node" data-state="out" style="--node-w:180px"><div class="hc-node-h">{{i:plug:15}}<button class="hc-node-t">Stripe errors</button></div><div class="hc-node-r"><span class="hc-node-s">{{i:x:12}}Ruled out</span></div></div></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="hc-tree">
+    <ul>
+      <li>
+        <div class="hc-node" style="--node-w:200px"><div class="hc-node-h">{{i:sparkles:15}}<button class="hc-node-t">Match</button></div></div>
+        <ul>
+          <li><span class="hc-edge">variance ≤ 2%</span><div class="hc-node" style="--node-w:180px"><div class="hc-node-h">{{i:file-text:15}}<button class="hc-node-t">Post to ledger</button></div></div><button class="hc-add" aria-label="Add a step after Post to ledger">{{i:plus:13}}</button></li>
+          <li data-on><span class="hc-edge">variance &gt; 2%</span><div class="hc-node" style="--node-w:180px"><div class="hc-node-h">{{i:user-check:15}}<button class="hc-node-t">Approval gate</button></div></div><button class="hc-add" aria-label="Add a step after Approval gate">{{i:plus:13}}</button></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: File and diff | .hc-file .hc-more .hc-diff > span.del span.add | A file name in short, and the lines a fix removes and adds. -->
+  <div class="col" style="gap:10px;width:100%;max-width:560px">
+    <span><span class="hc-file">{{i:file:12}}app/checkout/coupon.ts</span> <span class="hc-more">+1</span></span>
+    <pre class="hc-diff"><span class="del">- discounts: [{ coupon: code, amount_off: value }]</span><span class="add">+ discounts: [{ coupon: code, percent_off: value }]</span></pre>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: On/off filter | .hc-filters > button.hc-filter[aria-pressed] i | Categories people switch on and off, with their colour on the dot. More than four options, or several at once: use this instead of .seg. -->
+  <div class="hc-filters" role="group" aria-label="Show subjects" data-filters-demo>
+    <button class="hc-filter" aria-pressed="true">{{i:check:13}}All</button>
+    <button class="hc-filter" aria-pressed="false" style="--c:var(--violet)"><i></i>Math</button>
+    <button class="hc-filter" aria-pressed="false" style="--c:var(--blue)"><i></i>Art</button>
+    <button class="hc-filter" aria-pressed="false" style="--c:var(--teal)"><i></i>Physics</button>
+    <button class="hc-filter" aria-pressed="false" style="--c:var(--orange)"><i></i>Sport</button>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Week calendar | .hc-cal .hc-cal-dh[aria-current=date] .hc-cal-hours .hc-cal-day .hc-ev .hc-cal-now | Columns per day, events placed by hour with --at and --len (decimal hours) and coloured with --c. Overlaps share the column with --lane and --lanes. --start, --hours and --days set the grid. | col -->
+  <div class="hc-cal" style="--start:8;--hours:4;--days:3;--hh:44px">
+    <div class="hc-cal-dh" aria-hidden="true"></div><div class="hc-cal-dh">Mon <b>9</b></div><div class="hc-cal-dh" aria-current="date">Tue <b>10</b></div><div class="hc-cal-dh">Wed <b>11</b></div>
+    <div class="hc-cal-hours" aria-hidden="true"><span style="--h:8">08:00</span><span style="--h:9">09:00</span><span style="--h:10">10:00</span><span style="--h:11">11:00</span></div>
+    <div class="hc-cal-day"><button class="hc-ev" style="--at:9;--len:1;--c:var(--blue)"><b>Art review</b><span>9:00 – 10:00</span></button></div>
+    <div class="hc-cal-day" data-today><div class="hc-cal-now" style="--at:8.67"><span>8:40</span></div><button class="hc-ev" style="--at:8;--len:.67;--c:var(--violet);--lanes:2"><b>Math exam</b><span>8:00 – 8:40</span></button><button class="hc-ev" style="--at:8.5;--len:1.5;--c:var(--teal);--lane:1;--lanes:2"><b>Physics lab</b><span>8:30 – 10:00</span></button></div>
+    <div class="hc-cal-day"><button class="hc-ev" style="--at:10;--len:1.5;--c:var(--orange)"><b>Sport day</b><span>10:00 – 11:30</span><span class="badge">{{i:circle-check:11}}Confirmed</span></button></div>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Usage timeline | .hc-usage .hc-run .hc-run-n .hc-run-track .hc-run-bar[data-over] | One row per run on a 24-hour track (--from and --len are fractions of it; --now draws the now line). The app draws the chart above and moves the bars; data-over hatches the part that lands over the limit. | col -->
+  <section class="hc-usage" style="--now:.1875">
+    <div class="hc-usage-h"><div><h2>Rate limit</h2><p>3 runs · 120k tokens / min</p></div><span class="badge red">Over limit · 12:25–13:10</span></div>
+    <ul class="hc-usage-runs">
+      <li class="hc-run" data-fixed style="--c:var(--blue)"><span class="hc-run-n"><i></i><b>Inbox triage</b><time>Running</time></span><span class="hc-run-track"><span class="hc-run-bar" style="--from:.083;--len:.2"><span>46k</span></span></span><span class="hc-run-x"></span></li>
+      <li class="hc-run" style="--c:var(--violet)"><span class="hc-run-n"><i></i><b>Lead research</b><time>11:30</time></span><span class="hc-run-track"><button class="hc-run-bar" data-over style="--from:.229;--len:.15;--over-from:.2;--over-len:.3"><span>82k</span></button></span><span class="hc-run-x"></span></li>
+      <li class="hc-run" aria-current="true" style="--c:var(--rose)"><span class="hc-run-n"><i></i><b>Code review</b><time>13:15</time></span><span class="hc-run-track"><button class="hc-run-bar" style="--from:.302;--len:.1"><span>36k</span></button></span><span class="hc-run-x"><button class="ibtn ibtn-xs" aria-label="Remove Code review">{{i:x:13}}</button></span></li>
+    </ul>
+  </section>
+  <!-- /ex -->
+</div>

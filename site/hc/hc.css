@@ -1,0 +1,954 @@
+/* ============================================================
+   HYPERCUBE UI — pieces for screens where AI works
+   Only HTML + these classes + the tokens in tokens.css. Works with any stack
+   (plain JavaScript, React, Blazor, Astro) and without JavaScript. Optional behaviour
+   (keyboard, long press, bottom sheet) lives in src/elements.js as custom elements.
+   Markup for each piece: components.json and the catalog (catalog/pages/ai.html).
+   Rules: one animation per area; colour only for state; nothing changes size between states.
+   ============================================================ */
+
+/* ---------- shared motion ---------- */
+@keyframes hc-pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+@keyframes hc-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+@keyframes hc-up {
+  from {
+    transform: translateY(100%);
+  }
+}
+@keyframes hc-fade {
+  from {
+    opacity: 0;
+  }
+}
+/* .hc-spin on an icon (e.g. Lucide loader-circle) turns into the house loader (.hc-loader, in components.css). */
+.hc-spin {
+  background: currentColor;
+  -webkit-mask: var(--hc-loader) center / contain no-repeat;
+  mask: var(--hc-loader) center / contain no-repeat;
+}
+svg.hc-spin > * {
+  display: none;
+}
+
+/* ---------- status ring on the avatar: data-state="working" | "needs" ---------- */
+.hc-ring {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  border-radius: 9px;
+}
+.hc-ring.round {
+  border-radius: 50%;
+}
+.hc-ring[data-state]::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  border: 1.5px solid var(--hc-ring, transparent);
+  pointer-events: none;
+}
+.hc-ring[data-state='working'] {
+  --hc-ring: var(--st-progress);
+}
+.hc-ring[data-state='needs'] {
+  --hc-ring: var(--blue);
+}
+.hc-ring[data-state='working']::after {
+  animation: hc-pulse 2.4s ease-in-out infinite;
+}
+
+/* ---------- two-line row (conversation, session): .hc-row2 ---------- */
+.hc-row2 {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas: 'av t time' 'av sub end';
+  column-gap: 10px;
+  row-gap: 1px;
+  align-items: center;
+  width: 100%;
+  padding: 8px;
+  border-radius: var(--r);
+  text-align: left;
+  color: var(--text);
+  cursor: pointer;
+}
+.hc-row2:hover {
+  background: var(--surface-2);
+}
+.hc-row2[aria-current='true'],
+.hc-row2.on {
+  background: var(--surface-2);
+}
+.hc-row2-av {
+  grid-area: av;
+  align-self: start;
+  margin-top: 1px;
+  display: flex;
+}
+.hc-row2-t {
+  grid-area: t;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+.hc-row2-t > .trunc {
+  min-width: 0;
+}
+.hc-row2[data-unread] .hc-row2-t {
+  font-weight: 600;
+}
+.hc-row2-time {
+  grid-area: time;
+  font-size: var(--fs-2xs);
+  color: var(--text-3);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.hc-row2-sub {
+  grid-area: sub;
+  min-width: 0;
+  font-size: var(--fs-sm);
+  color: var(--text-3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hc-row2[data-unread] .hc-row2-sub {
+  color: var(--text-2);
+}
+.hc-row2-end {
+  grid-area: end;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  min-height: 18px;
+}
+.hc-count {
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: var(--text);
+  color: var(--text-inv);
+  font-size: var(--fs-3xs);
+  font-weight: 600;
+  display: inline-grid;
+  place-items: center;
+  font-variant-numeric: tabular-nums;
+}
+.hc-needs-mark {
+  color: var(--blue);
+  display: inline-flex;
+}
+
+/* ---------- change log with undo: .hc-changes ---------- */
+.hc-changes {
+  margin-top: 6px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  font-size: var(--fs-sm);
+  overflow: hidden;
+  max-width: 560px;
+}
+.hc-changes-h {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 32px;
+  padding: 3px 4px 3px 10px;
+  background: var(--sunken);
+  color: var(--text-2);
+}
+.hc-changes-h > svg {
+  color: var(--text-3);
+}
+.hc-changes-h b {
+  font-weight: 500;
+  color: var(--text);
+}
+.hc-changes-h .sp {
+  flex: 1;
+}
+.hc-changes ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.hc-changes li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-top: 1px solid var(--divider);
+  color: var(--text-2);
+  min-width: 0;
+}
+.hc-changes li > svg {
+  color: var(--text-3);
+}
+.hc-changes li[data-undone] {
+  color: var(--text-3);
+  text-decoration: line-through;
+}
+.hc-changes[data-undone] .hc-changes-h b {
+  color: var(--text-3);
+}
+.hc-changes details > summary {
+  list-style: none;
+  cursor: pointer;
+}
+.hc-changes details > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* ---------- message actions: .hc-msg-acts inside a .hc-msg ---------- */
+.hc-msg {
+  position: relative;
+}
+.hc-msg-acts {
+  position: absolute;
+  top: -10px;
+  right: 8px;
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  background: var(--surface);
+  border-radius: var(--r-sm);
+  box-shadow: var(--shadow-pop);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur) var(--ease);
+  z-index: 2;
+}
+.hc-msg:hover .hc-msg-acts,
+.hc-msg:focus-within .hc-msg-acts,
+.hc-msg-acts[data-open] {
+  opacity: 1;
+  pointer-events: auto;
+}
+@media (hover: none) {
+  .hc-msg-acts {
+    display: none;
+  }
+}
+
+/* ---------- typing indicator: .hc-typing ---------- */
+.hc-typing {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 26px;
+  padding: 0 11px 0 9px;
+  border-radius: var(--r-full);
+  background: var(--surface-2);
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  align-self: flex-start;
+  max-width: 100%;
+}
+.hc-shimmer {
+  background: linear-gradient(90deg, var(--text-3) 0%, var(--text) 45%, var(--text-3) 90%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: hc-shimmer 2s linear infinite;
+}
+
+/* ---------- working now: .hc-running ---------- */
+.hc-running {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 32px;
+  padding: 4px 6px 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background: var(--surface);
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  text-align: left;
+  cursor: pointer;
+}
+.hc-running:hover {
+  background: var(--surface-2);
+}
+.hc-running b {
+  font-weight: 500;
+  color: var(--text);
+}
+.hc-running .hc-running-t {
+  min-width: 0;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hc-running .hc-running-m {
+  color: var(--text-3);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- bot question: .hc-ask (optional behaviour: <hc-ask>) ---------- */
+.hc-ask {
+  display: block;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  overflow: hidden;
+}
+.hc-ask-h {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 9px 10px 7px;
+  font-size: var(--fs-sm);
+}
+.hc-ask-h b {
+  font-weight: 600;
+}
+.hc-ask-q {
+  min-width: 0;
+  flex: 1;
+}
+.hc-ask-opts {
+  display: grid;
+  border-top: 1px solid var(--divider);
+}
+.hc-ask-opt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 34px;
+  padding: 6px 10px;
+  text-align: left;
+  font-size: var(--fs-sm);
+  color: var(--text);
+  cursor: pointer;
+}
+.hc-ask-opt + .hc-ask-opt {
+  border-top: 1px solid var(--divider);
+}
+.hc-ask-opt:hover,
+.hc-ask-opt:focus-visible {
+  background: var(--surface-2);
+}
+.hc-key {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  border-radius: var(--r-xs);
+  border: 1px solid var(--border);
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: var(--fs-3xs);
+  color: var(--text-3);
+}
+.hc-ask-opt[aria-pressed='true'] {
+  background: var(--accent-soft);
+}
+.hc-ask-opt[aria-pressed='true'] .hc-key {
+  background: var(--accent);
+  color: var(--on-accent);
+  border-color: transparent;
+}
+.hc-ask-opt .hc-ask-free {
+  color: var(--text-2);
+}
+@media (max-width: 640px) {
+  .hc-ask-opt {
+    min-height: 42px;
+  }
+  .hc-key {
+    display: none;
+  }
+}
+
+/* ---------- needs you: .hc-needs > .hc-need ---------- */
+.hc-needs {
+  display: grid;
+}
+.hc-need {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: start;
+  padding: 10px 14px;
+}
+.hc-need + .hc-need {
+  border-top: 1px solid var(--divider);
+}
+.hc-need-q {
+  font-size: var(--fs-sm);
+  color: var(--text);
+}
+.hc-need-q b {
+  font-weight: 600;
+}
+.hc-need-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 3px;
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.hc-need-acts {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+@media (max-width: 640px) {
+  .hc-need {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .hc-need-acts {
+    grid-column: 1 / -1;
+    justify-content: stretch;
+  }
+  .hc-need-acts > .btn {
+    flex: 1;
+    justify-content: center;
+    height: 40px;
+  }
+}
+
+/* ---------- trail: .hc-trail > .hc-steps > .hc-step[data-state] ---------- */
+.hc-trail {
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  font-size: var(--fs-sm);
+  min-width: 0;
+}
+.hc-trail.flat {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.hc-trail-h {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 9px 12px;
+}
+.hc-trail-h b {
+  font-weight: 600;
+  font-size: var(--fs);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hc-trail-n {
+  margin-left: auto;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.hc-steps {
+  list-style: none;
+  margin: 0;
+  padding: 2px 12px 10px;
+}
+.hc-trail.flat .hc-steps {
+  padding: 0;
+}
+.hc-step {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr) auto;
+  gap: 4px 10px;
+  align-items: start;
+  position: relative;
+  padding: 5px 0;
+}
+.hc-step::before {
+  content: '';
+  position: absolute;
+  left: 8.5px;
+  top: 23px;
+  bottom: -5px;
+  width: 1px;
+  background: var(--border);
+}
+.hc-step:last-child::before {
+  display: none;
+}
+.hc-step[data-state='done']::before {
+  background: var(--text-3);
+}
+.hc-mark {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-strong);
+  background: var(--surface);
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+}
+.hc-step[data-state='done'] .hc-mark {
+  background: var(--text);
+  border-color: var(--text);
+}
+.hc-step[data-state='done'] .hc-mark::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2.5px;
+  width: 4px;
+  height: 7.5px;
+  border: solid var(--text-inv);
+  border-width: 0 1.8px 1.8px 0;
+  transform: rotate(45deg);
+}
+.hc-step[data-state='current'] .hc-mark {
+  border: 0;
+  background: var(--surface);
+}
+.hc-step[data-state='current'] .hc-mark::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: var(--st-progress);
+  -webkit-mask: var(--hc-loader) center / contain no-repeat;
+  mask: var(--hc-loader) center / contain no-repeat;
+}
+.hc-step[data-state='waiting'] .hc-mark {
+  border-style: dashed;
+  border-color: var(--blue);
+}
+.hc-step[data-state='error'] .hc-mark {
+  border-color: var(--red);
+  background: var(--red-soft);
+}
+.hc-step-l {
+  color: var(--text-2);
+  min-width: 0;
+  padding-top: 1px;
+}
+.hc-step[data-state='done'] .hc-step-l {
+  color: var(--text-3);
+}
+.hc-step[data-state='current'] .hc-step-l,
+.hc-step[data-state='waiting'] .hc-step-l {
+  color: var(--text);
+  font-weight: 500;
+}
+.hc-step-m {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 1px;
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.hc-step[data-state='current'] .hc-step-s {
+  color: var(--st-progress);
+  font-weight: 500;
+}
+.hc-step[data-state='error'] .hc-step-s {
+  color: var(--red);
+  font-weight: 500;
+}
+.hc-step > .hc-acts,
+.hc-step > .hc-step-x {
+  grid-column: 2 / 4;
+}
+
+/* step that waits for a person's approval: dashed orange ring and an "Approval" tag */
+.hc-step[data-state='approval'] .hc-mark {
+  border-style: dashed;
+  border-color: var(--orange);
+}
+.hc-step[data-state='approval'] .hc-step-s {
+  padding: 1px 7px;
+  border-radius: var(--r-xs);
+  background: color-mix(in srgb, var(--orange) 14%, transparent);
+  color: var(--orange);
+  font-weight: 500;
+}
+.hc-step[data-state='approval'] .hc-step-l {
+  color: var(--text);
+}
+/* the tool a step uses, in a small round chip before the label */
+.hc-step-l:has(> .hc-step-ic) {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 0;
+}
+.hc-step-ic {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text-2);
+}
+/* a step that opens its substeps: <button class="hc-step-tg" aria-expanded aria-controls> */
+.hc-step-tg {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+.hc-step-tg > svg {
+  flex: none;
+  color: var(--text-3);
+  transition: transform var(--dur);
+}
+.hc-step-tg[aria-expanded='false'] > svg {
+  transform: rotate(-90deg);
+}
+.hc-step-tg:hover {
+  color: var(--text);
+}
+.hc-step[data-state='current']:has(> .hc-sub) {
+  margin: 0 -8px;
+  padding: 5px 8px;
+  border-radius: var(--r);
+  background: var(--surface-2);
+}
+.hc-step[data-state='current']:has(> .hc-sub)::before {
+  left: 16.5px;
+}
+/* substeps: .hc-sub > li[data-state] > span + code */
+.hc-sub {
+  grid-column: 2 / 4;
+  margin: 2px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 2px;
+}
+.hc-sub[hidden] {
+  display: none;
+}
+.hc-sub > li {
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+  min-height: 22px;
+}
+.hc-sub > li::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--border-strong);
+}
+.hc-sub > li[data-state='current'] {
+  color: var(--text);
+}
+.hc-sub > li[data-state='current']::before {
+  width: 7px;
+  height: 7px;
+  background: var(--st-progress);
+}
+.hc-sub > li > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hc-sub > li > code {
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* ---------- action line (what the bot did): <details class="hc-act"> ---------- */
+.hc-acts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+.hc-act {
+  font-size: var(--fs-xs);
+  color: var(--text-2);
+  min-width: 0;
+}
+.hc-act > summary,
+.hc-act > .hc-act-row {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+  padding: 3px 0;
+  list-style: none;
+  cursor: pointer;
+  border-radius: var(--r-xs);
+}
+.hc-act > summary::-webkit-details-marker {
+  display: none;
+}
+.hc-act > summary:hover {
+  color: var(--text);
+}
+.hc-act > summary > svg,
+.hc-act > .hc-act-row > svg {
+  color: var(--text-3);
+}
+.hc-act > .hc-act-row {
+  cursor: default;
+}
+.hc-act[data-now] > summary,
+.hc-act[data-now] > .hc-act-row {
+  color: var(--text);
+}
+.hc-act-t {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hc-act-t code,
+.hc-act-d code {
+  font-family: var(--mono);
+  font-size: 0.92em;
+  background: var(--surface-2);
+  border-radius: 3px;
+  padding: 0 3px;
+}
+.hc-act time {
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.hc-act-d {
+  margin: 2px 0 6px 22px;
+  padding: 6px 8px;
+  background: var(--sunken);
+  border-radius: var(--r-sm);
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  color: var(--text-2);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.hc-act:not([open]) > .hc-act-d {
+  display: none;
+}
+
+/* ---------- sections with an index: .hc-sections ---------- */
+.hc-sections {
+  display: grid;
+  gap: 2px;
+  align-content: start;
+}
+.hc-sec {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  padding: 0 8px;
+  border-radius: var(--r-sm);
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+}
+.hc-sec:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+.hc-sec[aria-current='true'] {
+  background: var(--surface-2);
+  color: var(--text);
+  font-weight: 500;
+}
+.hc-sec-mark {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1.5px dashed var(--border-strong);
+  box-sizing: border-box;
+  position: relative;
+}
+.hc-sec[data-complete] .hc-sec-mark {
+  border: 1.5px solid var(--green);
+}
+.hc-sec[data-complete] .hc-sec-mark::after {
+  content: '';
+  position: absolute;
+  left: 3.5px;
+  top: 1.2px;
+  width: 3px;
+  height: 6px;
+  border: solid var(--green);
+  border-width: 0 1.5px 1.5px 0;
+  transform: rotate(45deg);
+}
+@media (max-width: 640px) {
+  .hc-sec {
+    height: 46px;
+    font-size: var(--fs-md);
+  }
+}
+
+/* ---------- bottom sheet (phones): <hc-sheet open> > .hc-sheet-b ---------- */
+hc-sheet {
+  display: none;
+}
+hc-sheet[open] {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 65;
+}
+.hc-sheet-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--overlay);
+  animation: hc-fade 0.2s var(--ease);
+}
+.hc-sheet-b {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: 86dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-radius: 16px 16px 0 0;
+  box-shadow: var(--shadow-pop);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  animation: hc-up 0.28s var(--ease-drawer);
+  overflow: hidden;
+}
+.hc-sheet-grab {
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--surface-3);
+  margin: 8px auto 4px;
+  flex-shrink: 0;
+}
+.hc-sheet-in {
+  overflow: auto;
+  min-height: 0;
+  overscroll-behavior: contain;
+}
+.hc-sheet-acts {
+  display: grid;
+  padding: 4px 8px 8px;
+}
+.hc-sheet-act {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 46px;
+  padding: 0 10px;
+  font-size: var(--fs-md);
+  color: var(--text);
+  text-align: left;
+  border-radius: var(--r);
+}
+.hc-sheet-act + .hc-sheet-act {
+  border-top: 1px solid var(--divider);
+}
+.hc-sheet-act > svg {
+  color: var(--text-2);
+}
+@media (min-width: 641px) {
+  .hc-sheet-b {
+    left: 50%;
+    right: auto;
+    bottom: 50%;
+    width: min(420px, calc(100vw - 32px));
+    transform: translate(-50%, 50%);
+    border-radius: 12px;
+    animation: hc-fade 0.18s var(--ease);
+  }
+  .hc-sheet-grab {
+    display: none;
+  }
+}
+
+/* pressed (long press) */
+[data-hc-pressed] {
+  background: var(--surface-2);
+  border-radius: var(--r);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hc-shimmer,
+  .hc-ring[data-state='working']::after,
+  .hc-sheet-bg,
+  .hc-sheet-b {
+    animation: none;
+  }
+  .hc-shimmer {
+    color: var(--text-2);
+    background: none;
+  }
+}
+
+/* footer and question inside the trail */
+.hc-trail-f {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 0 12px 12px 40px;
+}
+.hc-trail.flat .hc-trail-f {
+  padding: 6px 0 0 28px;
+}
+.hc-trail-f:empty {
+  display: none;
+}
+.hc-trail-ask {
+  padding: 0 12px 10px;
+}
+.hc-trail.flat .hc-trail-ask {
+  padding: 6px 0 0;
+}
+
+/* short identifier (task key, PR) */
+.hc-id {
+  font-family: var(--mono);
+  font-size: var(--fs-2xs);
+  color: var(--text-3);
+  background: var(--surface-2);
+  border-radius: var(--r-xs);
+  padding: 1px 5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}

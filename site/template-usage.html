@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rate limit planner · Hypercube UI</title>
+<link rel="stylesheet" href="hc/index.css">
+<link rel="stylesheet" href="catalog.css">
+<script src="theme.js"></script>
+</head>
+<body class="template">
+<div class="cat-bar"><a href="index.html"><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>Catalog</a><span class="sp"></span><span class="faint">Template: Rate limit planner</span><button class="ibtn" data-theme-toggle aria-label="Switch between light and dark" title="Light or dark"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8a2.83 2.83 0 0 0 4 4 4 4 0 1 1-4-4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.9 4.9 1.4 1.4"/><path d="m17.7 17.7 1.4 1.4"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.3 17.7-1.4 1.4"/><path d="m19.1 4.9-1.4 1.4"/></svg></button></div>
+<div class="shell" data-shell>
+  <div class="side-scrim" data-menu-close></div>
+<nav class="side" aria-label="Menu">
+  <div class="side-top"><button class="hc-switch" data-menu="#ws-menu" aria-haspopup="menu" aria-expanded="false" aria-label="Switch workspace: Example"><span class="hc-switch-logo"><svg width="22" height="22" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#000"/><circle cx="32" cy="32" r="23" fill="#c7ff9f"/><circle cx="32" cy="32" r="11" fill="#000"/></svg></span><span class="hc-switch-name"><b>Example</b></span><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></svg></button></div>
+  <div class="side-scroll"><a class="sitem" href="template-dashboard.html"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg><span>Dashboard</span></a><a class="sitem" href="template-inbox.html"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg><span>Inbox</span><span class="ct dotc">3</span></a><a class="sitem" href="template-chat.html"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span>Conversations</span></a><a class="sitem" href="template-list.html"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span>Tasks</span></a><a class="sitem" href="template-calendar.html"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg><span>Calendar</span></a><a class="sitem" href="template-bot.html"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg><span>Bots</span></a><a class="sitem" href="template-workflow.html"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg><span>Workflows</span></a><a class="sitem on" href="template-usage.html" aria-current="page"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg><span>Usage</span></a><a class="sitem" href="template-root-cause.html"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><path d="M18 9v2c0 .6-.4 1-1 1H7c-.6 0-1-.4-1-1V9"/><path d="M12 12v3"/></svg><span>Investigations</span></a></div>
+  <div class="side-bot"><a class="sitem" href="template-settings.html"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg><span>Settings</span></a><hc-zoom class="hc-zoom" aria-label="Adjust screen"><span class="hc-zoom-l"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/></svg><span>Adjust screen</span></span><button class="ibtn ibtn-xs" data-zoom="out" aria-label="Make the screen smaller"><svg class="i" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/></svg></button><button class="hc-zoom-v" data-zoom="reset">100%</button><button class="ibtn ibtn-xs" data-zoom="in" aria-label="Make the screen bigger"><svg class="i" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg></button></hc-zoom></div>
+</nav>
+<div class="pop hc-switch-menu" id="ws-menu" role="menu" aria-label="Workspaces" hidden>
+  <div class="mh">Workspaces</div>
+  <button class="mi" role="menuitemradio" aria-checked="true" data-switch="Example"><span class="hc-switch-logo sm"><svg width="20" height="20" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#000"/><circle cx="32" cy="32" r="23" fill="#c7ff9f"/><circle cx="32" cy="32" r="11" fill="#000"/></svg></span><span class="grow trunc">Example</span><span class="r">Pro</span><span class="ck"><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span></button>
+  <button class="mi" role="menuitemradio" aria-checked="false" data-switch="Acme"><span class="hc-switch-logo sm" style="--c: var(--blue)">A</span><span class="grow trunc">Acme</span><span class="r">Free</span></button>
+  <div class="msep"></div>
+  <a class="mi" role="menuitem" href="template-settings.html"><svg class="i" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>Workspace settings</a>
+</div>
+  <div class="main">
+    <header class="topbar"><button class="ibtn only-n" data-menu-open aria-label="Open the menu"><svg class="i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></button><nav class="crumbs" aria-label="You are here"><span class="hide-m">Usage</span><span class="sep hide-m">/</span><span class="cur">Today's runs</span></nav></header>
+    <main class="content">
+      <div class="page wide">
+        <div class="ph"><div><h1>Today's runs</h1><p>Drag a run to another time. The chart adds every run up against the model's rate limit.</p></div></div>
+
+        <section class="hc-usage" style="--now:0.1875" data-usage aria-labelledby="usage-t">
+          <div class="hc-usage-h">
+            <div><h2 id="usage-t">Rate limit</h2><p data-usage-sub>4 runs · 120k tokens / min</p></div>
+            <span class="badge red" data-usage-badge>Over limit · 12:25–14:20</span>
+            <button class="btn btn-secondary btn-sm" data-spread><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 16c.5-2 1.5-7 4-7 2 0 2 3 4 3 2.5 0 4.5-5 5-7"/></svg>Spread out</button>
+          </div>
+          <div class="hc-usage-chart" data-chart role="img" aria-label="Tokens per minute over the day, against the 120k limit"></div>
+          <ul class="hc-usage-runs" data-runs aria-label="Runs">
+            <li class="hc-run" data-fixed style="--c:var(--blue)"><span class="hc-run-n"><i></i><b>Inbox triage</b><time>Running</time></span><span class="hc-run-track"><span class="hc-run-bar" style="--from:0.083;--len:0.2"><span>46k</span></span></span><span class="hc-run-x"></span></li>
+            <li class="hc-run" style="--c:var(--violet)"><span class="hc-run-n"><i></i><b>Lead research</b><time>11:30</time></span><span class="hc-run-track"><button class="hc-run-bar" style="--from:0.229;--len:0.15"><span>82k</span></button></span><span class="hc-run-x"></span></li>
+            <li class="hc-run" style="--c:var(--teal)"><span class="hc-run-n"><i></i><b>Report writer</b><time>12:00</time></span><span class="hc-run-track"><button class="hc-run-bar" style="--from:0.25;--len:0.16"><span>74k</span></button></span><span class="hc-run-x"></span></li>
+            <li class="hc-run" aria-current="true" style="--c:var(--rose)"><span class="hc-run-n"><i></i><b>Code review</b><time>13:15</time></span><span class="hc-run-track"><button class="hc-run-bar" style="--from:0.302;--len:0.1"><span>36k</span></button></span><span class="hc-run-x"></span></li>
+          </ul>
+          <div style="padding:0 16px 8px"><button class="btn btn-ghost btn-sm" data-open="#run-modal"><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5v14"/></svg>Add run</button></div>
+          <div class="hc-usage-f"><p data-usage-msg>Over the limit even without Code review. Try Spread out, or move another run.</p><span data-usage-act></span></div>
+        </section>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div data-layer id="run-modal" hidden>
+  <div class="scrim"></div>
+  <div class="modal-wrap">
+    <form class="modal sm" role="dialog" aria-modal="true" aria-labelledby="run-t" data-run-form>
+      <div class="modal-h"><h2 id="run-t">Add a run</h2><button class="ibtn" type="button" data-close aria-label="Close"><svg class="i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
+      <div class="modal-b">
+        <div class="field"><label class="label" for="r-name">Name</label><input class="input" id="r-name" name="name" required placeholder="e.g. Weekly digest"></div>
+        <div class="row" style="gap:12px">
+          <div class="field" style="flex:1"><label class="label" for="r-at">Starts</label><input class="input" id="r-at" name="at" type="time" value="16:00" step="300" required></div>
+          <div class="field" style="flex:1"><label class="label" for="r-len">Lasts (min)</label><input class="input" id="r-len" name="len" type="number" min="15" max="600" step="5" value="90" required></div>
+        </div>
+        <div class="field"><label class="label" for="r-peak">Peak tokens per minute (thousands)</label><input class="input" id="r-peak" name="peak" type="number" min="1" max="200" value="40" required><span class="hint">From the run's last week. The chart uses it to add the runs up.</span></div>
+      </div>
+      <div class="modal-f"><span class="sp"></span><button class="btn btn-secondary" type="button" data-close>Cancel</button><button class="btn btn-primary" type="submit">Add run</button></div>
+    </form>
+  </div>
+</div>
+
+<script src="catalog.js" type="module"></script>
+<script src="js/usage.js" type="module"></script>
+</body>
+</html>

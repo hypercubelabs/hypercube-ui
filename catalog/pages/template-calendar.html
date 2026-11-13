@@ -1,0 +1,65 @@
+<!-- title: Week calendar | kind: template | group: Templates | order: 34 | icon: calendar | script: calendar.js -->
+<div class="shell" data-shell>
+  {{menu:calendar}}
+  <div class="main">
+    <header class="topbar"><button class="ibtn only-n" data-menu-open aria-label="Open the menu">{{i:menu:18}}</button><nav class="crumbs" aria-label="You are here"><span class="hide-m">Exams</span><span class="sep hide-m">/</span><span class="cur">Schedule</span></nav><span class="sp"></span><button class="btn btn-primary btn-sm" data-new-event>{{i:plus:13}}New event</button></header>
+    <main class="content fill">
+      <div class="page wide">
+        <div class="ph">
+          <div><h1 data-week-title>Jan 1 – 7</h1><p data-week-sub>8 events this week</p></div>
+          <div class="acts"><button class="ibtn" data-week="-1" aria-label="Previous week" data-tip="Previous week">{{i:chevron-left}}</button><button class="btn btn-secondary btn-sm" data-week="0">This week</button><button class="ibtn" data-week="1" aria-label="Next week" data-tip="Next week">{{i:chevron-right}}</button></div>
+        </div>
+        <div class="hc-filters" role="group" aria-label="Show subjects" style="margin-bottom:12px" data-cal-filters>
+          <button class="hc-filter" aria-pressed="true" data-cat="">{{i:check:13}}All</button>
+          <button class="hc-filter" aria-pressed="false" data-cat="math" style="--c:var(--violet)"><i></i>Math</button>
+          <button class="hc-filter" aria-pressed="false" data-cat="art" style="--c:var(--blue)"><i></i>Art</button>
+          <button class="hc-filter" aria-pressed="false" data-cat="physics" style="--c:var(--teal)"><i></i>Physics</button>
+          <button class="hc-filter" aria-pressed="false" data-cat="sport" style="--c:var(--orange)"><i></i>Sport</button>
+          <button class="hc-filter" aria-pressed="false" data-cat="computer" style="--c:var(--green)"><i></i>Computer</button>
+        </div>
+        <div class="hc-filters hc-cal-pick" role="group" aria-label="Day" data-day-pick></div>
+        <div class="hc-cal-wrap fill-b">
+          <div class="hc-cal" style="--start:6;--hours:16" data-cal>
+          <div class="hc-cal-dh" aria-hidden="true"></div>
+          <button class="hc-cal-dh" data-pick-day="0">Mon <b>1</b></button>
+          <button class="hc-cal-dh" data-pick-day="1" aria-current="date">Tue <b>2</b></button>
+          <button class="hc-cal-dh" data-pick-day="2">Wed <b>3</b></button>
+          <button class="hc-cal-dh" data-pick-day="3">Thu <b>4</b></button>
+          <button class="hc-cal-dh" data-pick-day="4">Fri <b>5</b></button>
+          <button class="hc-cal-dh" data-pick-day="5">Sat <b>6</b></button>
+          <button class="hc-cal-dh" data-pick-day="6">Sun <b>7</b></button>
+          <div class="hc-cal-hours" aria-hidden="true"><span style="--h:6">06:00</span><span style="--h:7">07:00</span><span style="--h:8">08:00</span><span style="--h:9">09:00</span><span style="--h:10">10:00</span><span style="--h:11">11:00</span><span style="--h:12">12:00</span><span style="--h:13">13:00</span><span style="--h:14">14:00</span><span style="--h:15">15:00</span><span style="--h:16">16:00</span><span style="--h:17">17:00</span><span style="--h:18">18:00</span><span style="--h:19">19:00</span><span style="--h:20">20:00</span><span style="--h:21">21:00</span></div>
+          <div class="hc-cal-day" data-day="0" aria-label="Mon 1"><button class="hc-ev" data-cat="art" style="--at:13;--len:1;--c:var(--blue);--lane:0;--lanes:1"><b>Art review</b><span>13:00 – 14:00</span></button></div>
+          <div class="hc-cal-day" data-day="1" data-today aria-label="Tue 2"><div class="hc-cal-now" style="--at:8.67"><span>8:40</span></div><button class="hc-ev" data-cat="math" style="--at:7;--len:0.667;--c:var(--violet);--lane:0;--lanes:2"><b>Math exam</b><span>7:00 – 7:40</span></button><button class="hc-ev" data-cat="art" style="--at:7.5;--len:1.5;--c:var(--blue);--lane:1;--lanes:2"><b>Art exam</b><span>7:30 – 9:00</span></button><button class="hc-ev" data-cat="physics" style="--at:10;--len:0.667;--c:var(--teal);--lane:0;--lanes:1"><b>Physics exam</b><span>10:00 – 10:40</span></button><button class="hc-ev" data-cat="sport" style="--at:10.833;--len:1.333;--c:var(--orange);--lane:0;--lanes:1"><b>Sport day</b><span>10:50 – 12:10</span><span class="badge">{{i:circle-check:11}}Confirmed</span></button></div>
+          <div class="hc-cal-day" data-day="2" aria-label="Wed 3"><button class="hc-ev" data-cat="physics" style="--at:8;--len:1.5;--c:var(--teal);--lane:0;--lanes:1"><b>Physics lab</b><span>8:00 – 9:30</span></button></div>
+          <div class="hc-cal-day" data-day="3" aria-label="Thu 4"><button class="hc-ev" data-cat="math" style="--at:9;--len:0.667;--c:var(--violet);--lane:0;--lanes:1"><b>Math exam</b><span>9:00 – 9:40</span></button><button class="hc-ev" data-cat="computer" style="--at:9.75;--len:1.5;--c:var(--green);--lane:0;--lanes:1"><b>Computer exam</b><span>9:45 – 11:15</span><span class="badge">{{i:circle-check:11}}Confirmed</span></button></div>
+          <div class="hc-cal-day" data-day="4" aria-label="Fri 5"><button class="hc-ev" data-cat="math" style="--at:11;--len:1;--c:var(--violet);--lane:0;--lanes:1"><b>Math tutoring</b><span>11:00 – 12:00</span></button></div>
+          <div class="hc-cal-day" data-day="5" aria-label="Sat 6"></div>
+          <div class="hc-cal-day" data-day="6" aria-label="Sun 7"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div data-layer id="ev-modal" hidden>
+  <div class="scrim"></div>
+  <div class="modal-wrap">
+    <form class="modal sm" role="dialog" aria-modal="true" aria-labelledby="ev-t" data-ev-form>
+      <div class="modal-h"><h2 id="ev-t">New event</h2><button class="ibtn" type="button" data-close aria-label="Close">{{i:x}}</button></div>
+      <div class="modal-b">
+        <div class="field"><label class="label" for="ev-title">Title</label><input class="input" id="ev-title" name="title" required placeholder="e.g. Math exam"></div>
+        <div class="field"><label class="label" for="ev-date">Day</label><input class="input" id="ev-date" name="date" type="date" required></div>
+        <div class="row" style="gap:12px">
+          <div class="field" style="flex:1"><label class="label" for="ev-from">Starts</label><input class="input" id="ev-from" name="from" type="time" min="06:00" max="21:45" step="300" required></div>
+          <div class="field" style="flex:1"><label class="label" for="ev-to">Ends</label><input class="input" id="ev-to" name="to" type="time" min="06:15" max="22:00" step="300" required></div>
+        </div>
+        <span class="err" data-ev-err hidden>{{i:circle-alert:12}}<span></span></span>
+        <div class="field"><label class="label" for="ev-cat">Subject</label><select class="select" id="ev-cat" name="cat"><option value="math">Math</option><option value="art">Art</option><option value="physics">Physics</option><option value="sport">Sport</option><option value="computer">Computer</option></select></div>
+        <label class="row"><input type="checkbox" class="check" name="confirmed"> Confirmed</label>
+      </div>
+      <div class="modal-f"><button class="btn btn-danger-ghost" type="button" data-ev-del>{{i:trash-2:14}}Delete</button><span class="sp"></span><button class="btn btn-secondary" type="button" data-close>Cancel</button><button class="btn btn-primary" type="submit">Save</button></div>
+    </form>
+  </div>
+</div>

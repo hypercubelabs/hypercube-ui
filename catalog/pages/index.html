@@ -1,0 +1,63 @@
+<!-- title: Home | kind: piece | group: Start | order: 1 | icon: house -->
+<div class="page">
+  <div class="ph">
+    <div>
+      <div class="eyebrow">Hypercube UI {{version}}</div>
+      <h1>Clean, easy screens for any stack</h1>
+      <p>Screen components from Hypercube Labs: CSS on tokens plus a few custom elements. No framework.</p>
+    </div>
+  </div>
+
+  <div class="stats" style="margin-bottom:28px">
+    <div class="stat"><span class="k">{{i:layers:14}}Layers</span><span class="v">2</span><span class="d">CSS without JavaScript, and Web Components</span></div>
+    <div class="stat"><span class="k">{{i:smartphone:14}}Phones</span><span class="v">360 px</span><span class="d">smallest screen checked</span></div>
+    <div class="stat"><span class="k">{{i:sun-moon:14}}Themes</span><span class="v">2</span><span class="d">light and dark, not inverted</span></div>
+    <div class="stat"><span class="k">{{i:code:14}}Stacks</span><span class="v">All</span><span class="d">plain JS, React, Blazor, Astro</span></div>
+  </div>
+
+  <h2 class="sec" style="margin-bottom:10px">Pieces</h2>
+  <div class="cat-cards" style="margin-bottom:28px">
+    <a class="cat-card" href="foundations.html">{{i:palette:18}}<b>Foundations</b><span>Colour, type, space, radius, icons</span></a>
+    <a class="cat-card" href="buttons.html">{{i:mouse-pointer-click:18}}<b>Buttons</b><span>Primary, secondary, ghost, danger, icon</span></a>
+    <a class="cat-card" href="fields.html">{{i:text-cursor-input:18}}<b>Fields</b><span>Text, search, select, checkbox, switch, error</span></a>
+    <a class="cat-card" href="navigation.html">{{i:panels-top-left:18}}<b>Navigation</b><span>Tabs, segmented, breadcrumbs, sidebar</span></a>
+    <a class="cat-card" href="display.html">{{i:layout-grid:18}}<b>Display</b><span>Badge, chip, avatar, progress, panel, stats</span></a>
+    <a class="cat-card" href="states.html">{{i:circle-dashed:18}}<b>States</b><span>Empty, loading, error, alerts</span></a>
+    <a class="cat-card" href="overlays.html">{{i:layers:18}}<b>Overlays</b><span>Modal, drawer, menu, toast, bottom sheet</span></a>
+    <a class="cat-card" href="ai.html">{{i:bot:18}}<b>AI pieces</b><span>Question, trail with substeps, working now, needs you</span></a>
+    <a class="cat-card" href="boards.html">{{i:git-fork:18}}<b>Boards</b><span>Connected tree, node, calendar, usage timeline, diff</span></a>
+  </div>
+
+  <h2 class="sec" style="margin-bottom:10px">Screen templates</h2>
+  <div class="cat-cards" style="margin-bottom:28px">
+    <a class="cat-card" href="template-chat.html">{{i:message-circle:18}}<b>Chat with a bot</b><span>List, conversation, bot question, who is in it</span></a>
+    <a class="cat-card" href="template-inbox.html">{{i:inbox:18}}<b>Inbox</b><span>Filters, list and reading side by side</span></a>
+    <a class="cat-card" href="template-dashboard.html">{{i:layout-dashboard:18}}<b>Dashboard</b><span>Needs you, numbers, who is working</span></a>
+    <a class="cat-card" href="template-list.html">{{i:list-filter:18}}<b>List with filters</b><span>Search, filters, a table that turns into cards</span></a>
+    <a class="cat-card" href="template-calendar.html">{{i:calendar:18}}<b>Week calendar</b><span>Coloured events, filters, now line, one day on phones</span></a>
+    <a class="cat-card" href="template-workflow.html">{{i:workflow:18}}<b>Workflow editor</b><span>Nodes, branches, human approval, step settings</span></a>
+    <a class="cat-card" href="template-usage.html">{{i:gauge:18}}<b>Rate limit planner</b><span>Usage chart, draggable runs, spread out</span></a>
+    <a class="cat-card" href="template-root-cause.html">{{i:git-fork:18}}<b>Root cause</b><span>OR/AND hypotheses, ruled out, diff, fix it</span></a>
+    <a class="cat-card" href="template-bot.html">{{i:file-pen-line:18}}<b>Sectioned form</b><span>One section at a time, an index of what is left</span></a>
+    <a class="cat-card" href="template-sign-in.html">{{i:log-in:18}}<b>Sign in</b><span>Email and code, clear errors, no password</span></a>
+    <a class="cat-card" href="template-settings.html">{{i:settings:18}}<b>Settings</b><span>Groups on the left that become tabs on phones</span></a>
+  </div>
+
+  <div class="cat-prose">
+    <h2>How to use</h2>
+    <p>Copy the <code>src</code> and <code>fonts</code> folders into your project and import one file:</p>
+    <pre class="cat-pre"><code>&lt;link rel="stylesheet" href="hc/index.css"&gt;
+&lt;script type="module" src="hc/elements.js"&gt;&lt;/script&gt;  &lt;!-- only if you want the behaviour --&gt;</code></pre>
+    <p>Then write the markup of each piece as shown in the catalog. In React use <code>className</code> on normal tags and <code>class</code> on <code>hc-*</code> tags; in Blazor and Astro the markup is the same.</p>
+    <h2>Rules for every screen</h2>
+    <ul>
+      <li>One animation per area. Colour only for state: working, needs you, error.</li>
+      <li>Nothing changes size between states, and no piece of information shows twice.</li>
+      <li>Real state only: no made-up progress text.</li>
+      <li>A button only shows if its action exists. What does not work yet stays off the screen.</li>
+      <li>Every screen is built for phones too: 40 px touch targets, the sidebar in a drawer, a bottom sheet instead of floating menus.</li>
+    </ul>
+    <h2>License</h2>
+    <p>MIT. Some pieces started from ideas in affectUI (MIT), rewritten without React. Instrument Sans is OFL; the catalog icons are Lucide (ISC).</p>
+  </div>
+</div>

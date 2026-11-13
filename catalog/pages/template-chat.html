@@ -1,0 +1,139 @@
+<!-- title: Chat with a bot | kind: template | group: Templates | order: 30 | icon: message-circle -->
+<div class="shell" data-shell>
+  {{menu:chat}}
+  <div class="main">
+    <div class="hc-split" id="chat">
+      <section class="hc-list" aria-label="Conversations">
+        <div class="hc-list-h">
+          <div class="hc-list-t"><button class="ibtn only-n" data-menu-open aria-label="Open the menu">{{i:menu:18}}</button><h1>Conversations</h1><span class="sp"></span><button class="ibtn" aria-label="New conversation" data-tip="New conversation" data-toast="Example: would start a new conversation">{{i:square-pen}}</button></div>
+          <div class="inwrap">{{i:search:13}}<input class="input" placeholder="Search conversations" aria-label="Search conversations"></div>
+          <div class="seg" role="group" aria-label="Filter"><button class="on" aria-pressed="true">All</button><button aria-pressed="false">Unread</button><button aria-pressed="false">Waiting on you</button></div>
+        </div>
+        <div class="hc-list-b">
+          <button class="hc-row2" data-opens="architect" aria-current="true">
+            <span class="hc-row2-av"><span class="hc-ring round" data-state="needs"><span class="av md" style="--c:var(--orange)">AR</span></span></span>
+            <span class="hc-row2-t"><span class="trunc">Architect</span></span><time class="hc-row2-time">19:32</time>
+            <span class="hc-row2-sub">In what order should I build the screens?</span>
+            <span class="hc-row2-end"><span class="hc-needs-mark">{{i:message-circle-question:14}}</span></span>
+          </button>
+          <button class="hc-row2" data-opens="front" data-unread>
+            <span class="hc-row2-av"><span class="hc-ring round" data-state="working"><span class="av md" style="--c:var(--teal)">FE</span></span></span>
+            <span class="hc-row2-t"><span class="trunc">Frontend engineer</span></span><time class="hc-row2-time">19:05</time>
+            <span class="hc-row2-sub">Ran the tests: 182 of 214 passed</span>
+            <span class="hc-row2-end"><span class="hc-count">2</span></span>
+          </button>
+          <button class="hc-row2" data-opens="sara">
+            <span class="hc-row2-av"><span class="av md" style="--c:var(--blue)">SC</span></span>
+            <span class="hc-row2-t"><span class="trunc">Sara Cole</span></span><time class="hc-row2-time">Yesterday</time>
+            <span class="hc-row2-sub">You: I'll look at it this afternoon</span><span class="hc-row2-end"></span>
+          </button>
+        </div>
+      </section>
+
+      <section class="hc-main" aria-label="Conversation with Architect" data-item="architect">
+        <header class="hc-main-h">
+          <button class="ibtn hc-back" aria-label="Back to conversations">{{i:arrow-left:18}}</button>
+          <span class="hc-ring round" data-state="needs"><span class="av md" style="--c:var(--orange)">AR</span></span>
+          <span class="hc-main-t"><b class="trunc">Architect</b><small>Bot · plans screens and tasks</small></span>
+          <button class="ibtn" data-side-open="#chat-side" aria-label="Conversation details" data-tip="Details">{{i:panel-right}}</button>
+        </header>
+        <div class="hc-msgs">
+          <div class="hc-msgs-in">
+            <div class="hc-day">Today</div>
+            <div class="hc-m mine"><div class="hc-m-t">I want the customer app with sign in, orders and invoice. Can you set up the tasks?</div></div>
+            <div class="hc-m hc-msg">
+              <span class="av sm" style="--c:var(--orange)">AR</span>
+              <div>
+                <div class="hc-m-h"><b>Architect</b><time>19:30</time></div>
+                <div class="hc-m-t"><p>I created the three tasks and saved to memory that sign in comes before orders.</p></div>
+                <div class="hc-changes">
+                  <div class="hc-changes-h">{{i:history:14}}<b>Changed 3 things</b><span class="sp"></span><button class="btn btn-xs btn-ghost" data-toast="Example: would undo the 3 changes">{{i:rotate-ccw:13}}Undo</button></div>
+                  <ul><li><span class="trunc">MOB-108 · Sign in · created</span></li><li><span class="trunc">MOB-109 · Orders · created</span></li><li><span class="trunc">Memory: sign in before orders</span></li></ul>
+                </div>
+              </div>
+              <div class="hc-msg-acts" role="toolbar" aria-label="Message actions"><button class="ibtn ibtn-xs" aria-label="Copy" data-toast="Copied (example)">{{i:copy:13}}</button><button class="ibtn ibtn-xs" aria-label="Move to…" data-toast="Example: would move it to a task">{{i:forward:13}}</button></div>
+            </div>
+            <div class="hc-m cont hc-msg">
+              <span class="av sm" style="--c:var(--orange)">AR</span>
+              <div><div class="hc-m-t"><p>Before I start the invoice, I need one answer from you.</p></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="hc-foot">
+          <div class="hc-dock">
+            <button class="hc-running"><span class="hc-ring round" data-state="working"><span class="av sm" style="--c:var(--teal)">FE</span></span><span class="hc-running-t"><b>Frontend engineer</b> <span class="hc-id">MOB-108</span> Sign in</span><span class="hc-running-m">step 2 of 4</span></button>
+            <hc-ask class="hc-ask" keys aria-label="Question from Architect">
+              <div class="hc-ask-h"><span class="av sm" style="--c:var(--orange)">AR</span><div class="hc-ask-q"><b>Architect asks:</b> in what order should I build the screens?</div></div>
+              <div class="hc-ask-opts">
+                <button class="hc-ask-opt"><span class="hc-key">1</span><span>Sign in, orders, invoice</span></button>
+                <button class="hc-ask-opt"><span class="hc-key">2</span><span>Invoice first</span></button>
+                <button class="hc-ask-opt"><span class="hc-key">3</span><span class="hc-ask-free">Answer in text</span></button>
+              </div>
+            </hc-ask>
+          </div>
+          <form class="hc-composer">
+            <textarea rows="1" placeholder="Write to Architect" aria-label="Message"></textarea>
+            <button class="ibtn" type="button" aria-label="Attach" data-tip="Attach" data-toast="Example: would open your files">{{i:paperclip}}</button>
+            <button class="btn btn-primary btn-sm" type="submit">{{i:arrow-up:14}}Send</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="hc-main" aria-label="Conversation with Frontend engineer" data-item="front" hidden>
+        <header class="hc-main-h">
+          <button class="ibtn hc-back" aria-label="Back to conversations">{{i:arrow-left:18}}</button>
+          <span class="hc-ring round" data-state="working"><span class="av md" style="--c:var(--teal)">FE</span></span>
+          <span class="hc-main-t"><b class="trunc">Frontend engineer</b><small>Bot · working on MOB-108</small></span>
+        </header>
+        <div class="hc-msgs"><div class="hc-msgs-in">
+          <div class="hc-day">Today</div>
+          <div class="hc-m"><span class="av sm" style="--c:var(--teal)">FE</span><div><div class="hc-m-h"><b>Frontend engineer</b><time>19:05</time></div><div class="hc-m-t"><p>Ran the tests: 182 of 214 passed. I'm fixing the ones on the sign in screen.</p></div></div></div>
+          <div class="hc-typing" role="status" style="padding-left:36px"><span class="hc-loader"></span><span class="hc-shimmer">Frontend engineer is writing…</span></div>
+        </div></div>
+        <div class="hc-foot"><form class="hc-composer"><textarea rows="1" placeholder="Write to Frontend engineer" aria-label="Message"></textarea><button class="btn btn-primary btn-sm" type="submit">{{i:arrow-up:14}}Send</button></form></div>
+      </section>
+      <section class="hc-main" aria-label="Conversation with Sara Cole" data-item="sara" hidden>
+        <header class="hc-main-h">
+          <button class="ibtn hc-back" aria-label="Back to conversations">{{i:arrow-left:18}}</button>
+          <span class="av md" style="--c:var(--blue)">SC</span>
+          <span class="hc-main-t"><b class="trunc">Sara Cole</b><small>Design</small></span>
+        </header>
+        <div class="hc-msgs"><div class="hc-msgs-in">
+          <div class="hc-day">Yesterday</div>
+          <div class="hc-m"><span class="av sm" style="--c:var(--blue)">SC</span><div><div class="hc-m-h"><b>Sara Cole</b><time>16:12</time></div><div class="hc-m-t"><p>I uploaded the new invoice screens. Can you take a look when you can?</p></div></div></div>
+          <div class="hc-m mine"><div class="hc-m-t">I'll look at it this afternoon.</div></div>
+        </div></div>
+        <div class="hc-foot"><form class="hc-composer"><textarea rows="1" placeholder="Write to Sara" aria-label="Message"></textarea><button class="btn btn-primary btn-sm" type="submit">{{i:arrow-up:14}}Send</button></form></div>
+      </section>
+
+      <aside class="hc-aside" aria-label="Details" hidden>
+        <div class="hc-aside-sec"><h3>Who is in it</h3>
+          <div class="hc-person"><span class="av md" style="--c:var(--orange)">AR</span><span><b>Architect</b><small>Bot · answers when called</small></span></div>
+          <div class="hc-person"><span class="av md" style="--c:var(--violet)">YO</span><span><b>You</b><small>Owner of the conversation</small></span></div>
+        </div>
+        <div class="hc-aside-sec"><h3>Work</h3>
+          <section class="hc-trail flat" aria-label="Frontend engineer's work">
+            <div class="hc-trail-h"><b>Sign in</b><span class="hc-id">MOB-108</span><span class="hc-trail-n">1/4</span></div>
+            <ol class="hc-steps">
+              <li class="hc-step" data-state="done"><span class="hc-mark"></span><span class="hc-step-l">Read the task</span><span class="hc-step-m"></span></li>
+              <li class="hc-step" data-state="current"><span class="hc-mark"></span><span class="hc-step-l">Build the screen</span><span class="hc-step-m"><span class="hc-step-s">Working</span></span></li>
+              <li class="hc-step"><span class="hc-mark"></span><span class="hc-step-l">Test</span><span class="hc-step-m"></span></li>
+              <li class="hc-step"><span class="hc-mark"></span><span class="hc-step-l">Ask for review</span><span class="hc-step-m"></span></li>
+            </ol>
+          </section>
+        </div>
+        <div class="hc-aside-sec"><h3>Memory</h3><p style="margin:0;font-size:var(--fs-sm);color:var(--text-2)">Sign in comes before orders.</p></div>
+      </aside>
+    </div>
+  </div>
+</div>
+<hc-sheet id="chat-side" aria-label="Conversation details" hidden>
+  <div class="hc-sheet-bg"></div>
+  <div class="hc-sheet-b"><div class="hc-sheet-grab"></div><div class="hc-sheet-in">
+    <div class="hc-aside-sec"><h3>Who is in it</h3>
+      <div class="hc-person"><span class="av md" style="--c:var(--orange)">AR</span><span><b>Architect</b><small>Bot · answers when called</small></span></div>
+      <div class="hc-person"><span class="av md" style="--c:var(--violet)">YO</span><span><b>You</b><small>Owner of the conversation</small></span></div>
+    </div>
+    <div class="hc-aside-sec"><h3>Memory</h3><p style="margin:0;font-size:var(--fs-sm);color:var(--text-2)">Sign in comes before orders.</p></div>
+  </div></div>
+</hc-sheet>

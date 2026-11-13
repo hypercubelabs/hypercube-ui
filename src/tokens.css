@@ -1,0 +1,281 @@
+/* ============================================================
+   HYPERCUBE UI — TOKENS (identidade Hypercube)
+   Light palette on bare :root; dark redefined (not inverted).
+   Lime (--accent) is only ever a fill under black content; accent
+   text, icons and thin lines use --accent-ink.
+   ============================================================ */
+/* Instrument Sans (OFL, fonts/OFL-InstrumentSans.txt), shipped with the library. */
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('../fonts/InstrumentSans.ttf') format('truetype');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  /* surfaces */
+  --bg: #f6f6f6;
+  --bg-side: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #eeeeee;
+  --surface-3: #e4e4e4;
+  --sunken: #f6f6f6;
+  --overlay: rgba(0, 0, 0, 0.32);
+  /* lines */
+  --border: #d9d9d9;
+  --border-strong: #858585;
+  --divider: #e9e9e9;
+  /* text */
+  --text: #000000;
+  --text-2: #333333;
+  --text-3: #696969;
+  --text-4: #7a7a7a;
+  --text-inv: #ffffff;
+  /* accent (swappable; default = Hypercube lime) */
+  --acc-l: #c7ff9f;
+  --acc-d: #c7ff9f;
+  --acc-ink-l: #000000;
+  --acc-ink-d: #c7ff9f;
+  --on-acc-l: #000000;
+  --on-acc-d: #000000;
+  --acc-soft-l: #e9ffdc;
+  --acc-soft-d: color-mix(in srgb, #c7ff9f 14%, transparent);
+  --accent: var(--acc-l);
+  --on-accent: var(--on-acc-l);
+  --accent-ink: var(--acc-ink-l);
+  --accent-soft: var(--acc-soft-l);
+  --accent-line: color-mix(in srgb, var(--accent-ink) 32%, transparent);
+  /* primary action: black pill on light */
+  --primary: #000000;
+  --on-primary: #ffffff;
+  --primary-hover: #252525;
+  --primary-active: #3a3a3a;
+  /* danger action: white text on red, in both themes */
+  --on-danger: #ffffff;
+  --danger-hover: color-mix(in srgb, var(--red) 88%, #000000);
+  /* the round knob of a switch */
+  --knob: #ffffff;
+  /* semantic */
+  --green: #315d19;
+  --amber: #805200;
+  --red: #af282e;
+  --blue: #315b96;
+  --violet: #6a4bb0;
+  --teal: #1a6f6a;
+  --rose: #a8345f;
+  --orange: #a8501f;
+  --gray: #7a7a7a;
+  --green-soft: #e9ffdc;
+  --amber-soft: #fff4dd;
+  --red-soft: #fff0f0;
+  /* status */
+  --st-backlog: #a3a3a3;
+  --st-todo: #696969;
+  --st-progress: #b97a0a;
+  --st-review: #6a4bb0;
+  --st-done: #315d19;
+  /* elevation */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 0 0 1px var(--border);
+  --shadow-pop: 0 12px 40px -8px rgba(0, 0, 0, 0.14), 0 2px 6px -2px rgba(0, 0, 0, 0.06), 0 0 0 1px var(--border);
+  --shadow-drag: 0 16px 36px -10px rgba(0, 0, 0, 0.26), 0 0 0 1px var(--border-strong);
+  --shadow-press: inset 0 -1px 0 rgba(0, 0, 0, 0.12);
+  --shadow-knob: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-seg: 0 1px 2px rgba(0, 0, 0, 0.08), 0 0 0 1px var(--border);
+  --shadow-drawer: -18px 0 40px -24px rgba(0, 0, 0, 0.25);
+  /* radius */
+  --r-xs: 4px;
+  --r-sm: 6px;
+  --r: 8px;
+  --r-lg: 10px;
+  --r-full: 999px;
+  /* spacing (4pt scale) */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-10: 40px;
+  --s-12: 48px;
+  /* type. One size scale for every Hypercube app, in CSS px at 100% zoom:
+     --fs (13.5) is interface text: menus, buttons, fields, lists, tables;
+     --fs-md (14.5) is reading text: messages, documents, long descriptions;
+     --fs-sm / --fs-xs / --fs-2xs are secondary lines, labels and counters;
+     --fs-lg / --fs-xl / --fs-2xl are panel, section and page titles.
+     Never scale the page (zoom, transform, a different html font-size): the OS and the
+     person's own zoom already do that. Apps that look bigger than their neighbours are
+     almost always zoomed, not wrongly sized. */
+  --font: 'Instrument Sans', 'Segoe UI', Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --fs-3xs: 10.5px;
+  --fs-2xs: 11px;
+  --fs-xs: 12px;
+  --fs-sm: 12.5px;
+  --fs: 13.5px;
+  --fs-md: 14.5px;
+  --fs-lg: 16px;
+  --fs-xl: 19px;
+  --fs-2xl: 23px;
+  /* component sizes */
+  --h-xs: 22px;
+  --h-sm: 26px;
+  --h-md: 30px;
+  --h-lg: 36px;
+  --side-w: 252px;
+  --side-row: 30px;
+  --row-h: 40px;
+  --card-pad: 10px;
+  --topbar-h: 46px;
+  /* one horizontal content edge shared by breadcrumb, page headers, toolbars, lists, tables and boards */
+  --gutter: 24px;
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur: 140ms;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #0a0a0a;
+    --bg-side: #0a0a0a;
+    --surface: #121212;
+    --surface-2: #1c1c1c;
+    --surface-3: #252525;
+    --sunken: #0e0e0e;
+    --overlay: rgba(0, 0, 0, 0.6);
+    --border: #2a2a2a;
+    --border-strong: #4a4a4a;
+    --divider: #1f1f1f;
+    --text: #f4f4f4;
+    --text-2: #d0d0d0;
+    --text-3: #a3a3a3;
+    --text-4: #808080;
+    --text-inv: #0a0a0a;
+    --accent: var(--acc-d);
+    --on-accent: var(--on-acc-d);
+    --accent-ink: var(--acc-ink-d);
+    --accent-soft: var(--acc-soft-d);
+    --primary: var(--acc-d);
+    --on-primary: var(--on-acc-d);
+    --primary-hover: color-mix(in srgb, var(--acc-d) 86%, #ffffff);
+    --primary-active: color-mix(in srgb, var(--acc-d) 82%, #000000);
+    --green: #8fd46a;
+    --amber: #e0b056;
+    --red: #f08a8a;
+    --blue: #7fa9e6;
+    --violet: #a98deb;
+    --teal: #58c0b6;
+    --rose: #e68aab;
+    --orange: #e3925f;
+    --gray: #8f8f8f;
+    --green-soft: color-mix(in srgb, var(--green) 14%, transparent);
+    --amber-soft: color-mix(in srgb, var(--amber) 14%, transparent);
+    --red-soft: color-mix(in srgb, var(--red) 14%, transparent);
+    --pc-mix: 72%;
+    --st-backlog: #6f6f6f;
+    --st-todo: #a3a3a3;
+    --st-progress: #e0b056;
+    --st-review: #a98deb;
+    --st-done: #8fd46a;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-card: 0 0 0 1px var(--border);
+    --shadow-pop: 0 16px 40px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--border-strong);
+    --shadow-drag: 0 18px 40px -10px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--border-strong);
+    color-scheme: dark;
+  }
+}
+:root[data-theme='dark'] {
+  --bg: #0a0a0a;
+  --bg-side: #0a0a0a;
+  --surface: #121212;
+  --surface-2: #1c1c1c;
+  --surface-3: #252525;
+  --sunken: #0e0e0e;
+  --overlay: rgba(0, 0, 0, 0.6);
+  --border: #2a2a2a;
+  --border-strong: #4a4a4a;
+  --divider: #1f1f1f;
+  --text: #f4f4f4;
+  --text-2: #d0d0d0;
+  --text-3: #a3a3a3;
+  --text-4: #808080;
+  --text-inv: #0a0a0a;
+  --accent: var(--acc-d);
+  --on-accent: var(--on-acc-d);
+  --accent-ink: var(--acc-ink-d);
+  --accent-soft: var(--acc-soft-d);
+  --primary: var(--acc-d);
+  --on-primary: var(--on-acc-d);
+  --primary-hover: color-mix(in srgb, var(--acc-d) 86%, #ffffff);
+  --primary-active: color-mix(in srgb, var(--acc-d) 82%, #000000);
+  --green: #8fd46a;
+  --amber: #e0b056;
+  --red: #f08a8a;
+  --blue: #7fa9e6;
+  --violet: #a98deb;
+  --teal: #58c0b6;
+  --rose: #e68aab;
+  --orange: #e3925f;
+  --gray: #8f8f8f;
+  --green-soft: color-mix(in srgb, var(--green) 14%, transparent);
+  --amber-soft: color-mix(in srgb, var(--amber) 14%, transparent);
+  --red-soft: color-mix(in srgb, var(--red) 14%, transparent);
+  --pc-mix: 72%;
+  --st-backlog: #6f6f6f;
+  --st-todo: #a3a3a3;
+  --st-progress: #e0b056;
+  --st-review: #a98deb;
+  --st-done: #8fd46a;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 0 0 1px var(--border);
+  --shadow-pop: 0 16px 40px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--border-strong);
+  --shadow-drag: 0 18px 40px -10px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--border-strong);
+  color-scheme: dark;
+}
+/* accent variants (coloured accents keep white text on the fill and use the colour itself as ink) */
+:root[data-accent='indigo'],
+:root[data-accent='blue'],
+:root[data-accent='violet'],
+:root[data-accent='teal'],
+:root[data-accent='rose'],
+:root[data-accent='graphite'] {
+  --acc-ink-l: var(--acc-l);
+  --acc-ink-d: var(--acc-d);
+  --on-acc-l: #ffffff;
+  --on-acc-d: #12131c;
+  --acc-soft-l: color-mix(in srgb, var(--acc-l) 10%, transparent);
+  --acc-soft-d: color-mix(in srgb, var(--acc-d) 12%, transparent);
+}
+:root[data-accent='indigo'] {
+  --acc-l: #4b5bd6;
+  --acc-d: #8e9af3;
+}
+:root[data-accent='blue'] {
+  --acc-l: #2f6cd4;
+  --acc-d: #74a7f0;
+}
+:root[data-accent='violet'] {
+  --acc-l: #7348cc;
+  --acc-d: #ae93f0;
+}
+:root[data-accent='teal'] {
+  --acc-l: #1a7f7a;
+  --acc-d: #5cc4ba;
+}
+:root[data-accent='rose'] {
+  --acc-l: #b93d68;
+  --acc-d: #ec8dae;
+}
+:root[data-accent='graphite'] {
+  --acc-l: #34332f;
+  --acc-d: #d9d6cf;
+}
+:root[data-side='compact'] {
+  --side-row: 26px;
+}
+:root[data-density='compact'] {
+  --row-h: 34px;
+  --card-pad: 8px;
+}

@@ -1,0 +1,66 @@
+<!-- title: States | kind: piece | group: Pieces | order: 15 | icon: circle-dashed -->
+<div class="page">
+  <div class="ph"><div><h1>States</h1><p>Every screen shows up four ways: with content, empty, loading and with an error. Design all four.</p></div></div>
+
+  <!-- ex: Empty | .empty-state .glyph .es-h p .sm | Say what will show here and offer the first step, if there is one. -->
+  <div class="panel" style="width:100%">
+    <div class="empty-state sm">
+      <div class="glyph">{{i:folder-kanban}}</div>
+      <h3 class="es-h">No projects yet</h3>
+      <p>Create the first project to organise the team's tasks.</p>
+      <button class="btn btn-primary btn-sm">{{i:plus:14}}Create project</button>
+    </div>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: No results | .empty-state | Repeat what people searched for and offer to clear it. -->
+  <div class="panel" style="width:100%">
+    <div class="empty-state sm">
+      <div class="glyph">{{i:search-x}}</div>
+      <h3 class="es-h">Nothing found</h3>
+      <p>No task matches "monthly reprot". Check the spelling or search fewer words.</p>
+      <button class="btn btn-secondary btn-sm">Clear search</button>
+    </div>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Loading indicator | .hc-loader .hc-loader.lg .is-busy | The one and only house loader, the same as Datacube's: a hexagon with a stroke running round the outline. Colour comes from the text. 14 px in lists and buttons, 24 px for a page. Always this one, never another. -->
+  <span class="hc-loader" role="status" aria-label="Loading"></span>
+  <span class="row" style="color:var(--text-2)"><span class="hc-loader" aria-hidden="true"></span>Loading tasks…</span>
+  <span class="hc-loader lg" role="status" aria-label="Loading"></span>
+  <button class="btn btn-secondary" disabled><span class="hc-loader" aria-hidden="true"></span>Generating</button>
+  <button class="btn btn-primary is-loading">Saving</button>
+  <!-- /ex -->
+
+  <!-- ex: Loading | .sk | A skeleton in the shape of the content that is coming, at the same size: nothing jumps when it loads. | col -->
+  <div class="panel" style="padding:14px;display:flex;flex-direction:column;gap:12px;max-width:520px" aria-busy="true" aria-label="Loading">
+    <div class="row" style="gap:10px"><span class="sk" style="width:28px;height:28px;border-radius:50%"></span><span class="col" style="gap:6px;flex:1"><span class="sk" style="width:40%;height:11px"></span><span class="sk" style="width:75%;height:9px"></span></span></div>
+    <div class="row" style="gap:10px"><span class="sk" style="width:28px;height:28px;border-radius:50%"></span><span class="col" style="gap:6px;flex:1"><span class="sk" style="width:55%;height:11px"></span><span class="sk" style="width:60%;height:9px"></span></span></div>
+    <div class="row" style="gap:10px"><span class="sk" style="width:28px;height:28px;border-radius:50%"></span><span class="col" style="gap:6px;flex:1"><span class="sk" style="width:35%;height:11px"></span><span class="sk" style="width:80%;height:9px"></span></span></div>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Error | .empty-state.err | Say what happened, that the data is safe, and what to do. -->
+  <div class="panel" style="width:100%">
+    <div class="empty-state err sm">
+      <div class="glyph">{{i:wifi-off}}</div>
+      <h3 class="es-h">No connection</h3>
+      <p>Check the internet. What you changed is kept and syncs when you are back.</p>
+      <button class="btn btn-secondary btn-sm">{{i:refresh-cw:13}}Try again</button>
+    </div>
+  </div>
+  <!-- /ex -->
+
+  <!-- ex: Alerts | .alert .info .ok .warn .danger | Inside the page, near what it affects. For something passing, use a toast (see Overlays). | col -->
+  <div class="alert info">{{i:info:15}}<span><b>Heads up.</b> Deliveries out of order show dashed.</span></div>
+  <div class="alert ok">{{i:circle-check:15}}<span>Project archived.</span></div>
+  <div class="alert warn">{{i:triangle-alert:15}}<span>3 tasks for this week have not started yet.</span></div>
+  <div class="alert danger">{{i:circle-alert:15}}<span>Could not save. The server did not answer in time.</span></div>
+  <!-- /ex -->
+
+  <!-- ex: Whole page | .fullstate .box .code | For a page error (404, no access). -->
+  <div class="panel" style="width:100%;height:280px">
+    <div class="fullstate" data-audit-skip><div class="box"><span class="code">404</span><h1>Page not found</h1><p>The address changed or the page was deleted.</p><a class="btn btn-secondary" href="index.html">Back to home</a></div></div>
+  </div>
+  <!-- /ex -->
+</div>

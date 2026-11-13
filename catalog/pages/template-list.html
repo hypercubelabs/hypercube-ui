@@ -1,0 +1,41 @@
+<!-- title: List with filters | kind: template | group: Templates | order: 33 | icon: list-filter -->
+<div class="shell" data-shell>
+  {{menu:list}}
+  <div class="main">
+    <header class="topbar"><button class="ibtn only-n" data-menu-open aria-label="Open the menu">{{i:menu:18}}</button><nav class="crumbs" aria-label="You are here"><span class="hide-m">Customer app</span><span class="sep hide-m">/</span><span class="cur">Tasks</span></nav><span class="sp"></span></header>
+    <main class="content">
+      <div class="page wide">
+        <div class="ph"><div><h1>Tasks</h1><p>12 open in Customer app.</p></div><div class="acts"><button class="btn btn-primary" data-open="#new-task">{{i:plus:14}}New task</button></div></div>
+        <div class="row" style="flex-wrap:wrap;gap:8px;margin-bottom:12px">
+          <div class="inwrap" style="flex:1 1 240px;max-width:320px">{{i:search:13}}<input class="input" placeholder="Search tasks" aria-label="Search tasks"></div>
+          <div class="seg" role="group" aria-label="Status"><button class="on" aria-pressed="true">Open</button><button aria-pressed="false">Mine</button><button aria-pressed="false">Done</button></div>
+          <span class="chip">{{i:user:12}}<b>Owner</b> is anyone<button class="ibtn ibtn-xs" aria-label="Remove filter" data-toast="Example: would remove the filter">{{i:x:12}}</button></span>
+        </div>
+        <div class="panel" style="overflow:hidden">
+          <table class="hc-table">
+            <thead><tr><th>Task</th><th>Status</th><th>Owner</th><th class="num">Due</th></tr></thead>
+            <tbody>
+              <tr><td class="hc-t-main"><span class="hc-id">MOB-109</span> Orders</td><td data-label="Status"><span class="badge amber"><span class="dot"></span>Review</span></td><td data-label="Owner"><span class="row"><span class="hc-ring round" data-state="needs"><span class="av sm" style="--c:var(--orange)">AR</span></span>Architect</span></td><td class="num" data-label="Due">Tomorrow</td></tr>
+              <tr><td class="hc-t-main"><span class="hc-id">MOB-108</span> Sign in</td><td data-label="Status"><span class="badge"><span class="dot" style="background:var(--st-progress)"></span>In progress</span></td><td data-label="Owner"><span class="row"><span class="hc-ring round" data-state="working"><span class="av sm" style="--c:var(--teal)">FE</span></span>Frontend engineer</span></td><td class="num" data-label="Due">Friday</td></tr>
+              <tr><td class="hc-t-main"><span class="hc-id">MOB-110</span> Invoice</td><td data-label="Status"><span class="badge gray">To do</span></td><td data-label="Owner"><span class="row"><span class="av sm" style="--c:var(--blue)">SC</span>Sara Cole</span></td><td class="num" data-label="Due">The 28th</td></tr>
+              <tr><td class="hc-t-main"><span class="hc-id">MOB-104</span> Profile</td><td data-label="Status"><span class="badge green"><span class="dot"></span>Done</span></td><td data-label="Owner"><span class="row"><span class="av sm" style="--c:var(--green)">BR</span>Bruno</span></td><td class="num" data-label="Due">Monday</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<div data-layer id="new-task" hidden>
+  <div class="scrim"></div>
+  <div class="modal-wrap">
+    <form class="modal" role="dialog" aria-modal="true" aria-labelledby="new-task-t" onsubmit="return false">
+      <div class="modal-h"><h2 id="new-task-t">New task</h2><button class="ibtn" type="button" data-close aria-label="Close">{{i:x}}</button></div>
+      <div class="modal-b">
+        <div class="field"><label class="label" for="n-t">Title</label><input class="input" id="n-t" placeholder="What needs to be done"></div>
+        <div class="field"><label class="label" for="n-r">Owner</label><select class="select" id="n-r"><option>Nobody yet</option><option>Architect (bot)</option><option>Sara Cole</option></select></div>
+      </div>
+      <div class="modal-f"><span class="sp"></span><button class="btn btn-secondary" type="button" data-close>Cancel</button><button class="btn btn-primary" data-close data-toast="Example: would create the task">Create task</button></div>
+    </form>
+  </div>
+</div>
