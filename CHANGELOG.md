@@ -1,5 +1,9 @@
 # Changes
 
+## 0.2.1
+
+- Needs you (`.hc-need`): the answers sit under the question instead of in a third column. Long answers no longer squeeze the question into a narrow column, and answer buttons wrap their text instead of spilling out of the card on phones.
+
 ## 0.2.0 (tagged 2026-11-13)
 
 - Context switcher (`.hc-switch`, `.hc-switch-logo`, `.hc-switch-name`, `.pop.hc-switch-menu`): the one way to pick the workspace, organisation or product, at the top of the menu, as in Meetas. The templates use it.

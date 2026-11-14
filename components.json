@@ -1,6 +1,6 @@
 {
   "name": "Hypercube UI",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "how_to_use": "Import src/index.css (and src/elements.js for <hc-ask> and <hc-sheet>). Copy the markup of each piece; change only the text. Icons: Lucide, stroke 1.8. Full rules in AGENTS.md.",
   "pieces": [
     {

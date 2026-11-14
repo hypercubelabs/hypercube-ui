@@ -385,8 +385,8 @@ svg.hc-spin > * {
 }
 .hc-need {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: 10px;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 8px 10px;
   align-items: start;
   padding: 10px 14px;
 }
@@ -410,24 +410,28 @@ svg.hc-spin > * {
   color: var(--text-3);
 }
 .hc-need-acts {
+  grid-column: 2;
   display: flex;
   gap: 6px;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: flex-end;
+}
+.hc-need-acts > .btn {
+  height: auto;
+  min-height: var(--h);
+  padding-block: 4px;
+  white-space: normal;
+  text-align: left;
 }
 @media (max-width: 640px) {
-  .hc-need {
-    grid-template-columns: auto minmax(0, 1fr);
-  }
   .hc-need-acts {
     grid-column: 1 / -1;
-    justify-content: stretch;
   }
   .hc-need-acts > .btn {
-    flex: 1;
+    flex: 1 1 auto;
     justify-content: center;
-    height: 40px;
+    text-align: center;
+    min-height: 40px;
   }
 }
 
