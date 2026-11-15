@@ -2,6 +2,7 @@
 
 ## 0.2.1
 
+- Audit: S13 fails when an app uses the lime accent as a text colour (`color: var(--accent)` in CSS or `style=""`); links and accent text use `--accent-ink`. Found in Meetas, where task links in comments were lime.
 - Needs you (`.hc-need`): the answers sit under the question instead of in a third column. Long answers no longer squeeze the question into a narrow column, and answer buttons wrap their text instead of spilling out of the card on phones.
 
 ## 0.2.0 (tagged 2026-11-13)
