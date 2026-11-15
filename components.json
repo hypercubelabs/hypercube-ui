@@ -320,6 +320,13 @@
     },
     {
       "page": "AI pieces",
+      "name": "State dot",
+      "classes": ".hc-ring[data-state] .hc-dot",
+      "use": "A dot in the corner of the ring, in the ring's colour, for a small avatar in a tight row (a menu item) where the ring alone is hard to read. Only inside a ring with a state.",
+      "markup": "<span class=\"hc-ring round\" data-state=\"working\"><span class=\"av sm\" style=\"--c:var(--orange)\">AR</span><i class=\"hc-dot\" aria-hidden=\"true\"></i></span>\n<span class=\"hc-ring round\" data-state=\"needs\"><span class=\"av sm\" style=\"--c:var(--teal)\">FE</span><i class=\"hc-dot\" aria-hidden=\"true\"></i></span>\n<span class=\"hc-ring round\"><span class=\"av sm\" style=\"--c:var(--violet)\">RV</span></span>"
+    },
+    {
+      "page": "AI pieces",
       "name": "Two-line row",
       "classes": ".hc-row2 [data-unread] [aria-current]",
       "use": "A list of conversations or items: title, time, summary and markers.",

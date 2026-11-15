@@ -65,6 +65,18 @@ svg.hc-spin > * {
 .hc-ring[data-state='working']::after {
   animation: hc-pulse 2.4s ease-in-out infinite;
 }
+/* state dot in the corner of the ring, for rows too tight for the ring alone to read (a menu at 20 px) */
+.hc-ring[data-state] .hc-dot {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--hc-ring);
+  box-shadow: 0 0 0 2px var(--surface);
+  pointer-events: none;
+}
 
 /* ---------- two-line row (conversation, session): .hc-row2 ---------- */
 .hc-row2 {

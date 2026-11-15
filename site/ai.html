@@ -35,6 +35,14 @@
 &lt;span class="hc-ring round" data-state="needs"&gt;&lt;span class="av md" style="--c:var(--teal)"&gt;FE&lt;/span&gt;&lt;/span&gt;
 &lt;span class="hc-ring round"&gt;&lt;span class="av md" style="--c:var(--violet)"&gt;RV&lt;/span&gt;&lt;/span&gt;</code></pre></details></section>
 
+  <section class="ex" id="state-dot"><div class="ex-h"><h3>State dot</h3><code class="faint">.hc-ring[data-state] .hc-dot</code><p>A dot in the corner of the ring, in the ring's colour, for a small avatar in a tight row (a menu item) where the ring alone is hard to read. Only inside a ring with a state.</p></div><div class="ex-demo ">
+  <span class="hc-ring round" data-state="working"><span class="av sm" style="--c:var(--orange)">AR</span><i class="hc-dot" aria-hidden="true"></i></span>
+  <span class="hc-ring round" data-state="needs"><span class="av sm" style="--c:var(--teal)">FE</span><i class="hc-dot" aria-hidden="true"></i></span>
+  <span class="hc-ring round"><span class="av sm" style="--c:var(--violet)">RV</span></span>
+  </div><details class="ex-code"><summary><svg class="i" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>Code</summary><div class="row" style="padding:0 14px 6px"><span class="sp"></span><button class="btn btn-xs btn-ghost" data-copy>Copy</button></div><pre><code>&lt;span class="hc-ring round" data-state="working"&gt;&lt;span class="av sm" style="--c:var(--orange)"&gt;AR&lt;/span&gt;&lt;i class="hc-dot" aria-hidden="true"&gt;&lt;/i&gt;&lt;/span&gt;
+&lt;span class="hc-ring round" data-state="needs"&gt;&lt;span class="av sm" style="--c:var(--teal)"&gt;FE&lt;/span&gt;&lt;i class="hc-dot" aria-hidden="true"&gt;&lt;/i&gt;&lt;/span&gt;
+&lt;span class="hc-ring round"&gt;&lt;span class="av sm" style="--c:var(--violet)"&gt;RV&lt;/span&gt;&lt;/span&gt;</code></pre></details></section>
+
   <section class="ex" id="two-line-row"><div class="ex-h"><h3>Two-line row</h3><code class="faint">.hc-row2 [data-unread] [aria-current]</code><p>A list of conversations or items: title, time, summary and markers.</p></div><div class="ex-demo col">
   <div class="panel" style="max-width:420px;padding:4px">
     <button class="hc-row2" data-unread aria-current="true">

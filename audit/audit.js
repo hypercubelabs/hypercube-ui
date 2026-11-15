@@ -363,6 +363,16 @@
     }
     add('R25', 'error', 'Context switcher (workspace, organisation, product): .hc-switch, first row of the menu', ctx, !switches.length && !ctx.length);
 
+    // R26 the state dot only repeats a ring that has a state
+    const dots = all('.hc-dot');
+    const dot = [];
+    for (const d of dots) {
+      const ring = d.closest('.hc-ring');
+      if (!ring) dot.push(`${name(d)} is outside .hc-ring`);
+      else if (!ring.getAttribute('data-state')) dot.push(`${name(d)} sits in a ring with no data-state: remove the dot or set the state`);
+    }
+    add('R26', 'error', 'State dot: .hc-dot only inside .hc-ring[data-state]', dot, !dots.length);
+
     // R21 every text size comes from the --fs-* scale
     const scale = new Set(['--fs-3xs', '--fs-2xs', '--fs-xs', '--fs-sm', '--fs', '--fs-md', '--fs-lg', '--fs-xl', '--fs-2xl'].map(t => parseFloat(root.getPropertyValue(t))).filter(Boolean));
     const sizes = new Map();
