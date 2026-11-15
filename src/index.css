@@ -7,7 +7,8 @@
    layout      sidebar, top bar, page; drawer on phones
    screens     screen patterns: list + detail, messages, settings, sign in, table
    boards      tree, node, canvas, flow editor, week calendar, usage timeline, diff
-   hc          AI pieces: ring, two-line row, question, trail, bottom sheet… */
+   hc          AI pieces: ring, two-line row, question, trail, bottom sheet…
+   bots        bot characters: the default picture of a bot without a photo */
 @import './tokens.css';
 @import './base.css';
 @import './components.css';
@@ -17,3 +18,4 @@
 @import './screens.css';
 @import './boards.css';
 @import './hc.css';
+@import './bots.css';

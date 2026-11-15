@@ -1,0 +1,203 @@
+/* ============================================================
+   HYPERCUBE UI — bot characters (.hc-bot)
+   A default picture for a bot that has no photo: one of 12 shapes, one of 9 colours,
+   a face that shows the bot's state. Drawn by CSS only (mask + drop-shadow), no SVG in
+   the markup and no JavaScript.
+     <span class="hc-bot md" data-shape="hex" data-color="lime" data-state="working"
+           role="img" aria-label="Reviewer"></span>
+   Shapes: hex block ball pill diamond peak penta clover dome drop octa cloud.
+   Colours: lime teal sky blue violet pink coral orange amber (tokens --bot-*).
+   States: none (idle), working (the eyes move), needs (round eyes), off (closed, grey).
+   Sizes: .sm 20, default 22, .md 26, .lg 36, .xl 64 (same scale as .av); any --sz works.
+   The shape is a small prism seen at 30 degrees, like the cube of the brand: the face
+   (::before) is lit from the top and the thickness is a chain of drop shadows.
+   Same colours in light and dark, like a logo. Markup and rules: components.json.
+   ============================================================ */
+.hc-bot {
+  --sz: 22px;
+  --c: var(--bot-blue);
+  --c-side: var(--bot-blue-side);
+  /* thickness: 8% of the face at 30 degrees, drawn as 15 offset copies (1+2+4+8) */
+  --hc-bot-dx: 0.00398em;
+  --hc-bot-dy: 0.0023em;
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  width: var(--sz);
+  height: var(--sz);
+  font-size: var(--sz);
+  vertical-align: middle;
+  filter: drop-shadow(var(--hc-bot-dx) var(--hc-bot-dy) 0 var(--c-side))
+    drop-shadow(calc(var(--hc-bot-dx) * 2) calc(var(--hc-bot-dy) * 2) 0 var(--c-side))
+    drop-shadow(calc(var(--hc-bot-dx) * 4) calc(var(--hc-bot-dy) * 4) 0 var(--c-side))
+    drop-shadow(calc(var(--hc-bot-dx) * 8) calc(var(--hc-bot-dy) * 8) 0 var(--c-side));
+  user-select: none;
+  --hc-bot-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M39.6 9Q50 3 60.4 9L80.3 20.5Q90.7 26.5 90.7 38.5L90.7 61.5Q90.7 73.5 80.3 79.5L60.4 91Q50 97 39.6 91L19.7 79.5Q9.3 73.5 9.3 61.5L9.3 38.5Q9.3 26.5 19.7 20.5Z'/%3E%3C/svg%3E");
+  --ex: 50;
+  --ey: 52;
+}
+
+.hc-bot::before {
+  content: '';
+  position: absolute;
+  left: 3.54%;
+  top: 3%;
+  width: 86%;
+  height: 86%;
+  background: linear-gradient(
+    color-mix(in oklch, var(--c) 64%, var(--bot-light)),
+    var(--c) 55%,
+    color-mix(in oklch, var(--c) 88%, var(--bot-dark))
+  );
+  -webkit-mask: var(--hc-bot-shape) center / contain no-repeat;
+  mask: var(--hc-bot-shape) center / contain no-repeat;
+}
+/* the eyes: a 40 x 24 box centred on the shape's eye point (--ex, --ey, in shape units of 100) */
+.hc-bot::after {
+  content: '';
+  position: absolute;
+  left: calc((3.54 + (var(--ex) - 20) * 0.86) * 1%);
+  top: calc((3 + (var(--ey) - 12) * 0.86) * 1%);
+  width: 34.40%;
+  height: 20.64%;
+  background: var(--bot-eyes) center / contain no-repeat;
+}
+.hc-bot.sm {
+  --sz: 20px;
+}
+.hc-bot.md {
+  --sz: 26px;
+}
+.hc-bot.lg {
+  --sz: 36px;
+}
+.hc-bot.xl {
+  --sz: 64px;
+}
+.hc-bot[data-state='needs']::after {
+  background-image: var(--bot-eyes-needs);
+}
+.hc-bot[data-state='off']::after {
+  background-image: var(--bot-eyes-off);
+}
+.hc-bot[data-state='working']::after {
+  animation: hc-bot-look 2.6s ease-in-out infinite;
+}
+@keyframes hc-bot-look {
+  0%,
+  100% {
+    transform: translateX(10%);
+  }
+  50% {
+    transform: translateX(-10%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hc-bot[data-state='working']::after {
+    animation: none;
+    transform: translateX(10%);
+  }
+}
+
+.hc-bot[data-color='lime'] {
+  --c: var(--bot-lime);
+  --c-side: var(--bot-lime-side);
+}
+.hc-bot[data-color='teal'] {
+  --c: var(--bot-teal);
+  --c-side: var(--bot-teal-side);
+}
+.hc-bot[data-color='sky'] {
+  --c: var(--bot-sky);
+  --c-side: var(--bot-sky-side);
+}
+.hc-bot[data-color='blue'] {
+  --c: var(--bot-blue);
+  --c-side: var(--bot-blue-side);
+}
+.hc-bot[data-color='violet'] {
+  --c: var(--bot-violet);
+  --c-side: var(--bot-violet-side);
+}
+.hc-bot[data-color='pink'] {
+  --c: var(--bot-pink);
+  --c-side: var(--bot-pink-side);
+}
+.hc-bot[data-color='coral'] {
+  --c: var(--bot-coral);
+  --c-side: var(--bot-coral-side);
+}
+.hc-bot[data-color='orange'] {
+  --c: var(--bot-orange);
+  --c-side: var(--bot-orange-side);
+}
+.hc-bot[data-color='amber'] {
+  --c: var(--bot-amber);
+  --c-side: var(--bot-amber-side);
+}
+/* off wins over the colour */
+.hc-bot[data-state='off'] {
+  --c: var(--bot-off);
+  --c-side: var(--bot-off-side);
+}
+/* shapes: the face as a mask, plus where the eyes sit */
+.hc-bot[data-shape='hex'] {
+  --hc-bot-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M39.6 9Q50 3 60.4 9L80.3 20.5Q90.7 26.5 90.7 38.5L90.7 61.5Q90.7 73.5 80.3 79.5L60.4 91Q50 97 39.6 91L19.7 79.5Q9.3 73.5 9.3 61.5L9.3 38.5Q9.3 26.5 19.7 20.5Z'/%3E%3C/svg%3E");
+  --ex: 50;
+  --ey: 52;
+}
+.hc-bot[data-shape='block'] {
+  --hc-bot-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M8 34Q8 8 34 8L66 8Q92 8 92 34L92 66Q92 92 66 92L34 92Q8 92 8 66Z'/%3E%3C/svg%3E");
+  --ex: 50;
+  --ey: 52;
+}
+.hc-bot[data-shape='ball'] {
+  --hc-bot-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M6 50a44 44 0 1 1 88 0a44 44 0 1 1 -88 0Z'/%3E%3C/svg%3E");
+  --ex: 50;
+  --ey: 50;
+}
+.hc-bot[data-shape='pill'] {
+  --hc-bot-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M5 47.5Q5 22 35 22L65 22Q95 22 95 47.5L95 52.5Q95 78 65 78L35 78Q5 78 5 52.5Z'/%3E%3C/svg%3E");
+  --ex: 50;
+  --ey: 50;
+}
+.hc-bot[data-shape='diamond'] {
+  --hc-bot-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M38.7 14.3Q50 3 61.3 14.3L85.7 38.7Q97 50 85.7 61.3L61.3 85.7Q50 97 38.7 85.7L14.3 61.3Q3 50 14.3 38.7Z'/%3E%3C/svg%3E");
+  --ex: 50;
+  --ey: 52;
+}
+.hc-bot[data-shape='peak'] {
+  --hc-bot-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M41.4 21.8Q50 6 58.6 21.8L87.4 74.2Q96 90 78 90L22 90Q4 90 12.6 74.2Z'/%3E%3C/svg%3E");
+  --ex: 50;
+  --ey: 64;
+}
+.hc-bot[data-shape='penta'] {
+  --hc-bot-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M40.3 13.1Q50 6 59.7 13.1L85.9 32.1Q95.7 39.2 91.9 50.6L81.9 81.4Q78.2 92.8 66.2 92.8L33.8 92.8Q21.8 92.8 18.1 81.4L8.1 50.6Q4.3 39.2 14.1 32.1Z'/%3E%3C/svg%3E");
+  --ex: 50;
+  --ey: 56;
+}
+.hc-bot[data-shape='clover'] {
+  --hc-bot-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M7 31a24 24 0 1 1 48 0a24 24 0 1 1 -48 0ZM45 31a24 24 0 1 1 48 0a24 24 0 1 1 -48 0ZM7 69a24 24 0 1 1 48 0a24 24 0 1 1 -48 0ZM45 69a24 24 0 1 1 48 0a24 24 0 1 1 -48 0ZM30 30H70V70H30Z'/%3E%3C/svg%3E");
+  --ex: 50;
+  --ey: 50;
+}
+.hc-bot[data-shape='dome'] {
+  --hc-bot-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M5 60A45 45 0 0 1 95 60V82Q95 92 85 92H15Q5 92 5 82Z'/%3E%3C/svg%3E");
+  --ex: 50;
+  --ey: 62;
+}
+.hc-bot[data-shape='drop'] {
+  --hc-bot-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M44.3 11.9Q50 5 55.7 11.9L77 37.7A35 35 0 1 1 23 37.7Z'/%3E%3C/svg%3E");
+  --ex: 50;
+  --ey: 64;
+}
+.hc-bot[data-shape='octa'] {
+  --hc-bot-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M93.4 58Q93.4 68 86.4 75.1L75.1 86.4Q68 93.4 58 93.4L42 93.4Q32 93.4 24.9 86.4L13.6 75.1Q6.6 68 6.6 58L6.6 42Q6.6 32 13.6 24.9L24.9 13.6Q32 6.6 42 6.6L58 6.6Q68 6.6 75.1 13.6L86.4 24.9Q93.4 32 93.4 42Z'/%3E%3C/svg%3E");
+  --ex: 50;
+  --ey: 51;
+}
+.hc-bot[data-shape='cloud'] {
+  --hc-bot-shape: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M5 60a23 23 0 1 1 46 0a23 23 0 1 1 -46 0ZM23 42a29 29 0 1 1 58 0a29 29 0 1 1 -58 0ZM52 60a22 22 0 1 1 44 0a22 22 0 1 1 -44 0ZM28 60H74V83H28ZM33 66a17 17 0 1 1 34 0a17 17 0 1 1 -34 0Z'/%3E%3C/svg%3E");
+  --ex: 50;
+  --ey: 58;
+}

@@ -17,6 +17,7 @@ Hypercube UI is CSS on tokens (CSS custom properties) plus two browser elements 
 | `src/layout.css` | App shell: sidebar, top bar, page, page header. The sidebar becomes a drawer on phones. |
 | `src/screens.css` | Screen patterns: list + content + side, messages, composer, settings, sign-in, a table that turns into cards. |
 | `src/hc.css` | Pieces for AI screens: status ring, two-line row, bot question, trail (with substeps and approval), needs you, changes with undo, bottom sheet. |
+| `src/bots.css` | Bot characters (`.hc-bot`): the default picture of a bot without a photo, 12 shapes and 9 colours, with a face that shows the state. |
 | `src/boards.css` | Pieces for screens laid out in space or time: node, connected tree, canvas, flow with side panel, file and diff, on/off filters, week calendar, usage timeline. |
 | `src/elements.js` | Optional behaviour: `<hc-ask>` (keys 1 to 9), `<hc-sheet>` (bottom sheet), long press. |
 | `fonts/` | Instrument Sans (OFL). `tokens.css` reads `../fonts/InstrumentSans.ttf`: keep `fonts/` next to `src/`. |
@@ -61,6 +62,7 @@ Follow the order. Do not skip the check at the end.
 | Filter the person built and can remove | `.chip` with a remove button |
 | Table row that opens something | `tr[data-opens]` or `tr[data-href]`, `aria-current` on the open one, `<button class="hc-t-open">` in the first cell for the keyboard |
 | Photo or initials | `.av` (`.sm` `.md` `.lg` `.xl`) with `--c`; group in `.avs` |
+| Bot (AI agent) without a photo: initials, a robot icon, a generated avatar | `.hc-bot` with `data-shape`, `data-color` (picked from the bot's id until the person chooses) and `data-state` (`working`, `needs`, `off`); `role="img"` + `aria-label`, or `aria-hidden` next to the name; a photo, when there is one, replaces it |
 | Modal / dialog | `.scrim` + `.modal-wrap` > `.modal` > `.modal-h` `.modal-b` `.modal-f` |
 | Detail side panel | `.drawer-scrim` + `.drawer` > `.drawer-h` `.drawer-b` |
 | Actions dropdown | `.pop` > `.mi` / `.msep` / `.mh`; on phones prefer `<hc-sheet>` |

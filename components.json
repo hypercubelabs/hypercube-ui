@@ -1,6 +1,6 @@
 {
   "name": "Hypercube UI",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "how_to_use": "Import src/index.css (and src/elements.js for <hc-ask> and <hc-sheet>). Copy the markup of each piece; change only the text. Icons: Lucide, stroke 1.8. Full rules in AGENTS.md.",
   "pieces": [
     {
@@ -331,6 +331,20 @@
       "classes": ".hc-ring[data-state] .hc-dot",
       "use": "A dot in the corner of the ring, in the ring's colour, for a small avatar in a tight row (a menu item) where the ring alone is hard to read. Only inside a ring with a state.",
       "markup": "<span class=\"hc-ring round\" data-state=\"working\"><span class=\"av sm\" style=\"--c:var(--orange)\">AR</span><i class=\"hc-dot\" aria-hidden=\"true\"></i></span>\n<span class=\"hc-ring round\" data-state=\"needs\"><span class=\"av sm\" style=\"--c:var(--teal)\">FE</span><i class=\"hc-dot\" aria-hidden=\"true\"></i></span>\n<span class=\"hc-ring round\"><span class=\"av sm\" style=\"--c:var(--violet)\">RV</span></span>"
+    },
+    {
+      "page": "AI pieces",
+      "name": "Bot character",
+      "classes": ".hc-bot[data-shape][data-color][data-state] .sm .md .lg .xl",
+      "use": "The default picture of a bot without a photo: 12 shapes, 9 colours, a face that shows the state. Same colours in light and dark.",
+      "markup": "<span class=\"hc-bot xl\" data-shape=\"hex\" data-color=\"lime\" role=\"img\" aria-label=\"Reviewer, idle\"></span>\n<span class=\"hc-ring round\" data-state=\"working\"><span class=\"hc-bot xl\" data-shape=\"clover\" data-color=\"violet\" data-state=\"working\" role=\"img\" aria-label=\"Writer, working\"></span></span>\n<span class=\"hc-ring round\" data-state=\"needs\"><span class=\"hc-bot xl\" data-shape=\"drop\" data-color=\"orange\" data-state=\"needs\" role=\"img\" aria-label=\"Support, needs you\"></span></span>\n<span class=\"hc-bot xl\" data-shape=\"block\" data-color=\"teal\" data-state=\"off\" role=\"img\" aria-label=\"Finance, off\"></span>"
+    },
+    {
+      "page": "AI pieces",
+      "name": "Bot shapes and colours",
+      "classes": ".hc-bot[data-shape] [data-color]",
+      "use": "hex block ball pill diamond peak penta clover dome drop octa cloud; lime teal sky blue violet pink coral orange amber. Pick one from the bot's id so the same bot always has the same face; the person can change it.",
+      "markup": "<div class=\"row\" style=\"gap:14px;flex-wrap:wrap\">\n  <span class=\"hc-bot lg\" data-shape=\"hex\" data-color=\"lime\" role=\"img\" aria-label=\"hex\"></span>\n  <span class=\"hc-bot lg\" data-shape=\"block\" data-color=\"violet\" role=\"img\" aria-label=\"block\"></span>\n  <span class=\"hc-bot lg\" data-shape=\"ball\" data-color=\"amber\" role=\"img\" aria-label=\"ball\"></span>\n  <span class=\"hc-bot lg\" data-shape=\"pill\" data-color=\"blue\" role=\"img\" aria-label=\"pill\"></span>\n  <span class=\"hc-bot lg\" data-shape=\"diamond\" data-color=\"orange\" role=\"img\" aria-label=\"diamond\"></span>\n  <span class=\"hc-bot lg\" data-shape=\"peak\" data-color=\"sky\" role=\"img\" aria-label=\"peak\"></span>\n  <span class=\"hc-bot lg\" data-shape=\"penta\" data-color=\"coral\" role=\"img\" aria-label=\"penta\"></span>\n  <span class=\"hc-bot lg\" data-shape=\"clover\" data-color=\"teal\" role=\"img\" aria-label=\"clover\"></span>\n  <span class=\"hc-bot lg\" data-shape=\"dome\" data-color=\"pink\" role=\"img\" aria-label=\"dome\"></span>\n  <span class=\"hc-bot lg\" data-shape=\"drop\" data-color=\"lime\" role=\"img\" aria-label=\"drop\"></span>\n  <span class=\"hc-bot lg\" data-shape=\"octa\" data-color=\"violet\" role=\"img\" aria-label=\"octa\"></span>\n  <span class=\"hc-bot lg\" data-shape=\"cloud\" data-color=\"amber\" role=\"img\" aria-label=\"cloud\"></span>\n</div>\n<div class=\"row\" style=\"gap:10px;flex-wrap:wrap\">\n  <span class=\"hc-bot md\" data-shape=\"hex\" data-color=\"lime\" role=\"img\" aria-label=\"lime\"></span>\n  <span class=\"hc-bot md\" data-shape=\"hex\" data-color=\"teal\" role=\"img\" aria-label=\"teal\"></span>\n  <span class=\"hc-bot md\" data-shape=\"hex\" data-color=\"sky\" role=\"img\" aria-label=\"sky\"></span>\n  <span class=\"hc-bot md\" data-shape=\"hex\" data-color=\"blue\" role=\"img\" aria-label=\"blue\"></span>\n  <span class=\"hc-bot md\" data-shape=\"hex\" data-color=\"violet\" role=\"img\" aria-label=\"violet\"></span>\n  <span class=\"hc-bot md\" data-shape=\"hex\" data-color=\"pink\" role=\"img\" aria-label=\"pink\"></span>\n  <span class=\"hc-bot md\" data-shape=\"hex\" data-color=\"coral\" role=\"img\" aria-label=\"coral\"></span>\n  <span class=\"hc-bot md\" data-shape=\"hex\" data-color=\"orange\" role=\"img\" aria-label=\"orange\"></span>\n  <span class=\"hc-bot md\" data-shape=\"hex\" data-color=\"amber\" role=\"img\" aria-label=\"amber\"></span>\n</div>"
     },
     {
       "page": "AI pieces",

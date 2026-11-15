@@ -75,6 +75,33 @@
   --st-progress: #b97a0a;
   --st-review: #6a4bb0;
   --st-done: #315d19;
+  /* bot characters (.hc-bot): the same colours in light and dark, like a logo.
+     Each colour has its face and the darker side of its 30-degree thickness. */
+  --bot-lime: #bcfe96;
+  --bot-lime-side: #7abd4f;
+  --bot-teal: #5cd5c7;
+  --bot-teal-side: #00978a;
+  --bot-sky: #75caf2;
+  --bot-sky-side: #218cb5;
+  --bot-blue: #86a9f7;
+  --bot-blue-side: #496bba;
+  --bot-violet: #b995f6;
+  --bot-violet-side: #7d56b8;
+  --bot-pink: #f594c3;
+  --bot-pink-side: #b55386;
+  --bot-coral: #fa8880;
+  --bot-coral-side: #b94642;
+  --bot-orange: #fea668;
+  --bot-orange-side: #be6517;
+  --bot-amber: #f8ca65;
+  --bot-amber-side: #b98a00;
+  --bot-off: #b0b8c1;
+  --bot-off-side: #78818b;
+  --bot-light: #ffffff;
+  --bot-dark: #000000;
+  --bot-eyes: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 24'%3E%3Crect x='5.5' y='3.5' width='8' height='17' rx='4' fill='%23101010'/%3E%3Crect x='26.5' y='3.5' width='8' height='17' rx='4' fill='%23101010'/%3E%3Ccircle cx='10.4' cy='7.5' r='1.7' fill='%23ffffff' opacity='.9'/%3E%3Ccircle cx='31.4' cy='7.5' r='1.7' fill='%23ffffff' opacity='.9'/%3E%3C/svg%3E");
+  --bot-eyes-needs: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 24'%3E%3Ccircle cx='9' cy='9' r='6' fill='%23101010'/%3E%3Ccircle cx='31' cy='9' r='6' fill='%23101010'/%3E%3Ccircle cx='10.8' cy='7' r='1.7' fill='%23ffffff' opacity='.9'/%3E%3Ccircle cx='32.8' cy='7' r='1.7' fill='%23ffffff' opacity='.9'/%3E%3C/svg%3E");
+  --bot-eyes-off: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 24'%3E%3Crect x='3' y='12' width='12' height='4' rx='2' fill='%23101010'/%3E%3Crect x='25' y='12' width='12' height='4' rx='2' fill='%23101010'/%3E%3C/svg%3E");
   /* elevation */
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
   --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.04), 0 0 0 1px var(--border);
