@@ -1,5 +1,9 @@
 # Changes
 
+## 0.4.1
+
+- Tooltip: two positions for an element next to an edge of the screen, `data-tip-pos="start"` and `data-tip-pos="end"` (below, lined up with the left or the right side of the element), on any `[data-tip]` and on the status ring. A centred tip on the first picture of a header was cut by the edge of the work area. Found in Meetas, on the bot's picture at the top of its conversation.
+
 ## 0.4.0
 
 - Work block (`.hc-works` > `.hc-trail.hc-work`, in `src/hc.css`): the reply each bot is working on now, in the conversation, under the messages. The header says who and the state in one line (`.hc-work-s`), the plan shows the last actions under the current step, a step someone asked for in the middle says whose request it is (`.hc-step-by`), and a bot waiting in line shows only the header with a button to where it is busy (`.hc-work-x`). The chat template uses it. Found in Meetas, whose conversation drew it locally.

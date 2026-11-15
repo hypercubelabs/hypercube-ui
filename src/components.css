@@ -248,6 +248,24 @@
   top: auto;
   bottom: calc(100% + 6px);
 }
+/* next to an edge of the screen: below, lined up with the start (left) or the end (right) of the element, so it is never cut */
+[data-tip-pos='start']:where(:not(.hc-ring)):hover::after,
+[data-tip-pos='start']:where(:not(.hc-ring)):focus-visible::after,
+.hc-ring[data-tip-pos='start']:hover::before,
+.hc-ring[data-tip-pos='start']:focus-visible::before,
+:is(a, button):focus-visible > .hc-ring[data-tip-pos='start']::before {
+  left: 0;
+  transform: none;
+}
+[data-tip-pos='end']:where(:not(.hc-ring)):hover::after,
+[data-tip-pos='end']:where(:not(.hc-ring)):focus-visible::after,
+.hc-ring[data-tip-pos='end']:hover::before,
+.hc-ring[data-tip-pos='end']:focus-visible::before,
+:is(a, button):focus-visible > .hc-ring[data-tip-pos='end']::before {
+  left: auto;
+  right: 0;
+  transform: none;
+}
 @keyframes tipIn {
   from {
     opacity: 0;
