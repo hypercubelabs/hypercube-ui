@@ -86,6 +86,7 @@ node scripts/audit.mjs --src ../my-app \
 | R23 | error | The work area (`.content`, `main`, `.page`, `.ph`, `.hc-main`, the sign-in card) sits on `var(--surface)`, white in light; the grey `var(--bg)` only behind the sign-in card | Set `body`, `.main` and `.content` to `var(--surface)`; remove the app's own grey. |
 | R24 | error | One vertical scrollbar per area: no scrolling box inside another (text areas and code blocks excepted), and the window does not scroll while a tall box scrolls inside it | Put `.fill` on `.content` and `.fill-b` on the piece that scrolls; drop guessed `max-height: calc(100vh - …)`. |
 | R25 | error | The context the person works in (workspace, organisation, product) is picked with one `button.hc-switch` in `.side-top`, with `aria-haspopup="menu"`, `aria-expanded`, `.hc-switch-logo` and `.hc-switch-name`; its `.hc-switch-menu` has each choice as `.mi[role="menuitemradio"]` and exactly one `aria-checked="true"`. No `<select>` or look-alike button in the menu or top bar picks it, and no `<select>` of the workspace or organisation inside a page | Copy the "Context switcher" markup from `components.json`; remove the old picker. |
+| R26 | error | A state dot (`.hc-dot`) sits only inside `.hc-ring[data-state]`, where it repeats the ring's colour | Remove the dot from a ring with no state, or give the ring its `data-state`. |
 
 `data-audit-skip` on an element leaves it and its children out of the page checks. Use it only for demos, like the catalog does for an error page shown inside a page; never to hide a real problem.
 

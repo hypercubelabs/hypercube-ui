@@ -1,7 +1,8 @@
 # Changes
 
-## 0.2.1
+## 0.2.1 (tagged 2026-11-15)
 
+- State dot (`.hc-ring[data-state] .hc-dot`): a dot in the corner of the status ring, in the ring's colour, for small avatars in tight rows such as a menu item, where the ring alone is hard to read. Audit R26 checks it only appears inside a ring with a state. Found in Meetas, whose bots menu drew it locally.
 - Audit: S13 fails when an app uses the lime accent as a text colour (`color: var(--accent)` in CSS or `style=""`); links and accent text use `--accent-ink`. Found in Meetas, where task links in comments were lime.
 - Needs you (`.hc-need`): the answers sit under the question instead of in a third column. Long answers no longer squeeze the question into a narrow column, and answer buttons wrap their text instead of spilling out of the card on phones.
 
