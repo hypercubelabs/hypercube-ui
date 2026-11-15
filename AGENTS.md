@@ -68,7 +68,7 @@ Follow the order. Do not skip the check at the end.
 | A picker of workspace, organisation, product or tenant (a `<select>`, a dropdown in the top bar, a box inside a page) | `button.hc-switch` in `.side-top` (logo, name, up-down chevrons) + `.pop.hc-switch-menu` with `.mi[role=menuitemradio]` per choice, the current one `aria-checked="true"` with `.ck`, then settings / create / invite. The "Context switcher" in `components.json` |
 | Text size, "the app looks too small/big" | `<hc-zoom class="hc-zoom">` (Adjust screen) in `.side-bot`; never change the tokens for one person's taste |
 | Menu item that does not work yet | `.sitem[aria-disabled=true]` (or remove it, if the person agrees) |
-| Table | `table.hc-table` with `td[data-label]` (turns into cards at 640 px) |
+| Table | `table.hc-table` with `td[data-label]` (turns into cards at 640 px). An editable grid keeps `role="grid"` and scrolls sideways; code in a table (a diff) is `role="presentation"` |
 | List + detail (email, chat, support) | `.hc-split` > `.hc-list` + `.hc-main` (+ `.hc-aside`) |
 | Chat | `.hc-msgs` > `.hc-msgs-in` > `.hc-m` (`.mine` for yours) + `.hc-foot` > `form.hc-composer` |
 | Settings | `.hc-set` > `.hc-set-nav` + `.hc-set-in`, rows `.hc-srow` |
@@ -164,6 +164,8 @@ Sizes in `tokens.css` are the same for everyone. When a person wants the app big
 ## Light and dark theme
 
 With nothing set, it follows the system. To force one, set `data-theme="light"` or `data-theme="dark"` on `<html>`. To keep the choice, save it in `localStorage` and apply it before drawing (see `catalog/theme.js`).
+
+The same attribute on any element scopes the theme to it: a theme preview, a dark panel in a light page, a card that stays light. `data-accent` works the same way (`hypercube`, `indigo`, `blue`, `violet`, `teal`, `rose`, `graphite`), so a row of accent swatches can be drawn from the tokens: each swatch carries its `data-accent` and paints `var(--acc-l)`.
 
 ## Checklist (before saying you are done)
 

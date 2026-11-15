@@ -42,7 +42,10 @@
   };
 
   // every colour token the page defines on :root, resolved to rgb in the current theme
-  function palette() {
+  const palettes = new Map();
+  // the tokens' colours as the browser resolves them in `scope` (the body, or an element with its own data-theme)
+  function palette(scope = document.body) {
+    if (palettes.has(scope)) return palettes.get(scope);
     const names = new Set();
     const walk = rules => {
       for (const r of rules) {
@@ -56,7 +59,7 @@
     }
     const probe = document.createElement('i');
     probe.style.display = 'none';
-    document.body.append(probe);
+    scope.append(probe);
     const set = new Set(['0,0,0:0']);
     for (const n of names) {
       probe.style.color = '';
@@ -65,6 +68,7 @@
       if (probe.style.color && v) set.add(channels(v));
     }
     probe.remove();
+    palettes.set(scope, { set, count: names.size });
     return { set, count: names.size };
   }
 
@@ -128,7 +132,7 @@
       const s = getComputedStyle(el);
       if (s.animationName !== 'none' && s.animationIterationCount === 'infinite' && /rotate|spin/i.test(s.animationName + ' ' + s.transform) && shown(el)) spin.push(`${name(el)}: endless ${s.animationName} animation`);
     }
-    if (document.querySelector('[role="progressbar"]:not(.progress):not(.hc-loader)')) spin.push('role="progressbar" outside .progress');
+    if (document.querySelector('[role="progressbar"]:not(.prog):not(.progress):not(.hc-loader)')) spin.push('role="progressbar" outside .prog');
     add('R06', 'error', 'Loading uses only .hc-loader (or .is-loading / .is-busy)', spin);
 
     // R07 no literal colours in style attributes
@@ -143,10 +147,11 @@
     // R08 every colour on screen comes from a token
     const off = [];
     if (loaded) {
-      const { set } = palette();
       const seen = new Set();
       for (const el of all('body *')) {
         if (!shown(el) || el.closest(TINTED)) continue;
+        const scope = el.closest('[data-theme], [data-accent]');
+        const { set } = palette(scope && scope !== document.documentElement ? scope : document.body);
         const s = getComputedStyle(el);
         const check = (prop, v) => {
           const c = channels(v);
@@ -217,6 +222,7 @@
     // R15 tables
     const tb = [];
     for (const t of all('table')) {
+      if (t.matches('[role="grid"], [role="presentation"]')) continue; // an editable grid, or code laid out in a table (a diff)
       if (!t.classList.contains('hc-table')) { tb.push(`${name(t)}: use table.hc-table`); continue; }
       const cell = t.querySelector('tbody td:not([data-label]):not(.hc-t-main):not([colspan])');
       if (cell) tb.push(`${name(t)}: td without data-label (phones show it as a card)`);
