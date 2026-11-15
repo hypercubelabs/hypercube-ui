@@ -7,7 +7,7 @@
            role="img" aria-label="Reviewer"></span>
    Shapes: hex block ball pill diamond peak penta clover dome drop octa cloud.
    Colours: lime teal sky blue violet pink coral orange amber (tokens --bot-*).
-   States: none (idle), working (looks left and right, leaning), needs (big round eyes and an open mouth), off (closed, grey).
+   States: none (idle, blinks now and then), working (looks left and right, leaning), needs (big round eyes, an open mouth and two little hops), off (closed, grey).
    Sizes: .sm 20, default 22, .md 26, .lg 36, .xl 64 (same scale as .av); any --sz works.
    The shape is a small prism seen at 30 degrees, like the cube of the brand: the face
    (::before) is lit from the top and the thickness is a chain of drop shadows.
@@ -125,7 +125,46 @@
     rotate: 6deg;
   }
 }
+/* idle: blinks now and then; each colour starts at another moment, so a list never blinks together */
+.hc-bot:not([data-state])::after {
+  animation: hc-bot-blink 6s infinite;
+  animation-delay: var(--hc-bot-wait, 0s);
+  transform-origin: 50% 45%;
+}
+@keyframes hc-bot-blink {
+  0%,
+  93%,
+  97%,
+  100% {
+    transform: scaleY(1);
+  }
+  95% {
+    transform: scaleY(0.1);
+  }
+}
+/* needs: two little hops, then a rest, like someone calling */
+.hc-bot[data-state='needs'] {
+  animation: hc-bot-hop 2.4s ease-in-out infinite;
+}
+@keyframes hc-bot-hop {
+  0%,
+  40%,
+  100% {
+    translate: 0 0;
+  }
+  10% {
+    translate: 0 -16%;
+  }
+  20% {
+    translate: 0 0;
+  }
+  28% {
+    translate: 0 -9%;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
+  .hc-bot:not([data-state])::after,
+  .hc-bot[data-state='needs'],
   .hc-bot[data-state='working'],
   .hc-bot[data-state='working']::after {
     animation: none;
@@ -138,38 +177,47 @@
 .hc-bot[data-color='lime'] {
   --c: var(--bot-lime);
   --c-side: var(--bot-lime-side);
+  --hc-bot-wait: -0.4s;
 }
 .hc-bot[data-color='teal'] {
   --c: var(--bot-teal);
   --c-side: var(--bot-teal-side);
+  --hc-bot-wait: -2.1s;
 }
 .hc-bot[data-color='sky'] {
   --c: var(--bot-sky);
   --c-side: var(--bot-sky-side);
+  --hc-bot-wait: -4.3s;
 }
 .hc-bot[data-color='blue'] {
   --c: var(--bot-blue);
   --c-side: var(--bot-blue-side);
+  --hc-bot-wait: -1.2s;
 }
 .hc-bot[data-color='violet'] {
   --c: var(--bot-violet);
   --c-side: var(--bot-violet-side);
+  --hc-bot-wait: -3.5s;
 }
 .hc-bot[data-color='pink'] {
   --c: var(--bot-pink);
   --c-side: var(--bot-pink-side);
+  --hc-bot-wait: -5.2s;
 }
 .hc-bot[data-color='coral'] {
   --c: var(--bot-coral);
   --c-side: var(--bot-coral-side);
+  --hc-bot-wait: -2.8s;
 }
 .hc-bot[data-color='orange'] {
   --c: var(--bot-orange);
   --c-side: var(--bot-orange-side);
+  --hc-bot-wait: -0.9s;
 }
 .hc-bot[data-color='amber'] {
   --c: var(--bot-amber);
   --c-side: var(--bot-amber-side);
+  --hc-bot-wait: -4.8s;
 }
 /* off wins over the colour */
 .hc-bot[data-state='off'] {

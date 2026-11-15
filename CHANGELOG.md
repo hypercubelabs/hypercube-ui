@@ -1,5 +1,9 @@
 # Changes
 
+## 0.3.2
+
+- Bot characters come alive: an idle character blinks now and then (each colour at another moment, so a list never blinks together) and a character that needs the person gives two little hops and rests, so the one calling is seen even at menu size. Working still looks left and right. Reduced motion stops all of it. Found in Meetas, where no bot moved while none was working.
+
 ## 0.3.1
 
 - Bot characters: the face now reads at menu size. Small characters (`.sm` and the default size) get eyes 30% bigger; `working` looks left, holds, looks right and the body leans with the eyes (it moved less than 1 px before); `needs` has big round eyes with a bright catchlight and a small open mouth, so it no longer looks like the idle face. With reduced motion the working face stays still, looking to the side. Found in Meetas, where the person could not see the states in the bots menu.
