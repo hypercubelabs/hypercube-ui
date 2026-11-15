@@ -1,6 +1,10 @@
 # Changes
 
-## 0.3.0
+## 0.3.1
+
+- Bot characters: the face now reads at menu size. Small characters (`.sm` and the default size) get eyes 30% bigger; `working` looks left, holds, looks right and the body leans with the eyes (it moved less than 1 px before); `needs` has big round eyes with a bright catchlight and a small open mouth, so it no longer looks like the idle face. With reduced motion the working face stays still, looking to the side. Found in Meetas, where the person could not see the states in the bots menu.
+
+## 0.3.0 (tagged 2026-11-15)
 
 - Bot characters (`.hc-bot`, `src/bots.css`): the default picture of a bot that has no photo. 12 shapes (`data-shape`: hex, block, ball, pill, diamond, peak, penta, clover, dome, drop, octa, cloud) and 9 colours (`data-color`: lime, teal, sky, blue, violet, pink, coral, orange, amber), so 108 characters. Each is a small prism seen at 30 degrees, like the cube of the brand, lit from the top. The face shows the state (`data-state`: none when idle, `working` moves the eyes, `needs` opens them wide, `off` closes them and turns the colour grey). Drawn by CSS only (mask and drop shadows), sizes like `.av`. Same colours in light and dark, from the new `--bot-*` tokens. The bot profile template uses it.
 - Audit: R27 checks every `.hc-bot` (known shape and colour, valid state, named or hidden, no text inside); manual check M15 (no initials for a bot without a photo, the same face everywhere, the photo wins).
