@@ -15,8 +15,8 @@ Hypercube UI is CSS on tokens (CSS custom properties) plus two browser elements 
 | `src/states.css` | Empty, loading (skeleton), error, alert, error page. |
 | `src/overlays.css` | Modal, drawer, menu, toast. |
 | `src/layout.css` | App shell: sidebar, top bar, page, page header. The sidebar becomes a drawer on phones. |
-| `src/screens.css` | Screen patterns: list + content + side, messages, composer, settings, sign-in, a table that turns into cards. |
-| `src/hc.css` | Pieces for AI screens: status ring, two-line row, bot question, trail (with substeps and approval), needs you, changes with undo, bottom sheet. |
+| `src/screens.css` | Screen patterns: list + content + side, messages (with event lines), composer, settings, sign-in, a table that turns into cards. |
+| `src/hc.css` | Pieces for AI screens: status ring, two-line row, bot question, trail (with substeps and approval), work block, needs you, changes with undo, bottom sheet. |
 | `src/bots.css` | Bot characters (`.hc-bot`): the default picture of a bot without a photo, 12 shapes and 9 colours, with a face that shows the state. |
 | `src/boards.css` | Pieces for screens laid out in space or time: node, connected tree, canvas, flow with side panel, file and diff, on/off filters, week calendar, usage timeline. |
 | `src/elements.js` | Optional behaviour: `<hc-ask>` (keys 1 to 9), `<hc-sheet>` (bottom sheet), long press. |
@@ -78,6 +78,9 @@ Follow the order. Do not skip the check at the end.
 | Long form | `.hc-sectioned` > `.hc-sections` + one section at a time |
 | Spinner, loader, "loading…" | `.hc-loader` (14 px) or `.hc-loader.lg` (24 px); in a button, `.is-loading`; never another spinner |
 | Screen with AI at work | `hc.css`: `.hc-ring`, `.hc-running`, `<hc-ask>`, `.hc-needs`, `.hc-trail`, `.hc-changes` |
+| The reply a bot is working on now, shown in the conversation (plan, last actions, a bot waiting in line) | `.hc-works[role=status]` > `section.hc-trail.hc-work[aria-label]` > `.hc-trail-h` (ring, name in `b`, `.hc-work-s`, `.hc-trail-n` or a `.hc-work-x` button) + `.hc-steps`; `.hc-step-by` for a step someone asked for in the middle |
+| A line in a conversation for something that happened and is not a message (a routine ran, a setting changed) | `.hc-event` > icon + `.hc-event-t` + button + `time`; `.hc-sys` when there is nothing to do about it |
+| A tooltip saying what the bot is doing, where only its picture shows | `data-tip` on the `.hc-ring` around the picture (never on `.hc-bot`) |
 | Agent steps with tool calls inside and a step that waits for a person | `.hc-trail` > `.hc-step` with `.hc-step-tg[aria-expanded]` + `.hc-sub`; approval step `data-state="approval"` with buttons in `.hc-step-x` |
 | Workflow, pipeline, decision tree | `.hc-canvas` > `.hc-tree` (nested `ul`/`li`) > `.hc-node`; `ul[data-join]` for OR/AND, `.hc-edge` for a branch label, `li[data-on]` for the followed path, `li[data-off]` for a ruled-out branch, `.hc-add` to add a step |
 | Canvas with a settings panel for the selected item | `.hc-flow[data-side]` > canvas + `.hc-flow-side` (`-h`, `-b`, `-f`); it becomes a bottom sheet on phones |

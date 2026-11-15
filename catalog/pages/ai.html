@@ -14,6 +14,11 @@
   <span class="hc-ring round"><span class="av sm" style="--c:var(--violet)">RV</span></span>
   <!-- /ex -->
 
+  <!-- ex: What the bot is doing, on hover | .hc-ring[data-tip] [data-tip-pos] | Where only the picture shows (a conversation header, a message, a pile of avatars), the ring says what the bot is doing on hover, and on keyboard focus of the button or link it sits in. The tip goes on the ring, never on the avatar or character inside it. Where the row already writes the action, leave it out: nothing appears twice. -->
+  <button class="btn btn-ghost" data-toast="Example: would open the conversation with Frontend engineer"><span class="hc-ring round" data-state="needs" data-tip="Waiting on your answer" data-tip-pos="top"><span class="av sm" style="--c:var(--teal)">FE</span></span>Frontend engineer</button>
+  <span class="hc-ring round" data-state="working" data-tip="Editing sync/queue.ts" data-tip-pos="right"><span class="av md" style="--c:var(--orange)">AR</span></span>
+  <!-- /ex -->
+
   <!-- ex: Bot character | .hc-bot[data-shape][data-color][data-state] .sm .md .lg .xl | The default picture of a bot without a photo: 12 shapes, 9 colours, a face that shows the state. Same colours in light and dark. -->
   <span class="hc-bot xl" data-shape="hex" data-color="lime" role="img" aria-label="Reviewer, idle"></span>
   <span class="hc-bot xl" data-shape="ball" data-color="sky" data-state="thinking" role="img" aria-label="Researcher, about to answer"></span>
@@ -121,6 +126,14 @@
   </div>
   <!-- /ex -->
 
+  <!-- ex: Chat event | .hc-event .hc-event-t | Something that happened in the conversation and is not a message: a routine ran, a setting changed. One line under the text of the messages: icon, what happened, what the person can do about it, the time. A sentence with nothing to do about it (someone joined) is .hc-sys. | col -->
+  <div style="max-width:680px">
+    <div class="hc-event">{{i:clock:14}}<span class="hc-event-t"><b>Morning summary</b> ran, as it does every weekday at 08:00</span><button class="btn btn-ghost btn-xs" data-toast="Example: would open the routine">Open the routine</button><time>08:00</time></div>
+    <div class="hc-m"><span class="av sm" style="--c:var(--orange)">AR</span><div><div class="hc-m-h"><b>Architect</b><time>08:00</time></div><div class="hc-m-t"><p>Three tasks moved since yesterday and one is waiting on you.</p></div></div></div>
+    <div class="hc-event">{{i:pencil:14}}<span class="hc-event-t">You changed <b>Morning summary</b> to run at 07:30</span><button class="btn btn-ghost btn-xs" data-toast="Example: would put it back at 08:00">Undo</button><time>08:12</time></div>
+  </div>
+  <!-- /ex -->
+
   <!-- ex: Trail | .hc-trail .hc-steps .hc-step[data-state] .hc-act | The bot's work step by step, with what it did in each step. | col -->
   <section class="hc-trail" aria-label="Architect's work" style="max-width:620px">
     <div class="hc-trail-h"><span class="hc-ring round" data-state="working"><span class="av sm" style="--c:var(--orange)">AR</span></span><b>Offline sync</b><span class="hc-id">MOB-109</span><span class="hc-trail-n">1/4</span></div>
@@ -156,6 +169,30 @@
       <li class="hc-step" data-state="approval"><span class="hc-mark"></span><span class="hc-step-l"><span class="hc-step-ic">{{i:git-pull-request:12}}</span>Open a pull request</span><span class="hc-step-m"><span class="hc-step-s">Approval</span></span></li>
     </ol>
   </section>
+  <!-- /ex -->
+
+  <!-- ex: Work block | .hc-works > .hc-trail.hc-work .hc-work-s .hc-work-x .hc-step-by | The reply each bot is working on now, in the conversation, under the messages: who, the state in one line, the plan with the last actions under the current step. A step someone asked for in the middle says whose request it is. A bot that waits in line shows only the header: where it is busy and a button to go there. One block per bot; it leaves when the answer arrives. | col -->
+  <div style="max-width:680px">
+    <div class="hc-m mine"><div class="hc-m-t">Fix the failing tests on the sign in screen, then ask Writer for the release note.</div></div>
+    <div class="hc-works" role="status">
+      <section class="hc-trail hc-work" aria-label="Work of Frontend engineer">
+        <div class="hc-trail-h"><span class="hc-ring round" data-state="working"><span class="av sm" style="--c:var(--teal)">FE</span></span><b>Frontend engineer</b><span class="hc-work-s">Working · 4 min</span><span class="hc-trail-n">1/3</span></div>
+        <ol class="hc-steps">
+          <li class="hc-step" data-state="done"><span class="hc-mark"></span><span class="hc-step-l">Run the tests</span><span class="hc-step-m"></span></li>
+          <li class="hc-step" data-state="current"><span class="hc-mark"></span><span class="hc-step-l">Fix the sign in screen</span><span class="hc-step-m"></span>
+            <ul class="hc-acts">
+              <li><details class="hc-act"><summary>{{i:terminal:13}}<span class="hc-act-t">Ran <code>npm test</code></span><time>1 min ago</time></summary><div class="hc-act-d">182 of 214 tests passed</div></details></li>
+              <li><div class="hc-act" data-now><div class="hc-act-row">{{i:file-pen:13}}<span class="hc-act-t">Edited <code>auth/sign-in.ts</code></span><time>now</time></div></div></li>
+            </ul>
+          </li>
+          <li class="hc-step"><span class="hc-mark"></span><span class="hc-step-l">Check the error messages <span class="hc-step-by">Request from Sara Cole · not read yet</span></span><span class="hc-step-m"></span></li>
+        </ol>
+      </section>
+      <section class="hc-trail hc-work" aria-label="Work of Writer">
+        <div class="hc-trail-h"><span class="hc-ring round"><span class="av sm" style="--c:var(--violet)">WR</span></span><b>Writer</b><span class="hc-work-s">Busy with MOB-106 · answers here when it finishes</span><button class="btn btn-xs btn-ghost hc-work-x" data-toast="Example: would open MOB-106">Open task</button></div>
+      </section>
+    </div>
+  </div>
   <!-- /ex -->
 
   <!-- ex: Sections with an index | .hc-sections .hc-sec [data-complete] [aria-current] | A long form split up: one section at a time, the index shows what is done. -->

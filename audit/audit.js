@@ -393,6 +393,43 @@
     }
     add('R27', 'error', 'Bot characters (.hc-bot) use a known shape and colour and are named or hidden', bots, !all('.hc-bot').length);
 
+    // R28 work block: a named trail inside .hc-works, with who it is and the state in one line
+    const works = all('.hc-work');
+    const work = [];
+    for (const w of works) {
+      if (!w.classList.contains('hc-trail')) work.push(`${name(w)}: a work block is a trail: class="hc-trail hc-work"`);
+      if (!w.closest('.hc-works')) work.push(`${name(w)} is outside .hc-works`);
+      if (!(w.getAttribute('aria-label') || '').trim() && !w.getAttribute('aria-labelledby')) work.push(`${name(w)}: name it with aria-label ("Work of Architect")`);
+      const h = w.querySelector(':scope > .hc-trail-h');
+      if (!h || !h.querySelector('b')?.textContent.trim()) work.push(`${name(w)}: the header (.hc-trail-h) starts with the bot's name in <b>`);
+      else if (!h.querySelector('.hc-work-s')?.textContent.trim()) work.push(`${name(w)}: say the state in one line (.hc-work-s), like "Working · 4 min"`);
+    }
+    for (const x of all('.hc-work-s, .hc-work-x')) if (!x.closest('.hc-work')) work.push(`${name(x)} is outside .hc-work`);
+    for (const x of all('.hc-step-by')) if (!x.closest('.hc-step-l')) work.push(`${name(x)} goes inside the step's label (.hc-step-l)`);
+    add('R28', 'error', 'Work block: .hc-trail.hc-work inside .hc-works, named, with the bot and its state', work, !works.length && !all('.hc-works, .hc-step-by').length);
+
+    // R29 chat event: one line that says what happened; its controls are real buttons, links or fields
+    const events = all('.hc-event');
+    const event = [];
+    for (const e of events) {
+      if (!e.querySelector(':scope > .hc-event-t')?.textContent.trim()) event.push(`${name(e)}: say what happened in .hc-event-t`);
+      if (e.querySelector('h1, h2, h3, h4, p, ul, ol')) event.push(`${name(e)}: an event is one line; a longer text is a message`);
+      for (const c of e.querySelectorAll('[onclick], [role="button"]')) if (!c.matches('button, a[href], input, label')) event.push(`${name(c)} inside ${name(e)}: use a real <button> or <a>`);
+      const tm = e.querySelector('time');
+      if (tm && !tm.textContent.trim()) event.push(`${name(e)}: the <time> is empty`);
+    }
+    add('R29', 'error', 'Chat event (.hc-event): one line with what happened in .hc-event-t', event, !events.length);
+
+    // R30 what the bot is doing, on hover: the tip sits on the ring, never on the character (its pseudo-elements draw the face)
+    const tips = [];
+    for (const b of all('.hc-bot[data-tip]')) tips.push(`${name(b)}: move data-tip to the .hc-ring around the character`);
+    for (const r of all('.hc-ring[data-tip]')) {
+      const tip = r.getAttribute('data-tip').trim();
+      if (!tip) tips.push(`${name(r)}: data-tip is empty; remove it when the bot is doing nothing`);
+      else if (tip.length > 60) tips.push(`${name(r)}: the tip is one short action (60 characters at most), got ${tip.length}`);
+    }
+    add('R30', 'error', 'Action on hover: data-tip on .hc-ring, short, never on .hc-bot', tips, !all('.hc-ring[data-tip], .hc-bot[data-tip]').length);
+
     // R21 every text size comes from the --fs-* scale
     const scale = new Set(['--fs-3xs', '--fs-2xs', '--fs-xs', '--fs-sm', '--fs', '--fs-md', '--fs-lg', '--fs-xl', '--fs-2xl'].map(t => parseFloat(root.getPropertyValue(t))).filter(Boolean));
     const sizes = new Map();
