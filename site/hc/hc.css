@@ -957,6 +957,49 @@ hc-sheet[open] {
   padding: 6px 0 0;
 }
 
+/* ---------- work block: .hc-works > .hc-trail.hc-work ----------
+   the reply each bot is working on now, in the conversation, under the messages: who, the state in one line,
+   the plan with the last actions under the current step. A bot that waits in line shows only the header. */
+.hc-works {
+  display: grid;
+  gap: 8px;
+  max-width: 640px;
+  padding: 8px 0 0 36px;
+}
+.hc-work .hc-trail-h {
+  padding: 8px 12px;
+}
+.hc-work .hc-trail-h b {
+  flex: none;
+  max-width: 50%;
+  font-size: var(--fs-sm);
+}
+.hc-work-s {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.hc-work-x {
+  flex: none;
+  margin-left: auto;
+}
+/* a step someone asked for in the middle of the work: whose request it is and whether the bot read it */
+.hc-step-by {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: var(--fs-xs);
+  font-weight: 400;
+  color: var(--accent-ink);
+}
+@media (max-width: 640px) {
+  .hc-works {
+    padding-left: 0;
+  }
+}
+
 /* short identifier (task key, PR) */
 .hc-id {
   font-family: var(--mono);

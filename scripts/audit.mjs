@@ -270,6 +270,6 @@ const count = l => every.filter(r => r.level === l).length;
 const scored = every.filter(r => r.level !== 'skip');
 report.summary = { errors: count('error'), warnings: count('warn'), passed: count('pass'), skipped: count('skip'), score: scored.length ? Math.round((count('pass') / scored.length) * 1000) / 10 : 0 };
 console.log(`\nAutomatic checks: ${report.summary.passed} passed, ${report.summary.errors} failed, ${report.summary.warnings} to review, ${report.summary.skipped} not applicable · ${report.summary.score}%`);
-console.log('The app is 100% adherent when nothing fails, every warning was reviewed, and the manual checks M01–M15 in AUDIT.md are confirmed.');
+console.log('The app is 100% adherent when nothing fails, every warning was reviewed, and the manual checks M01–M16 in AUDIT.md are confirmed.');
 if (opt.json) writeFileSync(opt.json, JSON.stringify(report, null, 2));
 process.exit(report.summary.errors ? 1 : 0);

@@ -1,6 +1,6 @@
 {
   "name": "Hypercube UI",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "how_to_use": "Import src/index.css (and src/elements.js for <hc-ask> and <hc-sheet>). Copy the markup of each piece; change only the text. Icons: Lucide, stroke 1.8. Full rules in AGENTS.md.",
   "pieces": [
     {
@@ -334,6 +334,13 @@
     },
     {
       "page": "AI pieces",
+      "name": "What the bot is doing, on hover",
+      "classes": ".hc-ring[data-tip] [data-tip-pos]",
+      "use": "Where only the picture shows (a conversation header, a message, a pile of avatars), the ring says what the bot is doing on hover, and on keyboard focus of the button or link it sits in. The tip goes on the ring, never on the avatar or character inside it. Where the row already writes the action, leave it out: nothing appears twice.",
+      "markup": "<button class=\"btn btn-ghost\" data-toast=\"Example: would open the conversation with Frontend engineer\"><span class=\"hc-ring round\" data-state=\"needs\" data-tip=\"Waiting on your answer\" data-tip-pos=\"top\"><span class=\"av sm\" style=\"--c:var(--teal)\">FE</span></span>Frontend engineer</button>\n<span class=\"hc-ring round\" data-state=\"working\" data-tip=\"Editing sync/queue.ts\" data-tip-pos=\"right\"><span class=\"av md\" style=\"--c:var(--orange)\">AR</span></span>"
+    },
+    {
+      "page": "AI pieces",
       "name": "Bot character",
       "classes": ".hc-bot[data-shape][data-color][data-state] .sm .md .lg .xl",
       "use": "The default picture of a bot without a photo: 12 shapes, 9 colours, a face that shows the state. Same colours in light and dark.",
@@ -397,6 +404,13 @@
     },
     {
       "page": "AI pieces",
+      "name": "Chat event",
+      "classes": ".hc-event .hc-event-t",
+      "use": "Something that happened in the conversation and is not a message: a routine ran, a setting changed. One line under the text of the messages: icon, what happened, what the person can do about it, the time. A sentence with nothing to do about it (someone joined) is .hc-sys.",
+      "markup": "<div style=\"max-width:680px\">\n  <div class=\"hc-event\"><svg class=\"i\" width=\"14\" height=\"14\"><!-- Lucide clock, stroke 1.8 --></svg><span class=\"hc-event-t\"><b>Morning summary</b> ran, as it does every weekday at 08:00</span><button class=\"btn btn-ghost btn-xs\" data-toast=\"Example: would open the routine\">Open the routine</button><time>08:00</time></div>\n  <div class=\"hc-m\"><span class=\"av sm\" style=\"--c:var(--orange)\">AR</span><div><div class=\"hc-m-h\"><b>Architect</b><time>08:00</time></div><div class=\"hc-m-t\"><p>Three tasks moved since yesterday and one is waiting on you.</p></div></div></div>\n  <div class=\"hc-event\"><svg class=\"i\" width=\"14\" height=\"14\"><!-- Lucide pencil, stroke 1.8 --></svg><span class=\"hc-event-t\">You changed <b>Morning summary</b> to run at 07:30</span><button class=\"btn btn-ghost btn-xs\" data-toast=\"Example: would put it back at 08:00\">Undo</button><time>08:12</time></div>\n</div>"
+    },
+    {
+      "page": "AI pieces",
       "name": "Trail",
       "classes": ".hc-trail .hc-steps .hc-step[data-state] .hc-act",
       "use": "The bot's work step by step, with what it did in each step.",
@@ -408,6 +422,13 @@
       "classes": ".hc-step-ic .hc-step-tg[aria-expanded] .hc-sub .hc-step[data-state=approval] .hc-step-x",
       "use": "Each step shows the tool it uses. The current step opens its substeps; a step that needs a person waits with a dashed ring and an Approval tag, and the run stops there until someone answers. This one runs live: watch it reach the approval.",
       "markup": "<section class=\"hc-trail\" data-live-trail aria-label=\"Fix the checkout crash\" style=\"max-width:560px\">\n  <div class=\"hc-trail-h\"><b>Fix the checkout crash</b><span class=\"badge\"><svg class=\"i\" width=\"12\" height=\"12\"><!-- Lucide bot, stroke 1.8 --></svg>Tess</span><span class=\"hc-trail-n\">2/5</span></div>\n  <ol class=\"hc-steps\">\n    <li class=\"hc-step\" data-state=\"done\"><span class=\"hc-mark\"></span><span class=\"hc-step-l\"><span class=\"hc-step-ic\"><svg class=\"i\" width=\"12\" height=\"12\"><!-- Lucide file-text, stroke 1.8 --></svg></span>Read the bug report</span><span class=\"hc-step-m\"><span>8s</span></span></li>\n    <li class=\"hc-step\" data-state=\"done\"><span class=\"hc-mark\"></span><span class=\"hc-step-l\"><span class=\"hc-step-ic\"><svg class=\"i\" width=\"12\" height=\"12\"><!-- Lucide bug, stroke 1.8 --></svg></span>Reproduce the crash</span><span class=\"hc-step-m\"><span>34s</span></span></li>\n    <li class=\"hc-step\" data-state=\"current\"><span class=\"hc-mark\"></span><span class=\"hc-step-l\"><span class=\"hc-step-ic\"><svg class=\"i\" width=\"12\" height=\"12\"><!-- Lucide wrench, stroke 1.8 --></svg></span><button class=\"hc-step-tg\" aria-expanded=\"true\" aria-controls=\"sub-patch\">Patch the checkout form<svg class=\"i\" width=\"13\" height=\"13\"><!-- Lucide chevron-down, stroke 1.8 --></svg></button></span><span class=\"hc-step-m\"><span class=\"hc-step-s\">Testing</span><span data-time>31s</span></span>\n      <ol class=\"hc-sub\" id=\"sub-patch\">\n        <li data-state=\"done\"><span>Found the empty-cart case</span><code>cart.ts:142</code></li>\n        <li data-state=\"done\"><span>Added a guard and 2 tests</span><code>+18 −3</code></li>\n        <li data-state=\"current\"><span>Running the test suite</span><code data-count>182/214</code></li>\n      </ol>\n    </li>\n    <li class=\"hc-step\"><span class=\"hc-mark\"></span><span class=\"hc-step-l\"><span class=\"hc-step-ic\"><svg class=\"i\" width=\"12\" height=\"12\"><!-- Lucide notebook-pen, stroke 1.8 --></svg></span>Write the release note</span><span class=\"hc-step-m\"></span></li>\n    <li class=\"hc-step\" data-state=\"approval\"><span class=\"hc-mark\"></span><span class=\"hc-step-l\"><span class=\"hc-step-ic\"><svg class=\"i\" width=\"12\" height=\"12\"><!-- Lucide git-pull-request, stroke 1.8 --></svg></span>Open a pull request</span><span class=\"hc-step-m\"><span class=\"hc-step-s\">Approval</span></span></li>\n  </ol>\n</section>"
+    },
+    {
+      "page": "AI pieces",
+      "name": "Work block",
+      "classes": ".hc-works > .hc-trail.hc-work .hc-work-s .hc-work-x .hc-step-by",
+      "use": "The reply each bot is working on now, in the conversation, under the messages: who, the state in one line, the plan with the last actions under the current step. A step someone asked for in the middle says whose request it is. A bot that waits in line shows only the header: where it is busy and a button to go there. One block per bot; it leaves when the answer arrives.",
+      "markup": "<div style=\"max-width:680px\">\n  <div class=\"hc-m mine\"><div class=\"hc-m-t\">Fix the failing tests on the sign in screen, then ask Writer for the release note.</div></div>\n  <div class=\"hc-works\" role=\"status\">\n    <section class=\"hc-trail hc-work\" aria-label=\"Work of Frontend engineer\">\n      <div class=\"hc-trail-h\"><span class=\"hc-ring round\" data-state=\"working\"><span class=\"av sm\" style=\"--c:var(--teal)\">FE</span></span><b>Frontend engineer</b><span class=\"hc-work-s\">Working · 4 min</span><span class=\"hc-trail-n\">1/3</span></div>\n      <ol class=\"hc-steps\">\n        <li class=\"hc-step\" data-state=\"done\"><span class=\"hc-mark\"></span><span class=\"hc-step-l\">Run the tests</span><span class=\"hc-step-m\"></span></li>\n        <li class=\"hc-step\" data-state=\"current\"><span class=\"hc-mark\"></span><span class=\"hc-step-l\">Fix the sign in screen</span><span class=\"hc-step-m\"></span>\n          <ul class=\"hc-acts\">\n            <li><details class=\"hc-act\"><summary><svg class=\"i\" width=\"13\" height=\"13\"><!-- Lucide terminal, stroke 1.8 --></svg><span class=\"hc-act-t\">Ran <code>npm test</code></span><time>1 min ago</time></summary><div class=\"hc-act-d\">182 of 214 tests passed</div></details></li>\n            <li><div class=\"hc-act\" data-now><div class=\"hc-act-row\"><svg class=\"i\" width=\"13\" height=\"13\"><!-- Lucide file-pen, stroke 1.8 --></svg><span class=\"hc-act-t\">Edited <code>auth/sign-in.ts</code></span><time>now</time></div></div></li>\n          </ul>\n        </li>\n        <li class=\"hc-step\"><span class=\"hc-mark\"></span><span class=\"hc-step-l\">Check the error messages <span class=\"hc-step-by\">Request from Sara Cole · not read yet</span></span><span class=\"hc-step-m\"></span></li>\n      </ol>\n    </section>\n    <section class=\"hc-trail hc-work\" aria-label=\"Work of Writer\">\n      <div class=\"hc-trail-h\"><span class=\"hc-ring round\"><span class=\"av sm\" style=\"--c:var(--violet)\">WR</span></span><b>Writer</b><span class=\"hc-work-s\">Busy with MOB-106 · answers here when it finishes</span><button class=\"btn btn-xs btn-ghost hc-work-x\" data-toast=\"Example: would open MOB-106\">Open task</button></div>\n    </section>\n  </div>\n</div>"
     },
     {
       "page": "AI pieces",

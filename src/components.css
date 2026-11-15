@@ -209,8 +209,12 @@
 [data-tip] {
   position: relative;
 }
-[data-tip]:hover::after,
-[data-tip]:focus-visible::after {
+/* the status ring draws its state with ::after, so its tip (what the bot is doing) uses ::before */
+[data-tip]:where(:not(.hc-ring)):hover::after,
+[data-tip]:where(:not(.hc-ring)):focus-visible::after,
+.hc-ring[data-tip]:hover::before,
+.hc-ring[data-tip]:focus-visible::before,
+:is(a, button):focus-visible > .hc-ring[data-tip]::before {
   content: attr(data-tip);
   position: absolute;
   left: 50%;
@@ -228,13 +232,19 @@
   pointer-events: none;
   animation: tipIn 0.12s 0.35s both;
 }
-[data-tip-pos='right']:hover::after,
-[data-tip-pos='right']:focus-visible::after {
+[data-tip-pos='right']:where(:not(.hc-ring)):hover::after,
+[data-tip-pos='right']:where(:not(.hc-ring)):focus-visible::after,
+.hc-ring[data-tip-pos='right']:hover::before,
+.hc-ring[data-tip-pos='right']:focus-visible::before,
+:is(a, button):focus-visible > .hc-ring[data-tip-pos='right']::before {
   left: calc(100% + 8px);
   top: 50%;
   transform: translateY(-50%);
 }
-[data-tip-pos='top']:hover::after {
+[data-tip-pos='top']:where(:not(.hc-ring)):hover::after,
+.hc-ring[data-tip-pos='top']:hover::before,
+.hc-ring[data-tip-pos='top']:focus-visible::before,
+:is(a, button):focus-visible > .hc-ring[data-tip-pos='top']::before {
   top: auto;
   bottom: calc(100% + 6px);
 }

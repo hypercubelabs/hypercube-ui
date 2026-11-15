@@ -253,6 +253,39 @@
   font-size: var(--fs-sm);
   color: var(--text-3);
 }
+/* an event in the conversation (a routine ran, a setting changed): one line under the messages' text column,
+   with what happened, what the person can do about it and when */
+.hc-event {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  max-width: 640px;
+  margin: 8px 0 8px 36px;
+  padding: 6px 8px 6px 12px;
+  border-radius: var(--r);
+  background: var(--surface-2);
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+.hc-event > svg {
+  flex: none;
+  color: var(--text-3);
+}
+.hc-event-t {
+  flex: 1 1 220px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.hc-event-t b {
+  font-weight: 600;
+  color: var(--text);
+}
+.hc-event time {
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+  white-space: nowrap;
+}
 
 /* ---------- composer, with what is happening right above it ---------- */
 .hc-foot {

@@ -1,5 +1,12 @@
 # Changes
 
+## 0.4.0
+
+- Work block (`.hc-works` > `.hc-trail.hc-work`, in `src/hc.css`): the reply each bot is working on now, in the conversation, under the messages. The header says who and the state in one line (`.hc-work-s`), the plan shows the last actions under the current step, a step someone asked for in the middle says whose request it is (`.hc-step-by`), and a bot waiting in line shows only the header with a button to where it is busy (`.hc-work-x`). The chat template uses it. Found in Meetas, whose conversation drew it locally.
+- Chat event (`.hc-event`, in `src/screens.css`): one line in the conversation for something that happened and is not a message (a routine ran, a setting changed), with what the person can do about it and the time. `.hc-sys` stays for a sentence with nothing to do about it. Found in Meetas.
+- What the bot is doing, on hover: `data-tip` now works on the status ring (`.hc-ring`), also with `data-tip-pos`. The ring draws its state with `::after`, so its tip uses `::before`; before, a tip on a ring with a state replaced the ring on hover. It also shows on keyboard focus of the button or link the ring sits in.
+- Audit: R28 (work block), R29 (chat event) and R30 (tip on the ring, never on `.hc-bot`); manual check M16 (the block, the event and the tip show only what really happened).
+
 ## 0.3.3
 
 - Bot characters: new state `thinking`, for a bot that is about to answer or to start (writing a reply, queued, waiting on something other than the person). The eyes look up and wander slowly; reduced motion keeps them still, looking up. In `.hc-typing`, a bot without a photo shows its character thinking in place of the loader. Audit R27 accepts `thinking`. Asked in Meetas: a bot about to reply should look busy too.
