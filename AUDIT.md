@@ -4,13 +4,13 @@ This is the checklist an AI (or a person) runs to prove that an app follows Hype
 
 1. the automatic audit ends with **0 failed** checks;
 2. every **warning was reviewed**, and either fixed or written down in the report with the reason it stays;
-3. every **manual check M01 to M14** is confirmed, with the evidence in the report.
+3. every **manual check M01 to M15** is confirmed, with the evidence in the report.
 
 Nothing less counts as 100%. Do not mark a check as done without running it.
 
 ## Prompt to give an AI
 
-> Audit this app against Hypercube UI. Clone https://github.com/hypercubelabs/hypercube-ui at the tag in the app's `hypercube-ui/VERSION`, read `AUDIT.md` and follow it: run `scripts/audit.mjs` with `--src` and a `--url` for every screen, fix what fails, run it again until nothing fails, then do the manual checks M01 to M14 and write the report in the format at the end of `AUDIT.md`. Do not change routes, field names, API calls, business rules or tests.
+> Audit this app against Hypercube UI. Clone https://github.com/hypercubelabs/hypercube-ui at the tag in the app's `hypercube-ui/VERSION`, read `AUDIT.md` and follow it: run `scripts/audit.mjs` with `--src` and a `--url` for every screen, fix what fails, run it again until nothing fails, then do the manual checks M01 to M15 and write the report in the format at the end of `AUDIT.md`. Do not change routes, field names, API calls, business rules or tests.
 
 ## 1. Run the automatic audit
 
@@ -85,6 +85,7 @@ node scripts/audit.mjs --src ../my-app \
 | R23 | error | The work area (`.content`, `main`, `.page`, `.ph`, `.hc-main`, the sign-in card) sits on `var(--surface)`, white in light; the grey `var(--bg)` only behind the sign-in card | Set `body`, `.main` and `.content` to `var(--surface)`; remove the app's own grey. |
 | R24 | error | One vertical scrollbar per area: no scrolling box inside another (text areas and code blocks excepted), and the window does not scroll while a tall box scrolls inside it | Put `.fill` on `.content` and `.fill-b` on the piece that scrolls; drop guessed `max-height: calc(100vh - …)`. |
 | R25 | error | The context the person works in (workspace, organisation, product) is picked with one `button.hc-switch` in `.side-top`, with `aria-haspopup="menu"`, `aria-expanded`, `.hc-switch-logo` and `.hc-switch-name`; its `.hc-switch-menu` has each choice as `.mi[role="menuitemradio"]` and exactly one `aria-checked="true"`. No `<select>` or look-alike button in the menu or top bar picks it, and no `<select>` of the workspace or organisation inside a page | Copy the "Context switcher" markup from `components.json`; remove the old picker. |
+| R26 | error | Every bot character (`.hc-bot`) has a `data-shape` and a `data-color` from the library's lists, `data-state` only `working`, `needs` or `off`, no text inside, and is either `role="img"` with an `aria-label` (the bot's name) or `aria-hidden="true"` when the name is written next to it | Copy the "Bot character" markup from `components.json`; derive shape and colour from the bot's id when the person has not picked them. |
 
 `data-audit-skip` on an element leaves it and its children out of the page checks. Use it only for demos, like the catalog does for an error page shown inside a page; never to hide a real problem.
 
@@ -108,6 +109,7 @@ Do each one on every screen, write what you did as evidence, and mark it only wh
 | M12 | Loading is the hexagon everywhere, including the places the static scan cannot see (images, third-party widgets, the first paint) | Slow the network and watch every screen load. |
 | M13 | Adjust screen: at 80% and at 140% every screen still fits, menus and tooltips open next to what opened them, drag and resize follow the pointer, and the choice survives a reload | Try the extremes on every screen. |
 | M14 | The context switcher works like Meetas: the current workspace (organisation, product) shows its logo and name; the menu lists every one the person can open, with the current one checked; choosing one reloads the whole app in it; settings, create and invite appear only if they work; on a phone it is the first row of the drawer | Switch back and forth on every screen, also on a phone. |
+| M15 | A bot without a photo shows its character (`.hc-bot`), never initials or a generic icon; the same bot has the same shape and colour on every screen and after a reload; once the person uploads a photo, the photo replaces the character everywhere | Open the same bots in the menu, lists, chat and profile, reload, then add and remove a photo. |
 
 ## Keeping this checklist current
 
@@ -130,7 +132,7 @@ Screens audited: <n> (<list of URLs>) at 1280/360 px, light/dark
 
 ## Result: 100% adherent | not adherent yet
 Automatic: <passed> passed · 0 failed · <warnings> reviewed
-Manual: M01–M14 confirmed
+Manual: M01–M15 confirmed
 
 ## Warnings kept
 | Id | Where | Why it stays |

@@ -98,6 +98,7 @@ The AI changes only markup and classes. Routes, form fields, API calls, business
 | Screens | [`src/screens.css`](src/screens.css) | List + detail, messages and composer, settings, sign in, a table that turns into cards |
 | Boards | [`src/boards.css`](src/boards.css) | Node, connected tree, canvas, flow editor, week calendar, on/off filters, usage timeline, file and diff |
 | AI | [`src/hc.css`](src/hc.css) | Status ring, two-line row, bot question, trail, needs you, working now, changes with undo, bottom sheet |
+| Bots | [`src/bots.css`](src/bots.css) | Bot characters: 12 shapes, 9 colours, a face that shows the state |
 | Elements | [`src/elements.js`](src/elements.js) | `<hc-ask>` (keys 1 to 9), `<hc-sheet>` (bottom sheet), `<hc-zoom>` (Adjust screen), long press |
 
 [`src/index.css`](src/index.css) imports all of them in the right order. It is the only file your app imports.
@@ -174,8 +175,8 @@ node scripts/audit.mjs --src ../my-app \
 | Kind | Checks | Where |
 | --- | --- | --- |
 | Static | S01 to S12 | The app's source: imports, copied files, loose colours, other spinners |
-| Page | R00 to R25 | Every screen at 1280 and 360 px, in light and dark |
-| Manual | M01 to M14 | What only using the app can show, such as every button really working |
+| Page | R00 to R26 | Every screen at 1280 and 360 px, in light and dark |
+| Manual | M01 to M15 | What only using the app can show, such as every button really working |
 
 No Playwright? Paste [`audit/audit.js`](audit/audit.js) into the browser console and run `await hcAudit()`.
 

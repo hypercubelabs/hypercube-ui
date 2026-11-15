@@ -1,5 +1,10 @@
 # Changes
 
+## 0.3.0
+
+- Bot characters (`.hc-bot`, `src/bots.css`): the default picture of a bot that has no photo. 12 shapes (`data-shape`: hex, block, ball, pill, diamond, peak, penta, clover, dome, drop, octa, cloud) and 9 colours (`data-color`: lime, teal, sky, blue, violet, pink, coral, orange, amber), so 108 characters. Each is a small prism seen at 30 degrees, like the cube of the brand, lit from the top. The face shows the state (`data-state`: none when idle, `working` moves the eyes, `needs` opens them wide, `off` closes them and turns the colour grey). Drawn by CSS only (mask and drop shadows), sizes like `.av`. Same colours in light and dark, from the new `--bot-*` tokens. The bot profile template uses it.
+- Audit: R26 checks every `.hc-bot` (known shape and colour, valid state, named or hidden, no text inside); manual check M15 (no initials for a bot without a photo, the same face everywhere, the photo wins).
+
 ## 0.2.1
 
 - Needs you (`.hc-need`): the answers sit under the question instead of in a third column. Long answers no longer squeeze the question into a narrow column, and answer buttons wrap their text instead of spilling out of the card on phones.
