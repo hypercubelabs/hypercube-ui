@@ -251,7 +251,7 @@
     const side = document.querySelector('.side');
     if (side) {
       if (!side.querySelector('.hc-brand, .hc-switch')) nav.push('.side has no .hc-brand with the product logo (or .hc-switch when the app has workspaces, organisations or products)');
-      if (!side.querySelector('[aria-current="page"]')) nav.push('no menu item has aria-current="page"');
+      if (!side.querySelector('[aria-current="page"]') && !document.querySelector('.topbar [aria-current="page"]')) nav.push('no menu item has aria-current="page" (a page opened from the top bar, such as search results, marks its button there)');
       for (const a of side.querySelectorAll('a.sitem')) {
         const h = a.getAttribute('href');
         if ((!h || h === '#') && a.getAttribute('aria-disabled') !== 'true') nav.push(`${name(a)} goes nowhere: link it or set aria-disabled="true"`);
