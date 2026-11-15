@@ -122,7 +122,7 @@ Tree, calendar and usage timeline are plain nested markup that you render from y
 - Colour only for state (working, needs you, error, done). Everything else is black, grey and white. Boards and calendars may colour categories with `--c`.
 - The lime green (`--accent`) is always a background under black text. Accent text and lines use `--accent-ink`.
 - Loading is always `.hc-loader` (the Datacube hexagon), everywhere: a button (`.is-loading` or `.is-busy`), a list, a page (`.hc-loader.lg`), a node that is running. Never another spinner (spinning dot, loader icon, GIF). For the shape of incoming content, use the `.sk` skeleton.
-- One animation per area. Nothing changes size between states.
+- One animation per area. Nothing changes size between states. The face of a bot character (`.hc-bot`: blink, hops, looking around) is part of the character, not an extra animation.
 - No piece of information appears twice on the same screen. Page numbers in a single `.stats`. (The `.crumbs` trail at the top may repeat the page title: it says where the person is.)
 - Real state only: no invented progress, number or text.
 - A button appears only if its action exists and works. What does not work yet does not go on screen. In an existing app, a dead item that was already there does not vanish without the person knowing: leave it disabled (`aria-disabled="true"`) and say so in the report.
