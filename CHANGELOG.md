@@ -3,10 +3,14 @@
 ## 0.3.0
 
 - Bot characters (`.hc-bot`, `src/bots.css`): the default picture of a bot that has no photo. 12 shapes (`data-shape`: hex, block, ball, pill, diamond, peak, penta, clover, dome, drop, octa, cloud) and 9 colours (`data-color`: lime, teal, sky, blue, violet, pink, coral, orange, amber), so 108 characters. Each is a small prism seen at 30 degrees, like the cube of the brand, lit from the top. The face shows the state (`data-state`: none when idle, `working` moves the eyes, `needs` opens them wide, `off` closes them and turns the colour grey). Drawn by CSS only (mask and drop shadows), sizes like `.av`. Same colours in light and dark, from the new `--bot-*` tokens. The bot profile template uses it.
-- Audit: R26 checks every `.hc-bot` (known shape and colour, valid state, named or hidden, no text inside); manual check M15 (no initials for a bot without a photo, the same face everywhere, the photo wins).
+- Audit: R27 checks every `.hc-bot` (known shape and colour, valid state, named or hidden, no text inside); manual check M15 (no initials for a bot without a photo, the same face everywhere, the photo wins).
 
-## 0.2.1
+## 0.2.1 (tagged 2026-11-15)
 
+- Scoped theme and accent: `data-theme` and `data-accent` work on any element, not only on `<html>`, so a theme preview, a dark panel in a light page or a row of accent swatches is drawn from the tokens (`[data-accent='hypercube']` restores the lime). Audit R08 compares colours inside such an element with that theme's tokens. Found in Meetas, whose theme cards used literal colours.
+- Audit: R06 accepts `role="progressbar"` on the library's own `.prog`; R15 skips an editable grid (`table[role="grid"]`) and code laid out in a table (`table[role="presentation"]`, a diff), which are not data tables.
+- State dot (`.hc-ring[data-state] .hc-dot`): a dot in the corner of the status ring, in the ring's colour, for small avatars in tight rows such as a menu item, where the ring alone is hard to read. Audit R26 checks it only appears inside a ring with a state. Found in Meetas, whose bots menu drew it locally.
+- Audit: S13 fails when an app uses the lime accent as a text colour (`color: var(--accent)` in CSS or `style=""`); links and accent text use `--accent-ink`. Found in Meetas, where task links in comments were lime.
 - Needs you (`.hc-need`): the answers sit under the question instead of in a third column. Long answers no longer squeeze the question into a narrow column, and answer buttons wrap their text instead of spilling out of the card on phones.
 
 ## 0.2.0 (tagged 2026-11-13)

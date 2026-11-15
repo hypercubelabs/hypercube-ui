@@ -28,7 +28,7 @@ node scripts/audit.mjs --src ../my-app \
   --json audit-report.json
 ```
 
-- `--src` is the app's folder (static checks S01–S12). `--url` is one screen; repeat it for every route, and for screens that only exist in a state (an empty list, a record page). Each one is opened at **1280 px and 360 px, in light and dark** (`--widths`, `--themes` change that).
+- `--src` is the app's folder (static checks S01–S13). `--url` is one screen; repeat it for every route, and for screens that only exist in a state (an empty list, a record page). Each one is opened at **1280 px and 360 px, in light and dark** (`--widths`, `--themes` change that).
 - Pages behind a login: run the audit inside the app's own end-to-end tests instead. Load `audit/audit.js` with `page.addScriptTag({ path })`, sign in, open the screen, then `await page.evaluate(() => hcAudit())`. Do the same with a modal or drawer open, because the page checks only see what is on screen.
 - No Playwright: open the screen, paste `audit/audit.js` into the browser console and run `await hcAudit()`. Repeat at 360 px with the device toolbar and in the other theme.
 - The exit code is 1 while anything fails, so it can gate CI.
@@ -54,6 +54,7 @@ node scripts/audit.mjs --src ../my-app \
 | S10 | warn | No other `font-family` or web font link | `var(--font)` and `var(--mono)` only. |
 | S11 | warn | No `outline: none` / `outline: 0` | `base.css` draws the visible focus; keep it. |
 | S12 | warn | No hand-written `font-size` | `var(--fs-xs)` … `var(--fs-2xl)`. |
+| S13 | error | No `color: var(--accent)` in the app's CSS or `style=""` (the lime is a background under black text) | `var(--accent-ink)` for links and accent text; `.btn-primary`, `.badge.accent` and `.sitem.on` already put black on lime. A block that inverts the pair on purpose (`color: var(--accent)` over `background: var(--on-accent)`, as the menu count does) passes. |
 
 ### Page (every screen, 1280 and 360 px, light and dark)
 
@@ -65,16 +66,16 @@ node scripts/audit.mjs --src ../my-app \
 | R03 | error | `<meta name="viewport" content="width=device-width, …">` | Add it to the HTML head. |
 | R04 | error | No horizontal scroll (`scrollWidth <= innerWidth`) | The details name the elements past the edge: use `.trunc`, `min-width: 0`, `.hide-m`, or the phone layout of the piece. |
 | R05 | error | App shell: `.shell` > `.side` + `.main` > `.topbar` + `.content` (or `.hc-split`); the window itself never scrolls, the shell fills it | Give `html`, `body` and the framework root `height: 100%`. |
-| R06 | error | No other spinner on screen: spinner classes, Lucide loader icons, loader GIFs, endless rotate animations, stray `role="progressbar"` | `.hc-loader`. |
+| R06 | error | No other spinner on screen: spinner classes, Lucide loader icons, loader GIFs, endless rotate animations, `role="progressbar"` outside `.prog` | `.hc-loader` for loading; `.prog` for progress. |
 | R07 | error | No literal colour in any `style=""` | `style="--c: var(--blue)"`. |
-| R08 | warn | Every text, background and border colour on screen equals a token in the current theme | Each detail is an off-token colour: swap it for a token. Category tints mixed from `--c` inside library pieces are allowed. |
+| R08 | warn | Every text, background and border colour on screen equals a token in the current theme (inside an element with its own `data-theme` or `data-accent`, a token of that theme) | Each detail is an off-token colour: swap it for a token. Category tints mixed from `--c` inside library pieces are allowed. |
 | R09 | error | Every icon-only button and link has an accessible name | `aria-label` (and `data-tip`). |
 | R10 | error | Every field has a label | `<label for>`, or `aria-label` for a search box. |
 | R11 | error | Every open `.modal` and `.drawer` has `role="dialog"`, `aria-modal="true"`, `aria-labelledby` | Add the attributes. Run the audit with each overlay open. |
 | R12 | warn | One enabled primary button per area (panel, modal, form, header, section) | Make the others `.btn-secondary` or `.btn-ghost`. |
 | R13 | warn | Icons are Lucide SVGs at stroke 1.8; no icon fonts | Swap the icon. |
 | R14 | error | No other UI library drawing on the page (`--bs-*` variables, `Mui*`, `chakra-*`, `ant-*`, `mantine-*` classes…) | Migrate the piece. |
-| R15 | error | Tables are `table.hc-table` and every body cell has `data-label` (`.hc-t-main` excepted) | Add the class and labels; phones show each row as a card. |
+| R15 | error | Tables are `table.hc-table` and every body cell has `data-label` (`.hc-t-main` excepted). An editable grid (`table[role="grid"]`, with its own keyboard model) and code laid out in a table (`table[role="presentation"]`, a diff) are not data tables and are skipped | Add the class and labels; phones show each row as a card. |
 | R16 | error | Phones: buttons in bars at least 40 px; fields at 16 px text on touch screens | Use the library's buttons and fields; do not shrink them. |
 | R17 | error | Menu: `.hc-brand` with the product logo (or `.hc-switch` when the app has workspaces, organisations or products), one `aria-current="page"`, no link that goes nowhere | Link it, or `aria-disabled="true"` for what the server does not do yet. |
 | R18 | warn | One `h1` per screen | When the design shows no title (a canvas), add `<h1 class="sr">`. |
@@ -85,7 +86,8 @@ node scripts/audit.mjs --src ../my-app \
 | R23 | error | The work area (`.content`, `main`, `.page`, `.ph`, `.hc-main`, the sign-in card) sits on `var(--surface)`, white in light; the grey `var(--bg)` only behind the sign-in card | Set `body`, `.main` and `.content` to `var(--surface)`; remove the app's own grey. |
 | R24 | error | One vertical scrollbar per area: no scrolling box inside another (text areas and code blocks excepted), and the window does not scroll while a tall box scrolls inside it | Put `.fill` on `.content` and `.fill-b` on the piece that scrolls; drop guessed `max-height: calc(100vh - …)`. |
 | R25 | error | The context the person works in (workspace, organisation, product) is picked with one `button.hc-switch` in `.side-top`, with `aria-haspopup="menu"`, `aria-expanded`, `.hc-switch-logo` and `.hc-switch-name`; its `.hc-switch-menu` has each choice as `.mi[role="menuitemradio"]` and exactly one `aria-checked="true"`. No `<select>` or look-alike button in the menu or top bar picks it, and no `<select>` of the workspace or organisation inside a page | Copy the "Context switcher" markup from `components.json`; remove the old picker. |
-| R26 | error | Every bot character (`.hc-bot`) has a `data-shape` and a `data-color` from the library's lists, `data-state` only `working`, `needs` or `off`, no text inside, and is either `role="img"` with an `aria-label` (the bot's name) or `aria-hidden="true"` when the name is written next to it | Copy the "Bot character" markup from `components.json`; derive shape and colour from the bot's id when the person has not picked them. |
+| R26 | error | A state dot (`.hc-dot`) sits only inside `.hc-ring[data-state]`, where it repeats the ring's colour | Remove the dot from a ring with no state, or give the ring its `data-state`. |
+| R27 | error | Every bot character (`.hc-bot`) has a `data-shape` and a `data-color` from the library's lists, `data-state` only `working`, `needs` or `off`, no text inside, and is either `role="img"` with an `aria-label` (the bot's name) or `aria-hidden="true"` when the name is written next to it | Copy the "Bot character" markup from `components.json`; derive shape and colour from the bot's id when the person has not picked them. |
 
 `data-audit-skip` on an element leaves it and its children out of the page checks. Use it only for demos, like the catalog does for an error page shown inside a page; never to hide a real problem.
 

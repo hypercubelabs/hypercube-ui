@@ -175,7 +175,7 @@ node scripts/audit.mjs --src ../my-app \
 | Kind | Checks | Where |
 | --- | --- | --- |
 | Static | S01 to S12 | The app's source: imports, copied files, loose colours, other spinners |
-| Page | R00 to R26 | Every screen at 1280 and 360 px, in light and dark |
+| Page | R00 to R27 | Every screen at 1280 and 360 px, in light and dark |
 | Manual | M01 to M15 | What only using the app can show, such as every button really working |
 
 No Playwright? Paste [`audit/audit.js`](audit/audit.js) into the browser console and run `await hcAudit()`.

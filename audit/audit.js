@@ -42,7 +42,10 @@
   };
 
   // every colour token the page defines on :root, resolved to rgb in the current theme
-  function palette() {
+  const palettes = new Map();
+  // the tokens' colours as the browser resolves them in `scope` (the body, or an element with its own data-theme)
+  function palette(scope = document.body) {
+    if (palettes.has(scope)) return palettes.get(scope);
     const names = new Set();
     const walk = rules => {
       for (const r of rules) {
@@ -56,7 +59,7 @@
     }
     const probe = document.createElement('i');
     probe.style.display = 'none';
-    document.body.append(probe);
+    scope.append(probe);
     const set = new Set(['0,0,0:0']);
     for (const n of names) {
       probe.style.color = '';
@@ -65,6 +68,7 @@
       if (probe.style.color && v) set.add(channels(v));
     }
     probe.remove();
+    palettes.set(scope, { set, count: names.size });
     return { set, count: names.size };
   }
 
@@ -128,7 +132,7 @@
       const s = getComputedStyle(el);
       if (s.animationName !== 'none' && s.animationIterationCount === 'infinite' && /rotate|spin/i.test(s.animationName + ' ' + s.transform) && shown(el)) spin.push(`${name(el)}: endless ${s.animationName} animation`);
     }
-    if (document.querySelector('[role="progressbar"]:not(.progress):not(.hc-loader)')) spin.push('role="progressbar" outside .progress');
+    if (document.querySelector('[role="progressbar"]:not(.prog):not(.progress):not(.hc-loader)')) spin.push('role="progressbar" outside .prog');
     add('R06', 'error', 'Loading uses only .hc-loader (or .is-loading / .is-busy)', spin);
 
     // R07 no literal colours in style attributes
@@ -143,10 +147,11 @@
     // R08 every colour on screen comes from a token
     const off = [];
     if (loaded) {
-      const { set } = palette();
       const seen = new Set();
       for (const el of all('body *')) {
         if (!shown(el) || el.closest(TINTED)) continue;
+        const scope = el.closest('[data-theme], [data-accent]');
+        const { set } = palette(scope && scope !== document.documentElement ? scope : document.body);
         const s = getComputedStyle(el);
         const check = (prop, v) => {
           const c = channels(v);
@@ -217,6 +222,7 @@
     // R15 tables
     const tb = [];
     for (const t of all('table')) {
+      if (t.matches('[role="grid"], [role="presentation"]')) continue; // an editable grid, or code laid out in a table (a diff)
       if (!t.classList.contains('hc-table')) { tb.push(`${name(t)}: use table.hc-table`); continue; }
       const cell = t.querySelector('tbody td:not([data-label]):not(.hc-t-main):not([colspan])');
       if (cell) tb.push(`${name(t)}: td without data-label (phones show it as a card)`);
@@ -363,7 +369,17 @@
     }
     add('R25', 'error', 'Context switcher (workspace, organisation, product): .hc-switch, first row of the menu', ctx, !switches.length && !ctx.length);
 
-    // R26 bot characters: a known shape and colour, and named (or hidden next to the name)
+    // R26 the state dot only repeats a ring that has a state
+    const dots = all('.hc-dot');
+    const dot = [];
+    for (const d of dots) {
+      const ring = d.closest('.hc-ring');
+      if (!ring) dot.push(`${name(d)} is outside .hc-ring`);
+      else if (!ring.getAttribute('data-state')) dot.push(`${name(d)} sits in a ring with no data-state: remove the dot or set the state`);
+    }
+    add('R26', 'error', 'State dot: .hc-dot only inside .hc-ring[data-state]', dot, !dots.length);
+
+    // R27 bot characters: a known shape and colour, and named (or hidden next to the name)
     const BOT_SHAPES = ['hex', 'block', 'ball', 'pill', 'diamond', 'peak', 'penta', 'clover', 'dome', 'drop', 'octa', 'cloud'];
     const BOT_COLORS = ['lime', 'teal', 'sky', 'blue', 'violet', 'pink', 'coral', 'orange', 'amber'];
     const bots = [];
@@ -375,7 +391,7 @@
       if (!named && b.getAttribute('aria-hidden') !== 'true') bots.push(`${name(b)}: give it role="img" and aria-label with the bot's name, or aria-hidden="true" when the name is written next to it`);
       if (b.textContent.trim()) bots.push(`${name(b)}: the character is drawn by CSS; put no initials or text inside`);
     }
-    add('R26', 'error', 'Bot characters (.hc-bot) use a known shape and colour and are named or hidden', bots, !all('.hc-bot').length);
+    add('R27', 'error', 'Bot characters (.hc-bot) use a known shape and colour and are named or hidden', bots, !all('.hc-bot').length);
 
     // R21 every text size comes from the --fs-* scale
     const scale = new Set(['--fs-3xs', '--fs-2xs', '--fs-xs', '--fs-sm', '--fs', '--fs-md', '--fs-lg', '--fs-xl', '--fs-2xl'].map(t => parseFloat(root.getPropertyValue(t))).filter(Boolean));

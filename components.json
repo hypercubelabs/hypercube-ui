@@ -12,6 +12,13 @@
     },
     {
       "page": "Foundations",
+      "name": "Scoped theme",
+      "classes": "[data-theme] [data-accent] on any element",
+      "use": "The tokens follow data-theme and data-accent on the element, not only on html: a preview, a dark panel in a light page, a swatch of each accent.",
+      "markup": "<div class=\"row\" style=\"gap:12px;flex-wrap:wrap;align-items:stretch\">\n  <div class=\"panel\" data-theme=\"light\" style=\"width:180px;padding:12px;background:var(--surface);color:var(--text)\"><b>Light</b><p class=\"muted\" style=\"margin:4px 0 8px\">Stays light.</p><span class=\"btn btn-sm btn-primary\">Save</span></div>\n  <div class=\"panel\" data-theme=\"dark\" style=\"width:180px;padding:12px;background:var(--surface);color:var(--text)\"><b>Dark</b><p class=\"muted\" style=\"margin:4px 0 8px\">Stays dark.</p><span class=\"btn btn-sm btn-primary\">Save</span></div>\n  <div class=\"row\" style=\"gap:8px;align-items:center\">\n    <span data-accent=\"hypercube\" style=\"display:inline-block;width:22px;height:22px;border-radius:50%;background:var(--acc-l)\" role=\"img\" aria-label=\"Hypercube\"></span>\n    <span data-accent=\"indigo\" style=\"display:inline-block;width:22px;height:22px;border-radius:50%;background:var(--acc-l)\" role=\"img\" aria-label=\"Indigo\"></span>\n    <span data-accent=\"teal\" style=\"display:inline-block;width:22px;height:22px;border-radius:50%;background:var(--acc-l)\" role=\"img\" aria-label=\"Teal\"></span>\n    <span data-accent=\"rose\" style=\"display:inline-block;width:22px;height:22px;border-radius:50%;background:var(--acc-l)\" role=\"img\" aria-label=\"Rose\"></span>\n  </div>\n</div>"
+    },
+    {
+      "page": "Foundations",
       "name": "Accent and state",
       "classes": "--accent --accent-ink --green…",
       "use": "The lime (--accent) is always a fill under black text. Accent text and lines use --accent-ink.",
@@ -317,6 +324,13 @@
       "classes": ".hc-ring[data-state] .round",
       "use": "Around the avatar. Working pulses; needs you turns blue; idle has no ring.",
       "markup": "<span class=\"hc-ring round\" data-state=\"working\"><span class=\"av md\" style=\"--c:var(--orange)\">AR</span></span>\n<span class=\"hc-ring round\" data-state=\"needs\"><span class=\"av md\" style=\"--c:var(--teal)\">FE</span></span>\n<span class=\"hc-ring round\"><span class=\"av md\" style=\"--c:var(--violet)\">RV</span></span>"
+    },
+    {
+      "page": "AI pieces",
+      "name": "State dot",
+      "classes": ".hc-ring[data-state] .hc-dot",
+      "use": "A dot in the corner of the ring, in the ring's colour, for a small avatar in a tight row (a menu item) where the ring alone is hard to read. Only inside a ring with a state.",
+      "markup": "<span class=\"hc-ring round\" data-state=\"working\"><span class=\"av sm\" style=\"--c:var(--orange)\">AR</span><i class=\"hc-dot\" aria-hidden=\"true\"></i></span>\n<span class=\"hc-ring round\" data-state=\"needs\"><span class=\"av sm\" style=\"--c:var(--teal)\">FE</span><i class=\"hc-dot\" aria-hidden=\"true\"></i></span>\n<span class=\"hc-ring round\"><span class=\"av sm\" style=\"--c:var(--violet)\">RV</span></span>"
     },
     {
       "page": "AI pieces",
