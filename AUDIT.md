@@ -66,16 +66,16 @@ node scripts/audit.mjs --src ../my-app \
 | R03 | error | `<meta name="viewport" content="width=device-width, …">` | Add it to the HTML head. |
 | R04 | error | No horizontal scroll (`scrollWidth <= innerWidth`) | The details name the elements past the edge: use `.trunc`, `min-width: 0`, `.hide-m`, or the phone layout of the piece. |
 | R05 | error | App shell: `.shell` > `.side` + `.main` > `.topbar` + `.content` (or `.hc-split`); the window itself never scrolls, the shell fills it | Give `html`, `body` and the framework root `height: 100%`. |
-| R06 | error | No other spinner on screen: spinner classes, Lucide loader icons, loader GIFs, endless rotate animations, stray `role="progressbar"` | `.hc-loader`. |
+| R06 | error | No other spinner on screen: spinner classes, Lucide loader icons, loader GIFs, endless rotate animations, `role="progressbar"` outside `.prog` | `.hc-loader` for loading; `.prog` for progress. |
 | R07 | error | No literal colour in any `style=""` | `style="--c: var(--blue)"`. |
-| R08 | warn | Every text, background and border colour on screen equals a token in the current theme | Each detail is an off-token colour: swap it for a token. Category tints mixed from `--c` inside library pieces are allowed. |
+| R08 | warn | Every text, background and border colour on screen equals a token in the current theme (inside an element with its own `data-theme` or `data-accent`, a token of that theme) | Each detail is an off-token colour: swap it for a token. Category tints mixed from `--c` inside library pieces are allowed. |
 | R09 | error | Every icon-only button and link has an accessible name | `aria-label` (and `data-tip`). |
 | R10 | error | Every field has a label | `<label for>`, or `aria-label` for a search box. |
 | R11 | error | Every open `.modal` and `.drawer` has `role="dialog"`, `aria-modal="true"`, `aria-labelledby` | Add the attributes. Run the audit with each overlay open. |
 | R12 | warn | One enabled primary button per area (panel, modal, form, header, section) | Make the others `.btn-secondary` or `.btn-ghost`. |
 | R13 | warn | Icons are Lucide SVGs at stroke 1.8; no icon fonts | Swap the icon. |
 | R14 | error | No other UI library drawing on the page (`--bs-*` variables, `Mui*`, `chakra-*`, `ant-*`, `mantine-*` classes…) | Migrate the piece. |
-| R15 | error | Tables are `table.hc-table` and every body cell has `data-label` (`.hc-t-main` excepted) | Add the class and labels; phones show each row as a card. |
+| R15 | error | Tables are `table.hc-table` and every body cell has `data-label` (`.hc-t-main` excepted). An editable grid (`table[role="grid"]`, with its own keyboard model) and code laid out in a table (`table[role="presentation"]`, a diff) are not data tables and are skipped | Add the class and labels; phones show each row as a card. |
 | R16 | error | Phones: buttons in bars at least 40 px; fields at 16 px text on touch screens | Use the library's buttons and fields; do not shrink them. |
 | R17 | error | Menu: `.hc-brand` with the product logo (or `.hc-switch` when the app has workspaces, organisations or products), one `aria-current="page"`, no link that goes nowhere | Link it, or `aria-disabled="true"` for what the server does not do yet. |
 | R18 | warn | One `h1` per screen | When the design shows no title (a canvas), add `<h1 class="sr">`. |

@@ -12,7 +12,8 @@
   font-style: normal;
   font-display: swap;
 }
-:root {
+:root,
+[data-theme='light'] {
   /* surfaces */
   --bg: #f6f6f6;
   --bg-side: #ffffff;
@@ -186,7 +187,7 @@
     color-scheme: dark;
   }
 }
-:root[data-theme='dark'] {
+[data-theme='dark'] {
   --bg: #0a0a0a;
   --bg-side: #0a0a0a;
   --surface: #121212;
@@ -234,13 +235,25 @@
   --shadow-drag: 0 18px 40px -10px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--border-strong);
   color-scheme: dark;
 }
+/* The theme and the accent follow data-theme and data-accent on <html>, or on any element: a card, a preview or a panel
+   can be light, dark or of another accent on its own, with the same tokens. */
+[data-accent='hypercube'] {
+  --acc-l: #c7ff9f;
+  --acc-d: #c7ff9f;
+  --acc-ink-l: #000000;
+  --acc-ink-d: #c7ff9f;
+  --on-acc-l: #000000;
+  --on-acc-d: #000000;
+  --acc-soft-l: #e9ffdc;
+  --acc-soft-d: color-mix(in srgb, #c7ff9f 14%, transparent);
+}
 /* accent variants (coloured accents keep white text on the fill and use the colour itself as ink) */
-:root[data-accent='indigo'],
-:root[data-accent='blue'],
-:root[data-accent='violet'],
-:root[data-accent='teal'],
-:root[data-accent='rose'],
-:root[data-accent='graphite'] {
+[data-accent='indigo'],
+[data-accent='blue'],
+[data-accent='violet'],
+[data-accent='teal'],
+[data-accent='rose'],
+[data-accent='graphite'] {
   --acc-ink-l: var(--acc-l);
   --acc-ink-d: var(--acc-d);
   --on-acc-l: #ffffff;
@@ -248,27 +261,27 @@
   --acc-soft-l: color-mix(in srgb, var(--acc-l) 10%, transparent);
   --acc-soft-d: color-mix(in srgb, var(--acc-d) 12%, transparent);
 }
-:root[data-accent='indigo'] {
+[data-accent='indigo'] {
   --acc-l: #4b5bd6;
   --acc-d: #8e9af3;
 }
-:root[data-accent='blue'] {
+[data-accent='blue'] {
   --acc-l: #2f6cd4;
   --acc-d: #74a7f0;
 }
-:root[data-accent='violet'] {
+[data-accent='violet'] {
   --acc-l: #7348cc;
   --acc-d: #ae93f0;
 }
-:root[data-accent='teal'] {
+[data-accent='teal'] {
   --acc-l: #1a7f7a;
   --acc-d: #5cc4ba;
 }
-:root[data-accent='rose'] {
+[data-accent='rose'] {
   --acc-l: #b93d68;
   --acc-d: #ec8dae;
 }
-:root[data-accent='graphite'] {
+[data-accent='graphite'] {
   --acc-l: #34332f;
   --acc-d: #d9d6cf;
 }

@@ -16,6 +16,19 @@
   </div>
   <!-- /ex -->
 
+  <!-- ex: Scoped theme | [data-theme] [data-accent] on any element | The tokens follow data-theme and data-accent on the element, not only on html: a preview, a dark panel in a light page, a swatch of each accent. -->
+  <div class="row" style="gap:12px;flex-wrap:wrap;align-items:stretch">
+    <div class="panel" data-theme="light" style="width:180px;padding:12px;background:var(--surface);color:var(--text)"><b>Light</b><p class="muted" style="margin:4px 0 8px">Stays light.</p><span class="btn btn-sm btn-primary">Save</span></div>
+    <div class="panel" data-theme="dark" style="width:180px;padding:12px;background:var(--surface);color:var(--text)"><b>Dark</b><p class="muted" style="margin:4px 0 8px">Stays dark.</p><span class="btn btn-sm btn-primary">Save</span></div>
+    <div class="row" style="gap:8px;align-items:center">
+      <span data-accent="hypercube" style="display:inline-block;width:22px;height:22px;border-radius:50%;background:var(--acc-l)" role="img" aria-label="Hypercube"></span>
+      <span data-accent="indigo" style="display:inline-block;width:22px;height:22px;border-radius:50%;background:var(--acc-l)" role="img" aria-label="Indigo"></span>
+      <span data-accent="teal" style="display:inline-block;width:22px;height:22px;border-radius:50%;background:var(--acc-l)" role="img" aria-label="Teal"></span>
+      <span data-accent="rose" style="display:inline-block;width:22px;height:22px;border-radius:50%;background:var(--acc-l)" role="img" aria-label="Rose"></span>
+    </div>
+  </div>
+  <!-- /ex -->
+
   <!-- ex: Accent and state | --accent --accent-ink --green… | The lime (--accent) is always a fill under black text. Accent text and lines use --accent-ink. -->
   <div class="ex-grid">
     <div class="ex-tok"><i style="--c:var(--accent)"></i><span>Accent<code>--accent</code></span></div>
