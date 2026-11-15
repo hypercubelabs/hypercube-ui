@@ -7,7 +7,7 @@
            role="img" aria-label="Reviewer"></span>
    Shapes: hex block ball pill diamond peak penta clover dome drop octa cloud.
    Colours: lime teal sky blue violet pink coral orange amber (tokens --bot-*).
-   States: none (idle, blinks now and then), working (looks left and right, leaning), needs (big round eyes, an open mouth and two little hops), off (closed, grey).
+   States: none (idle, blinks now and then), thinking (about to answer or to start: the eyes look up and wander), working (looks left and right, leaning), needs (big round eyes, an open mouth and two little hops), off (closed, grey).
    Sizes: .sm 20, default 22, .md 26, .lg 36, .xl 64 (same scale as .av); any --sz works.
    The shape is a small prism seen at 30 degrees, like the cube of the brand: the face
    (::before) is lit from the top and the thickness is a chain of drop shadows.
@@ -142,6 +142,23 @@
     transform: scaleY(0.1);
   }
 }
+/* thinking: about to answer or to start; the eyes look up and wander slowly */
+.hc-bot[data-state='thinking']::after {
+  animation: hc-bot-think 3.6s ease-in-out infinite;
+}
+@keyframes hc-bot-think {
+  0%,
+  100% {
+    translate: -16% -26%;
+  }
+  35%,
+  50% {
+    translate: 16% -30%;
+  }
+  80% {
+    translate: 0 -22%;
+  }
+}
 /* needs: two little hops, then a rest, like someone calling */
 .hc-bot[data-state='needs'] {
   animation: hc-bot-hop 2.4s ease-in-out infinite;
@@ -165,12 +182,16 @@
 @media (prefers-reduced-motion: reduce) {
   .hc-bot:not([data-state])::after,
   .hc-bot[data-state='needs'],
+  .hc-bot[data-state='thinking']::after,
   .hc-bot[data-state='working'],
   .hc-bot[data-state='working']::after {
     animation: none;
   }
   .hc-bot[data-state='working']::after {
     translate: 24% 0;
+  }
+  .hc-bot[data-state='thinking']::after {
+    translate: 12% -26%;
   }
 }
 

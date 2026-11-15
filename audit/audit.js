@@ -386,7 +386,7 @@
     for (const b of all('.hc-bot')) {
       if (!BOT_SHAPES.includes(b.dataset.shape)) bots.push(`${name(b)}: data-shape="${b.dataset.shape ?? ''}" is not one of ${BOT_SHAPES.join(', ')}`);
       if (!BOT_COLORS.includes(b.dataset.color)) bots.push(`${name(b)}: data-color="${b.dataset.color ?? ''}" is not one of ${BOT_COLORS.join(', ')}`);
-      if (b.dataset.state && !['working', 'needs', 'off'].includes(b.dataset.state)) bots.push(`${name(b)}: data-state is working, needs or off (none when idle)`);
+      if (b.dataset.state && !['thinking', 'working', 'needs', 'off'].includes(b.dataset.state)) bots.push(`${name(b)}: data-state is thinking, working, needs or off (none when idle)`);
       const named = b.getAttribute('role') === 'img' && (b.getAttribute('aria-label') || '').trim();
       if (!named && b.getAttribute('aria-hidden') !== 'true') bots.push(`${name(b)}: give it role="img" and aria-label with the bot's name, or aria-hidden="true" when the name is written next to it`);
       if (b.textContent.trim()) bots.push(`${name(b)}: the character is drawn by CSS; put no initials or text inside`);
