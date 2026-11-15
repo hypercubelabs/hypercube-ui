@@ -62,7 +62,7 @@ Follow the order. Do not skip the check at the end.
 | Filter the person built and can remove | `.chip` with a remove button |
 | Table row that opens something | `tr[data-opens]` or `tr[data-href]`, `aria-current` on the open one, `<button class="hc-t-open">` in the first cell for the keyboard |
 | Photo or initials | `.av` (`.sm` `.md` `.lg` `.xl`) with `--c`; group in `.avs` |
-| Bot (AI agent) without a photo: initials, a robot icon, a generated avatar | `.hc-bot` with `data-shape`, `data-color` (picked from the bot's id until the person chooses) and `data-state` (`working`, `needs`, `off`); `role="img"` + `aria-label`, or `aria-hidden` next to the name; a photo, when there is one, replaces it |
+| Bot (AI agent) without a photo: initials, a robot icon, a generated avatar | `.hc-bot` with `data-shape`, `data-color` (picked from the bot's id until the person chooses) and `data-state` (`thinking`, `working`, `needs`, `off`); `role="img"` + `aria-label`, or `aria-hidden` next to the name; a photo, when there is one, replaces it |
 | Modal / dialog | `.scrim` + `.modal-wrap` > `.modal` > `.modal-h` `.modal-b` `.modal-f` |
 | Detail side panel | `.drawer-scrim` + `.drawer` > `.drawer-h` `.drawer-b` |
 | Actions dropdown | `.pop` > `.mi` / `.msep` / `.mh`; on phones prefer `<hc-sheet>` |
@@ -121,7 +121,7 @@ Tree, calendar and usage timeline are plain nested markup that you render from y
 - **One scrollbar per area.** Never a scrolling box inside another scrolling box, and never the window scrolling around the shell. When the main piece of a screen scrolls on its own (calendar, board, long table with a sticky header), put `.fill` on `.content` and `.fill-b` on the piece: the page stops scrolling and the piece takes the height that is left. Do not guess heights with `max-height: calc(100vh - …)`. Side-by-side panes (list + detail) each scroll on their own; that is fine.
 - Colour only for state (working, needs you, error, done). Everything else is black, grey and white. Boards and calendars may colour categories with `--c`.
 - The lime green (`--accent`) is always a background under black text. Accent text and lines use `--accent-ink`.
-- Loading is always `.hc-loader` (the Datacube hexagon), everywhere: a button (`.is-loading` or `.is-busy`), a list, a page (`.hc-loader.lg`), a node that is running. Never another spinner (spinning dot, loader icon, GIF). For the shape of incoming content, use the `.sk` skeleton.
+- Loading is always `.hc-loader` (the Datacube hexagon), everywhere: a button (`.is-loading` or `.is-busy`), a list, a page (`.hc-loader.lg`), a node that is running. In `.hc-typing`, a bot without a photo may show its character thinking (`.hc-bot[data-state="thinking"]`) instead. Never another spinner (spinning dot, loader icon, GIF). For the shape of incoming content, use the `.sk` skeleton.
 - One animation per area. Nothing changes size between states. The face of a bot character (`.hc-bot`: blink, hops, looking around) is part of the character, not an extra animation.
 - No piece of information appears twice on the same screen. Page numbers in a single `.stats`. (The `.crumbs` trail at the top may repeat the page title: it says where the person is.)
 - Real state only: no invented progress, number or text.

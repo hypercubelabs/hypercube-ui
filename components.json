@@ -1,6 +1,6 @@
 {
   "name": "Hypercube UI",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "how_to_use": "Import src/index.css (and src/elements.js for <hc-ask> and <hc-sheet>). Copy the markup of each piece; change only the text. Icons: Lucide, stroke 1.8. Full rules in AGENTS.md.",
   "pieces": [
     {
@@ -337,7 +337,7 @@
       "name": "Bot character",
       "classes": ".hc-bot[data-shape][data-color][data-state] .sm .md .lg .xl",
       "use": "The default picture of a bot without a photo: 12 shapes, 9 colours, a face that shows the state. Same colours in light and dark.",
-      "markup": "<span class=\"hc-bot xl\" data-shape=\"hex\" data-color=\"lime\" role=\"img\" aria-label=\"Reviewer, idle\"></span>\n<span class=\"hc-ring round\" data-state=\"working\"><span class=\"hc-bot xl\" data-shape=\"clover\" data-color=\"violet\" data-state=\"working\" role=\"img\" aria-label=\"Writer, working\"></span></span>\n<span class=\"hc-ring round\" data-state=\"needs\"><span class=\"hc-bot xl\" data-shape=\"drop\" data-color=\"orange\" data-state=\"needs\" role=\"img\" aria-label=\"Support, needs you\"></span></span>\n<span class=\"hc-bot xl\" data-shape=\"block\" data-color=\"teal\" data-state=\"off\" role=\"img\" aria-label=\"Finance, off\"></span>"
+      "markup": "<span class=\"hc-bot xl\" data-shape=\"hex\" data-color=\"lime\" role=\"img\" aria-label=\"Reviewer, idle\"></span>\n<span class=\"hc-bot xl\" data-shape=\"ball\" data-color=\"sky\" data-state=\"thinking\" role=\"img\" aria-label=\"Researcher, about to answer\"></span>\n<span class=\"hc-ring round\" data-state=\"working\"><span class=\"hc-bot xl\" data-shape=\"clover\" data-color=\"violet\" data-state=\"working\" role=\"img\" aria-label=\"Writer, working\"></span></span>\n<span class=\"hc-ring round\" data-state=\"needs\"><span class=\"hc-bot xl\" data-shape=\"drop\" data-color=\"orange\" data-state=\"needs\" role=\"img\" aria-label=\"Support, needs you\"></span></span>\n<span class=\"hc-bot xl\" data-shape=\"block\" data-color=\"teal\" data-state=\"off\" role=\"img\" aria-label=\"Finance, off\"></span>"
     },
     {
       "page": "AI pieces",
@@ -378,8 +378,8 @@
       "page": "AI pieces",
       "name": "Typing",
       "classes": ".hc-typing .hc-loader .hc-shimmer",
-      "use": "While the answer has not arrived.",
-      "markup": "<div class=\"hc-typing\" role=\"status\"><span class=\"hc-loader\"></span><span class=\"hc-shimmer\">Architect is writing…</span></div>"
+      "use": "While the answer has not arrived. A bot without a photo shows its character thinking in place of the loader.",
+      "markup": "<div class=\"hc-typing\" role=\"status\"><span class=\"hc-loader\"></span><span class=\"hc-shimmer\">Architect is writing…</span></div>\n<div class=\"hc-typing\" role=\"status\"><span class=\"hc-bot sm\" data-shape=\"pill\" data-color=\"violet\" data-state=\"thinking\" aria-hidden=\"true\"></span><span class=\"hc-shimmer\">Writer is writing…</span></div>"
     },
     {
       "page": "AI pieces",

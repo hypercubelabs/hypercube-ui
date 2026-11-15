@@ -1,5 +1,9 @@
 # Changes
 
+## 0.3.3
+
+- Bot characters: new state `thinking`, for a bot that is about to answer or to start (writing a reply, queued, waiting on something other than the person). The eyes look up and wander slowly; reduced motion keeps them still, looking up. In `.hc-typing`, a bot without a photo shows its character thinking in place of the loader. Audit R27 accepts `thinking`. Asked in Meetas: a bot about to reply should look busy too.
+
 ## 0.3.2
 
 - Bot characters come alive: an idle character blinks now and then (each colour at another moment, so a list never blinks together) and a character that needs the person gives two little hops and rests, so the one calling is seen even at menu size. Working still looks left and right. Reduced motion stops all of it. Found in Meetas, where no bot moved while none was working.
