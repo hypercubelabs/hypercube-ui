@@ -154,7 +154,27 @@ function staticAudit(src) {
   add('S09', 'warn', 'Icons are Lucide (no other icon set)', ICON_PKGS.filter(p => deps.has(p)).map(p => `${p}`));
   add('S10', 'warn', 'No other font family (var(--font) and var(--mono) only)', fonts);
   add('S11', 'warn', 'Focus outline is not removed (base.css draws it)', focus);
-  add('S12', 'warn', 'Font sizes come from --fs-* tokens', size);
+  // S13 the lime accent is a background under black text, never a text colour (links and accent text use --accent-ink).
+  // A block that inverts the pair on purpose (text in --accent over a --on-accent background, as the menu count does) passes.
+  const accentText = [];
+  for (const f of app.filter(f => STYLE.has(extname(f)))) {
+    let text;
+    try { text = readFileSync(f, 'utf8'); } catch { continue; }
+    for (const m of text.matchAll(/\{[^{}]*\}/g)) {
+      const block = m[0];
+      if (!/(^|[\s;{])color\s*:\s*var\(--accent\s*[,)]/.test(block) || /background(?:-color)?\s*:[^;]*var\(--on-accent/.test(block)) continue;
+      const line = text.slice(0, m.index).split(/\r?\n/).length;
+      accentText.push(`${rel(f)}:${line}  ${block.match(/color\s*:\s*var\(--accent[^;]*/)[0]}`);
+    }
+  }
+  for (const f of app.filter(f => !STYLE.has(extname(f)))) {
+    let text;
+    try { text = readFileSync(f, 'utf8'); } catch { continue; }
+    text.split(/\r?\n/).forEach((line, i) => {
+      if (/style\s*=\s*["'{][^"'}]*(^|[\s;'"])color\s*:\s*var\(--accent\s*[,)]/.test(line)) accentText.push(`${rel(f)}:${i + 1}  ${line.trim().slice(0, 100)}`);
+    });
+  }
+  add('S13', 'error', 'The accent is never a text colour (links and accent text use --accent-ink)', accentText);
   return { src, copy: copy ? rel(copy) || '.' : null, version: ver, results };
 }
 

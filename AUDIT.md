@@ -28,7 +28,7 @@ node scripts/audit.mjs --src ../my-app \
   --json audit-report.json
 ```
 
-- `--src` is the app's folder (static checks S01–S12). `--url` is one screen; repeat it for every route, and for screens that only exist in a state (an empty list, a record page). Each one is opened at **1280 px and 360 px, in light and dark** (`--widths`, `--themes` change that).
+- `--src` is the app's folder (static checks S01–S13). `--url` is one screen; repeat it for every route, and for screens that only exist in a state (an empty list, a record page). Each one is opened at **1280 px and 360 px, in light and dark** (`--widths`, `--themes` change that).
 - Pages behind a login: run the audit inside the app's own end-to-end tests instead. Load `audit/audit.js` with `page.addScriptTag({ path })`, sign in, open the screen, then `await page.evaluate(() => hcAudit())`. Do the same with a modal or drawer open, because the page checks only see what is on screen.
 - No Playwright: open the screen, paste `audit/audit.js` into the browser console and run `await hcAudit()`. Repeat at 360 px with the device toolbar and in the other theme.
 - The exit code is 1 while anything fails, so it can gate CI.
@@ -54,6 +54,7 @@ node scripts/audit.mjs --src ../my-app \
 | S10 | warn | No other `font-family` or web font link | `var(--font)` and `var(--mono)` only. |
 | S11 | warn | No `outline: none` / `outline: 0` | `base.css` draws the visible focus; keep it. |
 | S12 | warn | No hand-written `font-size` | `var(--fs-xs)` … `var(--fs-2xl)`. |
+| S13 | error | No `color: var(--accent)` in the app's CSS or `style=""` (the lime is a background under black text) | `var(--accent-ink)` for links and accent text; `.btn-primary`, `.badge.accent` and `.sitem.on` already put black on lime. A block that inverts the pair on purpose (`color: var(--accent)` over `background: var(--on-accent)`, as the menu count does) passes. |
 
 ### Page (every screen, 1280 and 360 px, light and dark)
 
