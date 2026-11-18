@@ -38,7 +38,7 @@ svg.hc-spin > * {
   display: none;
 }
 
-/* ---------- status ring on the avatar: data-state="working" | "needs" ---------- */
+/* ---------- status ring on the avatar: data-state="working" | "needs" | "error" ---------- */
 .hc-ring {
   position: relative;
   display: inline-flex;
@@ -61,6 +61,10 @@ svg.hc-spin > * {
 }
 .hc-ring[data-state='needs'] {
   --hc-ring: var(--blue);
+}
+/* stopped on an error and will not go on by itself: red, still */
+.hc-ring[data-state='error'] {
+  --hc-ring: var(--red);
 }
 .hc-ring[data-state='working']::after {
   animation: hc-pulse 2.4s ease-in-out infinite;

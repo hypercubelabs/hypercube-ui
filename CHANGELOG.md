@@ -1,5 +1,12 @@
 # Changes
 
+## 0.5.0
+
+- **Breaking: bot characters left the library.** `.hc-bot`, `src/bots.css` and the `--bot-*` tokens are gone: the characters are the picture of the bots of one product (Meetas), so they now live in that product. In the library a bot without a photo is an `.av` with its initials, like a person. An app that used `.hc-bot` keeps the character in its own CSS (copy `src/bots.css` and the `--bot-*` tokens from 0.4.1 under the app's own class name) or switches to `.av`.
+- Status ring: new state `error` (`.hc-ring[data-state="error"]`, red, still), for a bot that stopped on an error and will not go on by itself. The state dot follows it.
+- Audit: R27 now checks the status ring (`data-state` is `working`, `needs` or `error`); R30 no longer mentions the character. S05 accepts colours in the custom properties of the app's own `tokens.css`, the one file for what belongs to a product alone (its brand, the palette of its own character); manual check M15 now reviews that file.
+- Catalog: the "Bot character" and "Bot shapes and colours" examples are gone, the bot profile template shows initials again, and the status ring example shows the error state.
+
 ## 0.4.1
 
 - Tooltip: two positions for an element next to an edge of the screen, `data-tip-pos="start"` and `data-tip-pos="end"` (below, lined up with the left or the right side of the element), on any `[data-tip]` and on the status ring. A centred tip on the first picture of a header was cut by the edge of the work area. Found in Meetas, on the bot's picture at the top of its conversation.

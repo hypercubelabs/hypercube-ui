@@ -379,19 +379,10 @@
     }
     add('R26', 'error', 'State dot: .hc-dot only inside .hc-ring[data-state]', dot, !dots.length);
 
-    // R27 bot characters: a known shape and colour, and named (or hidden next to the name)
-    const BOT_SHAPES = ['hex', 'block', 'ball', 'pill', 'diamond', 'peak', 'penta', 'clover', 'dome', 'drop', 'octa', 'cloud'];
-    const BOT_COLORS = ['lime', 'teal', 'sky', 'blue', 'violet', 'pink', 'coral', 'orange', 'amber'];
-    const bots = [];
-    for (const b of all('.hc-bot')) {
-      if (!BOT_SHAPES.includes(b.dataset.shape)) bots.push(`${name(b)}: data-shape="${b.dataset.shape ?? ''}" is not one of ${BOT_SHAPES.join(', ')}`);
-      if (!BOT_COLORS.includes(b.dataset.color)) bots.push(`${name(b)}: data-color="${b.dataset.color ?? ''}" is not one of ${BOT_COLORS.join(', ')}`);
-      if (b.dataset.state && !['thinking', 'working', 'needs', 'off'].includes(b.dataset.state)) bots.push(`${name(b)}: data-state is thinking, working, needs or off (none when idle)`);
-      const named = b.getAttribute('role') === 'img' && (b.getAttribute('aria-label') || '').trim();
-      if (!named && b.getAttribute('aria-hidden') !== 'true') bots.push(`${name(b)}: give it role="img" and aria-label with the bot's name, or aria-hidden="true" when the name is written next to it`);
-      if (b.textContent.trim()) bots.push(`${name(b)}: the character is drawn by CSS; put no initials or text inside`);
-    }
-    add('R27', 'error', 'Bot characters (.hc-bot) use a known shape and colour and are named or hidden', bots, !all('.hc-bot').length);
+    // R27 the status ring knows three states: working, needs (the person) and error
+    const RING = ['working', 'needs', 'error'];
+    const ringStates = all('.hc-ring[data-state]').filter(r => !RING.includes(r.dataset.state)).map(r => `${name(r)}: data-state="${r.dataset.state}" is not one of ${RING.join(', ')} (no attribute when idle)`);
+    add('R27', 'error', 'Status ring (.hc-ring): data-state is working, needs or error', ringStates, !all('.hc-ring[data-state]').length);
 
     // R28 work block: a named trail inside .hc-works, with who it is and the state in one line
     const works = all('.hc-work');
@@ -420,15 +411,14 @@
     }
     add('R29', 'error', 'Chat event (.hc-event): one line with what happened in .hc-event-t', event, !events.length);
 
-    // R30 what the bot is doing, on hover: the tip sits on the ring, never on the character (its pseudo-elements draw the face)
+    // R30 what the bot is doing, on hover: a short tip on the ring around the picture
     const tips = [];
-    for (const b of all('.hc-bot[data-tip]')) tips.push(`${name(b)}: move data-tip to the .hc-ring around the character`);
     for (const r of all('.hc-ring[data-tip]')) {
       const tip = r.getAttribute('data-tip').trim();
       if (!tip) tips.push(`${name(r)}: data-tip is empty; remove it when the bot is doing nothing`);
       else if (tip.length > 60) tips.push(`${name(r)}: the tip is one short action (60 characters at most), got ${tip.length}`);
     }
-    add('R30', 'error', 'Action on hover: data-tip on .hc-ring, short, never on .hc-bot', tips, !all('.hc-ring[data-tip], .hc-bot[data-tip]').length);
+    add('R30', 'error', 'Action on hover: data-tip on .hc-ring, not empty and short', tips, !all('.hc-ring[data-tip]').length);
 
     // R21 every text size comes from the --fs-* scale
     const scale = new Set(['--fs-3xs', '--fs-2xs', '--fs-xs', '--fs-sm', '--fs', '--fs-md', '--fs-lg', '--fs-xl', '--fs-2xl'].map(t => parseFloat(root.getPropertyValue(t))).filter(Boolean));
