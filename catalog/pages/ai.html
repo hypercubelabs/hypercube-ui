@@ -2,9 +2,10 @@
 <div class="page">
   <div class="ph"><div><h1>AI pieces</h1><p>For screens where an AI works alongside people: what it is doing, what it needs from you and what it changed.</p></div></div>
 
-  <!-- ex: Status ring | .hc-ring[data-state] .round | Around the avatar. Working pulses; needs you turns blue; idle has no ring. -->
+  <!-- ex: Status ring | .hc-ring[data-state] .round | Around the avatar. Working pulses; needs you turns blue; stopped on an error turns red; idle has no ring. -->
   <span class="hc-ring round" data-state="working"><span class="av md" style="--c:var(--orange)">AR</span></span>
   <span class="hc-ring round" data-state="needs"><span class="av md" style="--c:var(--teal)">FE</span></span>
+  <span class="hc-ring round" data-state="error"><span class="av md" style="--c:var(--blue)">QA</span></span>
   <span class="hc-ring round"><span class="av md" style="--c:var(--violet)">RV</span></span>
   <!-- /ex -->
 
@@ -17,42 +18,6 @@
   <!-- ex: What the bot is doing, on hover | .hc-ring[data-tip] [data-tip-pos] | Where only the picture shows (a conversation header, a message, a pile of avatars), the ring says what the bot is doing on hover, and on keyboard focus of the button or link it sits in. The tip goes on the ring, never on the avatar or character inside it. Where the row already writes the action, leave it out: nothing appears twice. -->
   <button class="btn btn-ghost" data-toast="Example: would open the conversation with Frontend engineer"><span class="hc-ring round" data-state="needs" data-tip="Waiting on your answer" data-tip-pos="top"><span class="av sm" style="--c:var(--teal)">FE</span></span>Frontend engineer</button>
   <span class="hc-ring round" data-state="working" data-tip="Editing sync/queue.ts" data-tip-pos="right"><span class="av md" style="--c:var(--orange)">AR</span></span>
-  <!-- /ex -->
-
-  <!-- ex: Bot character | .hc-bot[data-shape][data-color][data-state] .sm .md .lg .xl | The default picture of a bot without a photo: 12 shapes, 9 colours, a face that shows the state. Same colours in light and dark. -->
-  <span class="hc-bot xl" data-shape="hex" data-color="lime" role="img" aria-label="Reviewer, idle"></span>
-  <span class="hc-bot xl" data-shape="ball" data-color="sky" data-state="thinking" role="img" aria-label="Researcher, about to answer"></span>
-  <span class="hc-ring round" data-state="working"><span class="hc-bot xl" data-shape="clover" data-color="violet" data-state="working" role="img" aria-label="Writer, working"></span></span>
-  <span class="hc-ring round" data-state="needs"><span class="hc-bot xl" data-shape="drop" data-color="orange" data-state="needs" role="img" aria-label="Support, needs you"></span></span>
-  <span class="hc-bot xl" data-shape="block" data-color="teal" data-state="off" role="img" aria-label="Finance, off"></span>
-  <!-- /ex -->
-
-  <!-- ex: Bot shapes and colours | .hc-bot[data-shape] [data-color] | hex block ball pill diamond peak penta clover dome drop octa cloud; lime teal sky blue violet pink coral orange amber. Pick one from the bot's id so the same bot always has the same face; the person can change it. | col -->
-  <div class="row" style="gap:14px;flex-wrap:wrap">
-    <span class="hc-bot lg" data-shape="hex" data-color="lime" role="img" aria-label="hex"></span>
-    <span class="hc-bot lg" data-shape="block" data-color="violet" role="img" aria-label="block"></span>
-    <span class="hc-bot lg" data-shape="ball" data-color="amber" role="img" aria-label="ball"></span>
-    <span class="hc-bot lg" data-shape="pill" data-color="blue" role="img" aria-label="pill"></span>
-    <span class="hc-bot lg" data-shape="diamond" data-color="orange" role="img" aria-label="diamond"></span>
-    <span class="hc-bot lg" data-shape="peak" data-color="sky" role="img" aria-label="peak"></span>
-    <span class="hc-bot lg" data-shape="penta" data-color="coral" role="img" aria-label="penta"></span>
-    <span class="hc-bot lg" data-shape="clover" data-color="teal" role="img" aria-label="clover"></span>
-    <span class="hc-bot lg" data-shape="dome" data-color="pink" role="img" aria-label="dome"></span>
-    <span class="hc-bot lg" data-shape="drop" data-color="lime" role="img" aria-label="drop"></span>
-    <span class="hc-bot lg" data-shape="octa" data-color="violet" role="img" aria-label="octa"></span>
-    <span class="hc-bot lg" data-shape="cloud" data-color="amber" role="img" aria-label="cloud"></span>
-  </div>
-  <div class="row" style="gap:10px;flex-wrap:wrap">
-    <span class="hc-bot md" data-shape="hex" data-color="lime" role="img" aria-label="lime"></span>
-    <span class="hc-bot md" data-shape="hex" data-color="teal" role="img" aria-label="teal"></span>
-    <span class="hc-bot md" data-shape="hex" data-color="sky" role="img" aria-label="sky"></span>
-    <span class="hc-bot md" data-shape="hex" data-color="blue" role="img" aria-label="blue"></span>
-    <span class="hc-bot md" data-shape="hex" data-color="violet" role="img" aria-label="violet"></span>
-    <span class="hc-bot md" data-shape="hex" data-color="pink" role="img" aria-label="pink"></span>
-    <span class="hc-bot md" data-shape="hex" data-color="coral" role="img" aria-label="coral"></span>
-    <span class="hc-bot md" data-shape="hex" data-color="orange" role="img" aria-label="orange"></span>
-    <span class="hc-bot md" data-shape="hex" data-color="amber" role="img" aria-label="amber"></span>
-  </div>
   <!-- /ex -->
 
   <!-- ex: Two-line row | .hc-row2 [data-unread] [aria-current] | A list of conversations or items: title, time, summary and markers. | col -->
@@ -103,9 +68,8 @@
   </button>
   <!-- /ex -->
 
-  <!-- ex: Typing | .hc-typing .hc-loader .hc-shimmer | While the answer has not arrived. A bot without a photo shows its character thinking in place of the loader. -->
+  <!-- ex: Typing | .hc-typing .hc-loader .hc-shimmer | While the answer has not arrived. -->
   <div class="hc-typing" role="status"><span class="hc-loader"></span><span class="hc-shimmer">Architect is writing…</span></div>
-  <div class="hc-typing" role="status"><span class="hc-bot sm" data-shape="pill" data-color="violet" data-state="thinking" aria-hidden="true"></span><span class="hc-shimmer">Writer is writing…</span></div>
   <!-- /ex -->
 
   <!-- ex: Changes with undo | .hc-changes .hc-changes-h [data-undone] | After each answer that changed something: what changed and a button to undo it. | col -->

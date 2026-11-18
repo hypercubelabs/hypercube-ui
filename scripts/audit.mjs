@@ -118,8 +118,10 @@ function staticAudit(src) {
       if (/<style[\s>]/i.test(line)) inStyle = true;
       if (/<svg[\s>]/i.test(line)) inSvg++;
       const css = style || inStyle;
+      // the app's own tokens.css is where a product keeps what is only its own (brand, its character): its custom properties may hold colours
+      const ownToken = /(^|[\\/])tokens\.css$/.test(f) && /^\s*--[\w-]+\s*:/.test(line);
       const clean = line.replace(/url\([^)]*\)/g, '').replace(/&#\d+;|&#x[0-9a-f]+;/gi, '');
-      if (!/theme-color|msapplication|mask-icon|^\s*(\/\/|\*|\/\*)/.test(line) && LIT.test(clean)) {
+      if (!ownToken && !/theme-color|msapplication|mask-icon|^\s*(\/\/|\*|\/\*)/.test(line) && LIT.test(clean)) {
         const svgAttr = /\b(fill|stroke|stop-color|flood-color)=["']#/.test(line) || inSvg > 0;
         const inlineStyle = /style\s*=\s*["'{][^"'}]*(#[0-9a-fA-F]{3,8}\b|rgba?\(|hsla?\()/.test(line) || /\b(color|background|backgroundColor|borderColor|fill|stroke)\s*:\s*['"`](#|rgb|hsl)/.test(line);
         if ((css && !svgAttr) || inlineStyle) lit.push(`${at}  ${line.trim().slice(0, 100)}`);

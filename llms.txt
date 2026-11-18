@@ -23,7 +23,6 @@ To apply it to an existing app, read AGENTS.md first: the steps, the "what to sw
 - [src/screens.css](src/screens.css): list + detail, chat, settings, sign in, table
 - [src/boards.css](src/boards.css): connected tree, node, canvas, flow editor, week calendar, usage timeline, diff
 - [src/hc.css](src/hc.css): pieces for screens where AI works (trail, question, needs you…)
-- [src/bots.css](src/bots.css): bot characters (`.hc-bot`), the default picture of a bot without a photo
 - [src/elements.js](src/elements.js): <hc-ask>, <hc-sheet>, long press
 
 ## Recipes

@@ -98,7 +98,6 @@ The AI changes only markup and classes. Routes, form fields, API calls, business
 | Screens | [`src/screens.css`](src/screens.css) | List + detail, messages and composer, settings, sign in, a table that turns into cards |
 | Boards | [`src/boards.css`](src/boards.css) | Node, connected tree, canvas, flow editor, week calendar, on/off filters, usage timeline, file and diff |
 | AI | [`src/hc.css`](src/hc.css) | Status ring, two-line row, bot question, trail, needs you, working now, changes with undo, bottom sheet |
-| Bots | [`src/bots.css`](src/bots.css) | Bot characters: 12 shapes, 9 colours, a face that shows the state |
 | Elements | [`src/elements.js`](src/elements.js) | `<hc-ask>` (keys 1 to 9), `<hc-sheet>` (bottom sheet), `<hc-zoom>` (Adjust screen), long press |
 
 [`src/index.css`](src/index.css) imports all of them in the right order. It is the only file your app imports.
